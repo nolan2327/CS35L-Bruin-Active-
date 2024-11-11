@@ -1,5 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+import json
+
 
 def fetch_data():
     url = "https://recreation.ucla.edu/facilities/jwc"
@@ -29,4 +31,6 @@ def fetch_data():
             data_list.append(place_data)
 
     driver.quit()
-    return data_list
+    return json.dumps(data_list)
+
+fetch_data()
