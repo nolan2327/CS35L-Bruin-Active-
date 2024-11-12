@@ -1,12 +1,24 @@
 const express = require("express");
-const cors = requires("cors");
+const cors = require("cors");
+const mongoose = require("mongoose");
+const userRoute = require("./Routes/userRoute");
 
 const app = express();
+require("dotenv").config();
 
-app.use(express.json);
+app.use(express.json());
 app.use(cors());
-const port = process.env.PORT || 5000;
+app.use("/api/users", userRoute);
 
+app.get("/", (req, res) => {
+    res.send("Welcome to bruin active");
+})
+
+const port = process.env.PORT || 5000;
+const uri = process.env.ATLAS_URI;
+console.log(uri);
 app.listen(port, (req, res) => {
     console.log('Server running on port: ${port}');
 });
+
+mongoose.connect(uri).then(() => console.log("Connected")).catch((error) => console.log("Connectiong Failed: ", error.message));
