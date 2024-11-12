@@ -27,10 +27,8 @@ const uri = process.env.ATLAS_URI;
 });
 
 const port = process.env.PORT || 5000;
-
-// const uri = 'mongodb+srv://bruinactiveadmin:UoGCwIENUOywpaq6@bruinactivecluster.yi8fe.mongodb.net/?retryWrites=true&w=majority&appName=BruinActiveCluster&tls=true';
-// const uri = 'mongodb+srv://bruinactiveadmin:UoGCwIENUOywpaq6@bruinactivecluster.yi8fe.mongodb.net/?retryWrites=true&w=majority'
-const uri = "mongodb+srv://bruinactiveadmin:UoGCwIENUOywpaq6@bruinactivecluster.yi8fe.mongodb.net/?retryWrites=true&w=majority"
+const uri = process.env.ATLAS_URI;
+// const uri = "mongodb+srv://bruinactiveadmin:UoGCwIENUOywpaq6@bruinactivecluster.yi8fe.mongodb.net/?retryWrites=true&w=majority"
 
 >>>>>>> bdd2a74 (fixed mongo connection problem)
 console.log(uri);
@@ -39,8 +37,19 @@ app.listen(port, (req, res) => {
 });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 mongoose.connect(uri).then(() => console.log("Connected")).catch((error) => console.log("Connectiong Failed: ", error.message));
 =======
+=======
+mongoose.connect(uri)
+.then(() => console.log("MongoDB connection established"))
+.catch((error) => console.log("MongoDB connection failed: ", error.message));
+
+
+// const uri = 'mongodb+srv://bruinactiveadmin:UoGCwIENUOywpaq6@bruinactivecluster.yi8fe.mongodb.net/?retryWrites=true&w=majority&appName=BruinActiveCluster&tls=true';
+// const uri = 'mongodb+srv://bruinactiveadmin:UoGCwIENUOywpaq6@bruinactivecluster.yi8fe.mongodb.net/?retryWrites=true&w=majority'
+
+>>>>>>> ef38a87 (Fixed Connection Problem)
 // const client = new MongoClient(uri);
 
 // client.connect().then(() => console.log("Connected")).catch((error) => console.log("No Connected"));
@@ -49,9 +58,7 @@ mongoose.connect(uri).then(() => console.log("Connected")).catch((error) => cons
 
 // mongoose.set('debug', true);
 
-mongoose.connect(uri)
-.then(() => console.log("MongoDB connection established"))
-.catch((error) => console.log("MongoDB connection failed: ", error.message));
+
 
 // const { MongoClient } = require("mongodb");
 
