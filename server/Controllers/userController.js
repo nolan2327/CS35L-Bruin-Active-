@@ -7,9 +7,11 @@ const createToken = (_id) => {
     const jwtkey = process.env.JWT_SECRET_KEY;
 
     return jwt.sign({_id}, jwtkey, {expiresIn: "3d"});
-}
+};
 
 const registerUser = async (req, res) => {
+    try{
+
     const {name, email, password} = req.body;
 
     let user = await userModel.findOne({email});
@@ -32,6 +34,12 @@ const registerUser = async (req, res) => {
     const token = createToken(user._id);
 
     res.status(200).json({_id: user._id, name, email, token});
-}
+    }catch(error){
+        console.log(error);
+        res.status(500).json(error);
+    }
+};
+
+
 
 module.exports = {registerUser};
