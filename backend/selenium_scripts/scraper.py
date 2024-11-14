@@ -3,20 +3,26 @@ from selenium.webdriver.common.by import By
 import json
 
 
-def fetch_data():
-    url = "https://recreation.ucla.edu/facilities/jwc"
+def fetch_data(logic):
+    url = ""
+
+    # TRUE(1) = John Wooden Cetner, FALSE(0) = BFit
+    if(logic != 1):
+        url = "https://recreation.ucla.edu/facilities/bfit"
+    else:
+        url = "https://recreation.ucla.edu/facilities/jwc"
+
+    # Code for selenium's web scraper (magic)
     driver = webdriver.Chrome()
-
     driver.get(url)
-
     frame = driver.find_elements(By.TAG_NAME, "iframe")[0]
-
     driver.switch_to.frame(frame)
-
     bars = driver.find_elements(By.CLASS_NAME, "barChart")
 
+    # Return array of data
     data_list = []
 
+    # Collect data in graph
     for bar in bars:
         text_lines = bar.text.split('\n')
         
@@ -31,6 +37,6 @@ def fetch_data():
             data_list.append(place_data)
 
     driver.quit()
-    return json.dumps(data_list)
 
-fetch_data()
+    # Returns in json format
+    return json.dumps(data_list)
