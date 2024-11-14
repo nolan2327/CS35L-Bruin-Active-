@@ -19,7 +19,7 @@ def store_data(bfit, wooden):
     db = client['database_name']
     #db: Bruin-Active
     collection = db['collection_name']
-    #collection: gymData
+    #collection: gym
 
     if bfit:
         collection.insert_many(bfit)
