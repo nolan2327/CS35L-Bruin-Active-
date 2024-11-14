@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const gymSchema = new mongoose.Schema(
+const gymSchema = new mongoose.Schema( // not yet correct after this
     {
         name: { type: String, required: true, minlength: 3, maxlength: 30},
         email: { type: String, required: true, minlength: 3, maxlength: 200, unique: true},
@@ -11,6 +11,6 @@ const gymSchema = new mongoose.Schema(
     }
 );
 
-const userModel = mongoose.model("User", userSchema);
+const gymModel = mongoose.model("Gym", gymSchema);
 
-module.exports = userModel;
+module.exports = gymModel;

@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 const createToken = (_id) => {
     const jwtkey = process.env.JWT_SECRET_KEY;
 
-    return jwt.sign({_id}, jwtkey, {expiresIn: "3d"});
+    return jwt.sign({_id}, jwtkey);
 };
 
 const registerUser = async (req, res) => {
@@ -84,6 +84,6 @@ const getUsers = async(req, res) => {
         console.log(error);
         res.status(500).json(error);
     }
-}
+};
 
 module.exports = {registerUser, loginUser, findUser, getUsers};
