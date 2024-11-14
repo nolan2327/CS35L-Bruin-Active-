@@ -16,9 +16,9 @@ def call_data():
 def store_data(bfit, wooden):
     client = MongoClient(os.getenv("MONGODB_URI"))
     #uri: mongodb+srv://bruinactiveadmin:UoGCwIENUOywpaq6@bruinactivecluster.yi8fe.mongodb.net/?retryWrites=true&w=majority&appName=BruinActiveCluster
-    db = client['database_name']
+    db = client['Bruin-Active']
     #db: Bruin-Active
-    collection = db['collection_name']
+    collection = db['gym']
     #collection: gym
 
     if bfit:
@@ -28,5 +28,3 @@ def store_data(bfit, wooden):
         collection.insert_many(wooden)
     
     client.close()
-
-call_data()
