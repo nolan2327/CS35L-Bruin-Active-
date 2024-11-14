@@ -38,4 +38,16 @@ def sum_people(logic):
     # Returns total count for respective gym. 
     return total_count_people
 
-
+def calculate_Percentage(max_population, total_count_people):
+    # Prevent erroneous inputs for max_population
+    if(max_population <= 0):
+        print("Error: Undefined population maximum.")
+        return -1
+    
+    # Prevent undefined count of people
+    if(total_count_people < 0):
+        print("Error: Revise total number of people.")
+        return -1
+    
+    # Return number of people in integer format 
+    return round((total_count_people/max_population) * 100)

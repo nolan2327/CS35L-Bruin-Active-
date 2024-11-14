@@ -1,5 +1,4 @@
 from sum_people_functions import sum_people, calculate_Percentage
-import json
 
 wooden_occupancy = sum_people(1)
 bfit_occupancy = sum_people(0)
@@ -10,6 +9,6 @@ wooden_percentage = calculate_Percentage(max_population, wooden_occupancy)
 bfit_percentage = calculate_Percentage(max_population, bfit_occupancy)
 
 print(f"Wooden Occupancy: {wooden_occupancy}")
-print(f"BFit Occupancy: {bfit_occupancy}")
 print(f"Wooden Occupancy Percentage: {wooden_percentage}%")
+print(f"BFit Occupancy: {bfit_occupancy}")
 print(f"BFit Occupancy Percentage: {bfit_percentage}%")
