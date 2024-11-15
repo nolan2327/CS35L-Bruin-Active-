@@ -1,4 +1,4 @@
-// HomeIcon.js
+// HomeIcon.j
 
 import React from 'react';
 

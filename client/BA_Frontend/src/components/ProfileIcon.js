@@ -20,5 +20,4 @@ const styles = {
         cursor: 'pointer', // Add pointer cursor for interactivity
       },
 }
-
 export default ProfileIcon;
