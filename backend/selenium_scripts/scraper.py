@@ -4,7 +4,13 @@ import json
 
 
 def fetch_data(logic):
-    url = "https://recreation.ucla.edu/facilities/jwc"
+    url = ""
+
+    # TRUE(1) = John Wooden Cetner, FALSE(0) = BFit
+    if(logic != 1):
+        url = "https://recreation.ucla.edu/facilities/bfit"
+    else:
+        url = "https://recreation.ucla.edu/facilities/jwc"
 
     # Code for selenium's web scraper (magic)
     driver = webdriver.Chrome()
