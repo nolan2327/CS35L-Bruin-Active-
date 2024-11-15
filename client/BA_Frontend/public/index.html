@@ -24,6 +24,46 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+
+    <!-- LOOK: THE ITEMS TOWARD THE END MUST BE IN ALPHABETICAL ORDER!!! -->
+    <!-- Add the CSS for material-symbols-outlined here -->
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=calendar_month,dashboard,home,person" />
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
+        .material-symbols-outlined {
+          font-variation-settings:
+          'FILL' 0,
+          'wght' 300,
+          'GRAD' 0,
+          'opsz' 24
+        }
+        .icon-hover {
+          transition: font-variation-settings 0.25s;
+          transform: scale(2); /* Make icon grow on focus as well */
+        }
+        .icon-hover:hover {
+          font-variation-settings:
+          'FILL' 0,
+          'wght' 500,
+          'GRAD' 0,
+          'opsz' 24
+        }
+
+        .icon-hover:focus {
+          transform: scale(1.2); /* Make icon grow on focus as well */
+          outline: none; /* Removes the default focus outline */
+        }
+
+        .permanent-marker-regular {
+          font-family: "Permanent Marker", cursive;
+          font-weight: 400;
+          font-style: normal;
+        }
+      </style>
+
     <title>React App</title>
   </head>
   <body>
