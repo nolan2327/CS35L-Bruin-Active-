@@ -4,4 +4,8 @@ export default function App() {
   return (
     <GymOccupancy />
   );
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/main
