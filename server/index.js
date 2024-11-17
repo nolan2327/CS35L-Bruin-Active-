@@ -13,13 +13,14 @@ app.use("/api/users", userRoute);
 
 app.get("/", (req, res) => {
     res.send("Welcome to bruin active");
-})
+});
 
-const port = process.env.PORT || 5000;
+
+const port = process.env.PORT || 3000;
 const uri = process.env.ATLAS_URI;
 
-app.listen(port, (req, res) => {
-    console.log('Server running on port: ${port}');
+app.listen(port, () => {
+    console.log(`Server running on port: ${port}`);
 });
 
 mongoose.connect(uri).then(() => console.log("Connected")).catch((error) => console.log("Connectiong Failed: ", error.message));
