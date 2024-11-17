@@ -13,10 +13,22 @@ const gymSchema = new mongoose.Schema(
     },
     hours: {
         defaultHours: {
-            mondayToThursday: String,
-            friday: String,
-            saturday: String,
-            sunday: String,
+            mondayToThursday: { 
+                type: String, 
+                required: true
+            },
+            friday: { 
+                type: String, 
+                required: true
+            },
+            saturday: { 
+                type: String, 
+                required: true
+            },
+            sunday: { 
+                type: String, 
+                required: true
+            },
         },
         specialHours: [
             {
@@ -55,31 +67,7 @@ const gymSchema = new mongoose.Schema(
    }
 );
 
-gymSchema.pre('save', function (next) {
-    const gym = this;
-
-    if (!gym.hours.defaultHours) {
-        if (gym.name === 'John Wooden Center') {
-            gym.hours.defaultHours = {
-                mondayToThursday: '5:15 AM - 1:00 AM',
-                friday: '5:15 AM - 10:00 PM',
-                saturday: '8:00 AM - 8:00 PM',
-                sunday: '8:00 AM - 11:00 PM',
-            };
-        } else if (gym.name === 'Bruin Fitness Center') {
-            gym.hours.defaultHours = {
-                mondayToThursday: '6:00 AM - 1:00 AM',
-                friday: '6:00 AM - 9:00 PMM',
-                saturday: '9:00 AM - 6:00 PM',
-                sunday: '9:00 AM - 6:00 PM',
-            };
-        }
-    }
-
-    next();
-});
 
 const gymModel = mongoose.model('Gym', gymSchema);
-
 
 module.exports = gymModel;
