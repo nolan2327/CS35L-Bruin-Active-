@@ -3,6 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css'
 
+// Various components from ../components here
+import CalendarIcon from '../components/CalendarIcon';
+import ProfileIcon from '../components/ProfileIcon';
+import DashboardIcon from '../components/DashboardIcon';
+import HomeIcon from '../components/HomeIcon';
+
+
 const CalendarPage = () => {
   const navigate = useNavigate();
   const [date, setDate] = useState(new Date());
@@ -10,6 +17,7 @@ return (
     <div style={styles.container}>
       <div style={styles.header}>
         <h2 style={styles.headerText}>Bruin Active</h2>
+ 	<ProfileIcon />
       </div>
 
       <div style={styles.mainContent}>
@@ -17,13 +25,14 @@ return (
         <div style={styles.leftColumn}>
           <div style={styles.buttonBox}>
             <button style={styles.button} onClick={() => navigate('/')}>
-              Gym Activity Levels
+              <HomeIcon />
             </button>
             <button style={styles.button} onClick={() => navigate('/calendar')}>
-              Calendar of Events
+              <CalendarIcon />
             </button>
-            <button style={styles.button}>3</button>
-            <button style={styles.button}>4</button>
+            <button style={styles.button}>
+              <DashboardIcon />
+            </button>
           </div>
         </div>
 

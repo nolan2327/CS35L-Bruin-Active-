@@ -1,22 +1,34 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
+// Various components from ../components here
+import CalendarIcon from '../components/CalendarIcon';
+import ProfileIcon from '../components/ProfileIcon';
+import DashboardIcon from '../components/DashboardIcon';
+import HomeIcon from '../components/HomeIcon';
+
 const GymOccupancy = () => {
   const navigate = useNavigate();
   return (
     <div style={styles.container}>
       <div style={styles.header}>
         <h2 style={styles.headerText}>Bruin Active</h2>
+ 	<ProfileIcon />
       </div>
 
       <div style={styles.mainContent}>
         {/* Left Column (Buttons + Gym Occupancy Title) */}
         <div style={styles.leftColumn}>
           <div style={styles.buttonBox}>
-	    <button style={styles.button} onClick={() => navigate('/')}>Gym Activity Levels</button>
-            <button style={styles.button} onClick={() => navigate('/calendar')}>Calendar of Events</button>
-            <button style={styles.button}>3</button>
-            <button style={styles.button}>4</button>
+	    <button style={styles.button} onClick={() => navigate('/')}>
+              <HomeIcon />
+            </button>
+            <button style={styles.button} onClick={() => navigate('/calendar')}>
+              <CalendarIcon />
+            </button>
+            <button style={styles.button}>
+              <DashboardIcon />
+            </button>
           </div>
         </div>
 
