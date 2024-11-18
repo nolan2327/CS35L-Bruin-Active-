@@ -2,7 +2,10 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // Various components from ../components here
+<<<<<<< HEAD
 >>>>>>> f21ffa5 (Updated menu to include component files)
+=======
+>>>>>>> apar
 import CalendarIcon from '../components/CalendarIcon';
 import ProfileIcon from '../components/ProfileIcon';
 import DashboardIcon from '../components/DashboardIcon';
@@ -71,12 +74,18 @@ const styles = {
     color: 'white',
     padding: '40px',
     textAlign: 'center',
+<<<<<<< HEAD
     position: 'relative', // Enable absolute positioning for the icon
+=======
+>>>>>>> apar
   },
   headerText: {
     margin: 0,
     fontSize: '36px',
+<<<<<<< HEAD
     fontFamily: '"Permanent Marker", cursive', // Ensure Permanent Marker font is used
+=======
+>>>>>>> apar
     fontFamily: 'Lobster', // Change to your preferred font
   },
   mainContent: {
@@ -95,6 +104,7 @@ const styles = {
     boxSizing: 'border-box',
     borderRight: '2px solid #ddd', // Optional: add a border to separate columns
   },
+<<<<<<< HEAD
   button: {
     backgroundColor: '#fff',
     color: '#008fdc',
@@ -110,6 +120,8 @@ const styles = {
     alignItems: 'center',
     fontSize: '18px',
   },
+=======
+>>>>>>> apar
   // buttonBox: {
   //   backgroundColor: '#008fdc',
   //   padding: '20px',
@@ -120,6 +132,24 @@ const styles = {
   //   justifyContent: 'center',
   //   alignItems: 'center',
   // },
+<<<<<<< HEAD
+=======
+    button: {
+        backgroundColor: '#fff',
+        color: '#008fdc',
+        border: 'none',
+        padding: '40px', // Adjust to make the button square
+        marginBottom: '40px', // Space between buttons (adjust the value as needed)
+        borderRadius: '10px',
+        cursor: 'pointer',
+        width: '80px', // Set width
+        height: '80px', // Set height to match width for a square shape
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontSize: '18px',
+    },
+>>>>>>> apar
   rightColumn: {
     flex: 1, // Right column takes up remaining space
     display: 'flex',
