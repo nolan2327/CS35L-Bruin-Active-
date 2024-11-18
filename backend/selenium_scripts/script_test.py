@@ -1,4 +1,5 @@
 from sum_people_functions import sum_people, calculate_Percentage
+import json  # Keeping the import from the merged branch
 
 wooden_occupancy = sum_people(1)
 bfit_occupancy = sum_people(0)

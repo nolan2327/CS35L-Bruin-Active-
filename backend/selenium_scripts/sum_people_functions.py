@@ -38,6 +38,7 @@ def sum_people(logic):
     # Returns total count for respective gym. 
     return total_count_people
 
+<<<<<<< HEAD
 def calculate_Percentage(max_population, total_count_people):
     # Prevent erroneous inputs for max_population
     if(max_population <= 0):
@@ -51,3 +52,6 @@ def calculate_Percentage(max_population, total_count_people):
     
     # Return number of people in integer format 
     return round((total_count_people/max_population) * 100)
+=======
+
+>>>>>>> 6e9ac68 (Rewrote the scraper to avoid code duplications. Now features an argument that handles simple logic. Includes functions to sum people and calculate percentage occupied. Made easy to add extra functions.)
