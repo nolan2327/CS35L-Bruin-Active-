@@ -121,10 +121,8 @@ def fetch_data(logic):
         
         special = dict(zip(dates, hours))
         data_list.append(special)
-            
+    
     driver.quit()
 
     # Returns in json format
     return json.dumps(data_list)
-
-print(fetch_data(1))
