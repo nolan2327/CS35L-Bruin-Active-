@@ -1,22 +1,32 @@
 import React from 'react';
 
+<<<<<<< HEAD
 // Various components from ../components here
 import CalendarIcon from '../components/CalendarIcon';
 import ProfileIcon from '../components/ProfileIcon';
 import DashboardIcon from '../components/DashboardIcon';
 import HomeIcon from '../components/HomeIcon';
 
+=======
+>>>>>>> 1a30d96 (Added basic functionality for the beginning of front-end pages.)
 const GymOccupancy = () => {
   return (
     <div style={styles.container}>
       <div style={styles.header}>
+<<<<<<< HEAD
         <h2 style={styles.headerText} >Bruin Active</h2>
         <ProfileIcon />
       </div>
+=======
+        <h2 style={styles.headerText}>Bruin Active</h2>
+      </div>
+
+>>>>>>> 1a30d96 (Added basic functionality for the beginning of front-end pages.)
       <div style={styles.mainContent}>
         {/* Left Column (Buttons + Gym Occupancy Title) */}
         <div style={styles.leftColumn}>
           <div style={styles.buttonBox}>
+<<<<<<< HEAD
             <button style={styles.button}>
               <HomeIcon />
             </button>
@@ -26,6 +36,11 @@ const GymOccupancy = () => {
             <button style={styles.button}>
               <DashboardIcon />
             </button>
+=======
+            <button style={styles.button}>1</button>
+            <button style={styles.button}>2</button>
+            <button style={styles.button}>3</button>
+>>>>>>> 1a30d96 (Added basic functionality for the beginning of front-end pages.)
           </div>
         </div>
 
@@ -67,12 +82,19 @@ const styles = {
     color: 'white',
     padding: '40px',
     textAlign: 'center',
+<<<<<<< HEAD
     position: 'relative', // Enable absolute positioning for the icon
+=======
+>>>>>>> 1a30d96 (Added basic functionality for the beginning of front-end pages.)
   },
   headerText: {
     margin: 0,
     fontSize: '36px',
+<<<<<<< HEAD
     fontFamily: '"Permanent Marker", cursive', // Ensure Permanent Marker font is used
+=======
+    fontFamily: 'Lobster', // Change to your preferred font
+>>>>>>> 1a30d96 (Added basic functionality for the beginning of front-end pages.)
   },
   mainContent: {
     display: 'flex',
@@ -90,6 +112,7 @@ const styles = {
     boxSizing: 'border-box',
     borderRight: '2px solid #ddd', // Optional: add a border to separate columns
   },
+<<<<<<< HEAD
   button: {
     backgroundColor: '#fff',
     color: '#008fdc',
@@ -105,6 +128,33 @@ const styles = {
     alignItems: 'center',
     fontSize: '18px',
   },
+=======
+  // buttonBox: {
+  //   backgroundColor: '#008fdc',
+  //   padding: '20px',
+  //   borderRadius: '10px',
+  //   width: '30%', // Adjust width of button box
+  //   display: 'flex',
+  //   flexDirection: 'column',
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  // },
+    button: {
+        backgroundColor: '#fff',
+        color: '#008fdc',
+        border: 'none',
+        padding: '40px', // Adjust to make the button square
+        marginBottom: '40px', // Space between buttons (adjust the value as needed)
+        borderRadius: '10px',
+        cursor: 'pointer',
+        width: '80px', // Set width
+        height: '80px', // Set height to match width for a square shape
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontSize: '18px',
+    },
+>>>>>>> 1a30d96 (Added basic functionality for the beginning of front-end pages.)
   rightColumn: {
     flex: 1, // Right column takes up remaining space
     display: 'flex',
@@ -138,4 +188,8 @@ const styles = {
   },
 };
 
+<<<<<<< HEAD
 export default GymOccupancy;
+=======
+export default GymOccupancy;
+>>>>>>> 1a30d96 (Added basic functionality for the beginning of front-end pages.)
