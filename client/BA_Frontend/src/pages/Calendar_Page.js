@@ -34,11 +34,9 @@ return (
             <button style={styles.button}>
               <DashboardIcon />
             </button>
-              <HomeIcon />
-            </button>
           </div>
         </div>
-
+        
         {/* Right Column (Calendar) */}
         <div style={styles.rightColumn}>
           <div style={styles.calendarContainer}>

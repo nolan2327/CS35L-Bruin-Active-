@@ -6,7 +6,6 @@ const CalendarIcon = () => {
   return (
     <span className="material-symbols-outlined icon-hover">
       Calendar of Events
->>>>>>> 308a2d4 (Adding component files)
     </span>
   );
 };
