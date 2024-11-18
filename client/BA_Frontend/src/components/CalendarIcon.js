@@ -5,7 +5,8 @@ import React from 'react';
 const CalendarIcon = () => {
   return (
     <span className="material-symbols-outlined icon-hover">
-      calendar_month
+      Calendar of Events
+>>>>>>> 308a2d4 (Adding component files)
     </span>
   );
 };
