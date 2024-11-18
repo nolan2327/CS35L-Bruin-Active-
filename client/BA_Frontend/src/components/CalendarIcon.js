@@ -5,7 +5,7 @@ import React from 'react';
 const CalendarIcon = () => {
   return (
     <span className="material-symbols-outlined icon-hover">
-      calendar_month
+      Calendar of Events
     </span>
   );
 };

@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css'
 
 // Various components from ../components here
 import CalendarIcon from '../components/CalendarIcon';
@@ -7,9 +9,12 @@ import ProfileIcon from '../components/ProfileIcon';
 import DashboardIcon from '../components/DashboardIcon';
 import HomeIcon from '../components/HomeIcon';
 
-const GymOccupancy = () => {
+
+const CalendarPage = () => {
   const navigate = useNavigate();
-  return (
+  const [date, setDate] = useState(new Date());
+
+return (
     <div style={styles.container}>
       <div style={styles.header}>
         <h2 style={styles.headerText}>Bruin Active</h2>
@@ -20,7 +25,7 @@ const GymOccupancy = () => {
         {/* Left Column (Buttons + Gym Occupancy Title) */}
         <div style={styles.leftColumn}>
           <div style={styles.buttonBox}>
-	    <button style={styles.button} onClick={() => navigate('/')}>
+            <button style={styles.button} onClick={() => navigate('/')}>
               <HomeIcon />
             </button>
             <button style={styles.button} onClick={() => navigate('/calendar')}>
@@ -31,28 +36,15 @@ const GymOccupancy = () => {
             </button>
           </div>
         </div>
-
-        {/* Right Column with Gym Occupancy Boxes */}
+        
+        {/* Right Column (Calendar) */}
         <div style={styles.rightColumn}>
-          {/* John Wooden Center */}
-          <div style={styles.hall}>
-            <div style={styles.hallInfo}>
-              <strong>John Wooden Center</strong>
-            </div>
-            <div style={styles.hallDetails}>
-              <p style={styles.occupancy}>TEST</p> {/* Display dynamic percentage */}
-            </div>
+          <div style={styles.calendarContainer}>
+            <Calendar onChange={setDate} value={date} />
           </div>
-
-          {/* B-Fit */}
-          <div style={styles.hall}>
-            <div style={styles.hallInfo}>
-              <strong>B-Fit</strong>
-            </div>
-            <div style={styles.hallDetails}>
-              <p style={styles.occupancy}>TEST</p> {/* Display dynamic percentage */}
-            </div>
-          </div>
+          <p style={styles.selectedDate}>
+            Selected date: {date.toDateString()}
+          </p>
         </div>
       </div>
     </div>
@@ -70,12 +62,10 @@ const styles = {
     color: 'white',
     padding: '40px',
     textAlign: 'center',
-    position: 'relative', // Enable absolute positioning for the icon
   },
   headerText: {
     margin: 0,
     fontSize: '36px',
-    //fontFamily: '"Permanent Marker", cursive', // Ensure Permanent Marker font is used
     fontFamily: 'Lobster', // Change to your preferred font
   },
   mainContent: {
@@ -94,21 +84,6 @@ const styles = {
     boxSizing: 'border-box',
     borderRight: '2px solid #ddd', // Optional: add a border to separate columns
   },
-  button: {
-    backgroundColor: '#fff',
-    color: '#008fdc',
-    border: 'none',
-    padding: '40px', // Adjust to make the button square
-    marginBottom: '40px', // Space between buttons (adjust the value as needed)
-    borderRadius: '10px',
-    cursor: 'pointer',
-    width: '80px', // Set width
-    height: '80px', // Set height to match width for a square shape
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    fontSize: '18px',
-  },
   // buttonBox: {
   //   backgroundColor: '#008fdc',
   //   padding: '20px',
@@ -119,37 +94,42 @@ const styles = {
   //   justifyContent: 'center',
   //   alignItems: 'center',
   // },
+
+button: {
+        backgroundColor: '#fff',
+        color: '#008fdc',
+        border: 'none',
+        padding: '40px', // Adjust to make the button square
+        marginBottom: '40px', // Space between buttons (adjust the value as needed)
+        borderRadius: '10px',
+        cursor: 'pointer',
+        width: '80px', // Set width
+        height: '80px', // Set height to match width for a square shape
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontSize: '18px',
+    },
   rightColumn: {
     flex: 1, // Right column takes up remaining space
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'flex-start',
+    justifyContent: 'center', // Center the calendar vertically and horizontally
     padding: '20px',
     overflowY: 'auto',
   },
-  hall: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    padding: '15px',
-    borderRadius: '10px',
-    marginBottom: '10px',
-    boxShadow: '0px 2px 5px rgba(0,0,0,0.1)',
-    width: '100%',
-    maxWidth: '600px', // Optional: Adjust the max width of the gym boxes
+  calendarContainer: {
+    transform: 'scale(1.5)', // Scale up by 1.5x
+    transformOrigin: 'center', // Scale from the center
   },
-  hallInfo: {
-    flexGrow: 1,
-  },
-  hallDetails: {
-    textAlign: 'right',
-  },
-  occupancy: {
-    color: '#28a745', // Green for occupancy percentage
-    fontWeight: 'bold',
+  selectedDate: {
+    marginTop: '20px',
+    fontSize: '18px',
+    color: '#555',
   },
 };
 
-export default GymOccupancy;
+export default CalendarPage;
+
+
