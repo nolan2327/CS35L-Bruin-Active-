@@ -1,7 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-// Importing icons from components
+// Various components from ../components here
+>>>>>>> f21ffa5 (Updated menu to include component files)
 import CalendarIcon from '../components/CalendarIcon';
 import ProfileIcon from '../components/ProfileIcon';
 import DashboardIcon from '../components/DashboardIcon';
@@ -13,7 +14,7 @@ const GymOccupancy = () => {
     <div style={styles.container}>
       <div style={styles.header}>
         <h2 style={styles.headerText}>Bruin Active</h2>
-        <ProfileIcon />
+ 	<ProfileIcon />
       </div>
 
       <div style={styles.mainContent}>

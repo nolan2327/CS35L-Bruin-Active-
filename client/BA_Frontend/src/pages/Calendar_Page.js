@@ -4,6 +4,9 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css'
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> f21ffa5 (Updated menu to include component files)
 // Various components from ../components here
 import CalendarIcon from '../components/CalendarIcon';
 import ProfileIcon from '../components/ProfileIcon';
@@ -11,8 +14,11 @@ import DashboardIcon from '../components/DashboardIcon';
 import HomeIcon from '../components/HomeIcon';
 
 
+<<<<<<< HEAD
 =======
 >>>>>>> f94b990 (Added calendar skeleton and linked front page and calendar to buttons 1 and 2)
+=======
+>>>>>>> f21ffa5 (Updated menu to include component files)
 const CalendarPage = () => {
   const navigate = useNavigate();
   const [date, setDate] = useState(new Date());
@@ -21,9 +27,13 @@ return (
       <div style={styles.header}>
         <h2 style={styles.headerText}>Bruin Active</h2>
 <<<<<<< HEAD
+<<<<<<< HEAD
  	<ProfileIcon />
 =======
 >>>>>>> f94b990 (Added calendar skeleton and linked front page and calendar to buttons 1 and 2)
+=======
+ 	<ProfileIcon />
+>>>>>>> f21ffa5 (Updated menu to include component files)
       </div>
 
       <div style={styles.mainContent}>
@@ -31,6 +41,7 @@ return (
         <div style={styles.leftColumn}>
           <div style={styles.buttonBox}>
             <button style={styles.button} onClick={() => navigate('/')}>
+<<<<<<< HEAD
 <<<<<<< HEAD
               <HomeIcon />
             </button>
@@ -42,13 +53,22 @@ return (
             </button>
 =======
               Gym Activity Levels
+=======
+              <HomeIcon />
+>>>>>>> f21ffa5 (Updated menu to include component files)
             </button>
             <button style={styles.button} onClick={() => navigate('/calendar')}>
-              Calendar of Events
+              <CalendarIcon />
             </button>
+            <button style={styles.button}>
+              <DashboardIcon />
+            </button>
+<<<<<<< HEAD
             <button style={styles.button}>3</button>
             <button style={styles.button}>4</button>
 >>>>>>> f94b990 (Added calendar skeleton and linked front page and calendar to buttons 1 and 2)
+=======
+>>>>>>> f21ffa5 (Updated menu to include component files)
           </div>
         </div>
 
