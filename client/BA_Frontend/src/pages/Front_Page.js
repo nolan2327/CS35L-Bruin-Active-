@@ -19,7 +19,7 @@ const GymOccupancy = () => {
         {/* Left Column (Buttons + Gym Occupancy Title) */}
         <div style={styles.leftColumn}>
           <div style={styles.buttonBox}>
-            <button style={styles.button} onClick={() => navigate('/')}>
+	    <button style={styles.button} onClick={() => navigate('/')}>
               <HomeIcon />
             </button>
             <button style={styles.button} onClick={() => navigate('/calendar')}>
