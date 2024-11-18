@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css'
 
+<<<<<<< HEAD
 // Various components from ../components here
 import CalendarIcon from '../components/CalendarIcon';
 import ProfileIcon from '../components/ProfileIcon';
@@ -10,6 +11,8 @@ import DashboardIcon from '../components/DashboardIcon';
 import HomeIcon from '../components/HomeIcon';
 
 
+=======
+>>>>>>> f94b990 (Added calendar skeleton and linked front page and calendar to buttons 1 and 2)
 const CalendarPage = () => {
   const navigate = useNavigate();
   const [date, setDate] = useState(new Date());
@@ -17,7 +20,10 @@ return (
     <div style={styles.container}>
       <div style={styles.header}>
         <h2 style={styles.headerText}>Bruin Active</h2>
+<<<<<<< HEAD
  	<ProfileIcon />
+=======
+>>>>>>> f94b990 (Added calendar skeleton and linked front page and calendar to buttons 1 and 2)
       </div>
 
       <div style={styles.mainContent}>
@@ -25,6 +31,7 @@ return (
         <div style={styles.leftColumn}>
           <div style={styles.buttonBox}>
             <button style={styles.button} onClick={() => navigate('/')}>
+<<<<<<< HEAD
               <HomeIcon />
             </button>
             <button style={styles.button} onClick={() => navigate('/calendar')}>
@@ -33,6 +40,15 @@ return (
             <button style={styles.button}>
               <DashboardIcon />
             </button>
+=======
+              Gym Activity Levels
+            </button>
+            <button style={styles.button} onClick={() => navigate('/calendar')}>
+              Calendar of Events
+            </button>
+            <button style={styles.button}>3</button>
+            <button style={styles.button}>4</button>
+>>>>>>> f94b990 (Added calendar skeleton and linked front page and calendar to buttons 1 and 2)
           </div>
         </div>
 
