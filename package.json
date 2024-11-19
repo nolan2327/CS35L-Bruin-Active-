@@ -2,7 +2,9 @@
     "name": "bruin-active",
     "version": "1.0.0",
     "scripts": {
-        "test": "cd server && npm test"
+        "start": "npm-run-all start-server start-client",
+        "start-server": "cd server && npm start",
+        "start-client": "cd client && npm start"
     },
     "keywords": [],
     "author": "",
