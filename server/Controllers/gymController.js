@@ -13,6 +13,9 @@ const findOccupancy = async(req, res) => {
     }
 };
 
+module.exports = {findOccupancy};
+
+
 // const findUser = async(req, res) => {
 //     const userId = req.params.userId;
 

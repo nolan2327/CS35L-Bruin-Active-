@@ -16,16 +16,17 @@ export default function App() {
       </Routes>
     </Router>
   );
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-};
-=======
 }
->>>>>>> Stashed changes
-=======
-<<<<<<< HEAD
-}
-=======
-}
->>>>>>> origin/main
->>>>>>> b742c50375eceddbd0c06e279235aa3048137c84
+// <<<<<<< HEAD
+// <<<<<<< Updated upstream
+// };
+// =======
+// }
+// >>>>>>> Stashed changes
+// =======
+// <<<<<<< HEAD
+// }
+// =======
+// }
+// >>>>>>> origin/main
+// >>>>>>> b742c50375eceddbd0c06e279235aa3048137c84

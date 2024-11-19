@@ -3,9 +3,6 @@ from selenium.webdriver.common.by import By
 import json
 import re
 
-from datetime import datetime
-
-
 def fetch_data(logic):
     url = ""
 
@@ -124,5 +121,4 @@ def fetch_data(logic):
     
     driver.quit()
 
-    # Returns in json format
     return json.dumps(data_list)
