@@ -29,6 +29,7 @@ export const postRequest = async(url, body) => { // body should be JSON.stringif
 }
 
 // Call this function when you need to register a user, make sure to JSON stringify
+// For 
 export const registerUser = async(body) => {
     const response = await postRequest(`${baseUrl}/users/register`, body);
 
