@@ -1,21 +1,19 @@
 const mongoose = require('mongoose');
 
-const connectDB = async () => {
-    try {
-        const mongoURI = "mongodb+srv://bruinactiveadmin:UoGCwIENUOywpaq6@bruinactivecluster.yi8fe.mongodb.net/Bruin-Active?retryWrites=true&w=majority&appName=BruinActiveCluster"
+mongoose.set('strictQuery', false);
 
-        await mongoose.connect(mongoURI, {
+const connectDB = async (uri) => {
+    try {
+        await mongoose.connect(uri, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
 
-        console.log('MongoDB connected');
+        console.log('MongoDB Connected!');
     } catch (error) {
-        console.error('MongoDB connection error:', error.message);
+        console.error('MongoDB Connection Error:', error.message);
         process.exit(1);
     }
 };
-
-connectDB()
 
 module.exports = connectDB;
