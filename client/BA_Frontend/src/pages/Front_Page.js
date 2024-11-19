@@ -1,60 +1,26 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> b742c50375eceddbd0c06e279235aa3048137c84
 // Various components from ../components here
 import CalendarIcon from '../components/CalendarIcon';
 import ProfileIcon from '../components/ProfileIcon';
 import DashboardIcon from '../components/DashboardIcon';
 import HomeIcon from '../components/HomeIcon';
 
-<<<<<<< HEAD
-=======
->>>>>>> origin/main
->>>>>>> b742c50375eceddbd0c06e279235aa3048137c84
 const GymOccupancy = () => {
   const navigate = useNavigate();
   return (
     <div style={styles.container}>
       <div style={styles.header}>
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
->>>>>>> b742c50375eceddbd0c06e279235aa3048137c84
         <h2 style={styles.headerText}>Bruin Active</h2>
  	<ProfileIcon />
       </div>
 
-=======
-        <h2 style={styles.headerText} >Bruin Active</h2>
-        <ProfileIcon />
-      </div>
-<<<<<<< HEAD
->>>>>>> Stashed changes
-=======
->>>>>>> origin/main
->>>>>>> b742c50375eceddbd0c06e279235aa3048137c84
       <div style={styles.mainContent}>
         {/* Left Column (Buttons + Gym Occupancy Title) */}
         <div style={styles.leftColumn}>
           <div style={styles.buttonBox}>
-<<<<<<< HEAD
-<<<<<<< Updated upstream
 	    <button style={styles.button} onClick={() => navigate('/')}>
-=======
-<<<<<<< HEAD
-            <button style={styles.button}>1</button>
-            <button style={styles.button}>2</button>
-            <button style={styles.button}>3</button>
->>>>>>> b742c50375eceddbd0c06e279235aa3048137c84
-=======
-            <button style={styles.button}>
->>>>>>> Stashed changes
               <HomeIcon />
             </button>
             <button style={styles.button} onClick={() => navigate('/calendar')}>
@@ -63,10 +29,6 @@ const GymOccupancy = () => {
             <button style={styles.button}>
               <DashboardIcon />
             </button>
-<<<<<<< HEAD
-=======
->>>>>>> origin/main
->>>>>>> b742c50375eceddbd0c06e279235aa3048137c84
           </div>
         </div>
 
@@ -108,32 +70,13 @@ const styles = {
     color: 'white',
     padding: '40px',
     textAlign: 'center',
-<<<<<<< HEAD
     position: 'relative', // Enable absolute positioning for the icon
-=======
-<<<<<<< HEAD
-=======
-    position: 'relative', // Enable absolute positioning for the icon
->>>>>>> origin/main
->>>>>>> b742c50375eceddbd0c06e279235aa3048137c84
   },
   headerText: {
     margin: 0,
     fontSize: '36px',
-<<<<<<< HEAD
-<<<<<<< Updated upstream
     //fontFamily: '"Permanent Marker", cursive', // Ensure Permanent Marker font is used
     fontFamily: 'Lobster', // Change to your preferred font
-=======
-    fontFamily: '"Permanent Marker", cursive', // Ensure Permanent Marker font is used
->>>>>>> Stashed changes
-=======
-<<<<<<< HEAD
-    fontFamily: 'Lobster', // Change to your preferred font
-=======
-    fontFamily: '"Permanent Marker", cursive', // Ensure Permanent Marker font is used
->>>>>>> origin/main
->>>>>>> b742c50375eceddbd0c06e279235aa3048137c84
   },
   mainContent: {
     display: 'flex',
@@ -151,36 +94,6 @@ const styles = {
     boxSizing: 'border-box',
     borderRight: '2px solid #ddd', // Optional: add a border to separate columns
   },
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-  // buttonBox: {
-  //   backgroundColor: '#008fdc',
-  //   padding: '20px',
-  //   borderRadius: '10px',
-  //   width: '30%', // Adjust width of button box
-  //   display: 'flex',
-  //   flexDirection: 'column',
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  // },
-    button: {
-        backgroundColor: '#fff',
-        color: '#008fdc',
-        border: 'none',
-        padding: '40px', // Adjust to make the button square
-        marginBottom: '40px', // Space between buttons (adjust the value as needed)
-        borderRadius: '10px',
-        cursor: 'pointer',
-        width: '80px', // Set width
-        height: '80px', // Set height to match width for a square shape
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: '18px',
-    },
-=======
->>>>>>> b742c50375eceddbd0c06e279235aa3048137c84
   button: {
     backgroundColor: '#fff',
     color: '#008fdc',
@@ -196,8 +109,6 @@ const styles = {
     alignItems: 'center',
     fontSize: '18px',
   },
-<<<<<<< HEAD
-<<<<<<< Updated upstream
   // buttonBox: {
   //   backgroundColor: '#008fdc',
   //   padding: '20px',
@@ -208,11 +119,6 @@ const styles = {
   //   justifyContent: 'center',
   //   alignItems: 'center',
   // },
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> origin/main
->>>>>>> b742c50375eceddbd0c06e279235aa3048137c84
   rightColumn: {
     flex: 1, // Right column takes up remaining space
     display: 'flex',
@@ -246,12 +152,4 @@ const styles = {
   },
 };
 
-<<<<<<< HEAD
 export default GymOccupancy;
-=======
-<<<<<<< HEAD
-export default GymOccupancy;
-=======
-export default GymOccupancy;
->>>>>>> origin/main
->>>>>>> b742c50375eceddbd0c06e279235aa3048137c84
