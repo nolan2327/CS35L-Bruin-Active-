@@ -1,11 +1,5 @@
 const gymModel = require("../Models/gymModel");
 
-const createToken = (_id) => {
-    const jwtkey = process.env.JWT_SECRET_KEY;
-
-    return jwt.sign({_id}, jwtkey);
-};
-
 const findOccupancy = async(req, res) => {
     const userId = req.params.userId;
 
