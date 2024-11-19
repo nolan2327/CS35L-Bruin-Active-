@@ -7,13 +7,13 @@ import ProfileIcon from '../components/ProfileIcon';
 import DashboardIcon from '../components/DashboardIcon';
 import HomeIcon from '../components/HomeIcon';
 
-const GymOccupancy = () => {
+const Board = () => {
   const navigate = useNavigate(); // Hook to programmatically navigate
 
   return (
     <div style={styles.container}>
       <div style={styles.header}>
-        <h2 style={styles.headerText}>Bruin Active</h2>
+        <h2 style={styles.headerText} >Bruin Active</h2>
         <button style={styles.profileButton} onClick={() => navigate('/profile_page')}>
           <ProfileIcon />
         </button>
@@ -34,33 +34,14 @@ const GymOccupancy = () => {
           </div>
         </div>
 
-        {/* Right Column with Gym Occupancy Boxes */}
-        <div style={styles.rightColumn}>
-          {/* John Wooden Center */}
-          <div style={styles.hall}>
-            <div style={styles.hallInfo}>
-              <strong>John Wooden Center</strong>
-            </div>
-            <div style={styles.hallDetails}>
-              <p style={styles.occupancy}>TEST</p> {/* Display dynamic percentage */}
-            </div>
-          </div>
-
-          {/* B-Fit */}
-          <div style={styles.hall}>
-            <div style={styles.hallInfo}>
-              <strong>B-Fit</strong>
-            </div>
-            <div style={styles.hallDetails}>
-              <p style={styles.occupancy}>TEST</p> {/* Display dynamic percentage */}
-            </div>
-          </div>
-        </div>
+      <div>
+          This is a test of the postboard page...
+      </div>
       </div>
     </div>
   );
 };
-
+  
 const styles = {
   container: {
     display: 'flex',
@@ -111,15 +92,15 @@ const styles = {
     fontSize: '18px',
   },
   profileButton: {
-    backgroundColor: 'transparent', 
-    border: 'none',                
+    backgroundColor: 'transparent', // Keep background transparent
+    border: 'none',                // Remove border
     cursor: 'pointer',             // Show pointer cursor
     position: 'absolute',          // Position relative to header
-    right: '20px',                 
+    right: '20px',                 // Adjust position
     top: '20%',                    // Vertically center
     transform: 'translateY(-50%)', // Maintain proper centering
-    padding: 0,                    
-    outline: 'none',               
+    padding: 0,                    // Remove padding
+    outline: 'none',               // Prevent focus outline from causing shifts
   },  
   rightColumn: {
     flex: 1, // Right column takes up remaining space
@@ -154,4 +135,4 @@ const styles = {
   },
 };
 
-export default GymOccupancy;
+export default Board;

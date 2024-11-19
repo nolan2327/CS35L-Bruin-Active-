@@ -1,5 +1,7 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom'; // Import the hook
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css'
 
 // Various components from ../components here
 import CalendarIcon from '../components/CalendarIcon';
@@ -7,10 +9,12 @@ import ProfileIcon from '../components/ProfileIcon';
 import DashboardIcon from '../components/DashboardIcon';
 import HomeIcon from '../components/HomeIcon';
 
-const GymOccupancy = () => {
-  const navigate = useNavigate(); // Hook to programmatically navigate
 
-  return (
+const CalendarPage = () => {
+  const navigate = useNavigate();
+  const [date, setDate] = useState(new Date());
+
+return (
     <div style={styles.container}>
       <div style={styles.header}>
         <h2 style={styles.headerText}>Bruin Active</h2>
@@ -18,6 +22,7 @@ const GymOccupancy = () => {
           <ProfileIcon />
         </button>
       </div>
+
       <div style={styles.mainContent}>
         {/* Left Column (Buttons + Gym Occupancy Title) */}
         <div style={styles.leftColumn}>
@@ -33,28 +38,15 @@ const GymOccupancy = () => {
             </button>
           </div>
         </div>
-
-        {/* Right Column with Gym Occupancy Boxes */}
+        
+        {/* Right Column (Calendar) */}
         <div style={styles.rightColumn}>
-          {/* John Wooden Center */}
-          <div style={styles.hall}>
-            <div style={styles.hallInfo}>
-              <strong>John Wooden Center</strong>
-            </div>
-            <div style={styles.hallDetails}>
-              <p style={styles.occupancy}>TEST</p> {/* Display dynamic percentage */}
-            </div>
+          <div style={styles.calendarContainer}>
+            <Calendar onChange={setDate} value={date} />
           </div>
-
-          {/* B-Fit */}
-          <div style={styles.hall}>
-            <div style={styles.hallInfo}>
-              <strong>B-Fit</strong>
-            </div>
-            <div style={styles.hallDetails}>
-              <p style={styles.occupancy}>TEST</p> {/* Display dynamic percentage */}
-            </div>
-          </div>
+          <p style={styles.selectedDate}>
+            Selected date: {date.toDateString()}
+          </p>
         </div>
       </div>
     </div>
@@ -126,32 +118,20 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'flex-start',
+    justifyContent: 'center', // Center the calendar vertically and horizontally
     padding: '20px',
     overflowY: 'auto',
   },
-  hall: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    padding: '15px',
-    borderRadius: '10px',
-    marginBottom: '10px',
-    boxShadow: '0px 2px 5px rgba(0,0,0,0.1)',
-    width: '100%',
-    maxWidth: '600px', // Optional: Adjust the max width of the gym boxes
+  calendarContainer: {
+    transform: 'scale(1.5)', // Scale up by 1.5x
+    transformOrigin: 'center', // Scale from the center
   },
-  hallInfo: {
-    flexGrow: 1,
-  },
-  hallDetails: {
-    textAlign: 'right',
-  },
-  occupancy: {
-    color: '#28a745', // Green for occupancy percentage
-    fontWeight: 'bold',
+  selectedDate: {
+    marginTop: '20px',
+    fontSize: '18px',
+    color: '#555',
   },
 };
 
-export default GymOccupancy;
+export default CalendarPage;
+
