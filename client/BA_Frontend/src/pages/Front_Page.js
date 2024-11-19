@@ -12,15 +12,25 @@ const GymOccupancy = () => {
   return (
     <div style={styles.container}>
       <div style={styles.header}>
+<<<<<<< Updated upstream
         <h2 style={styles.headerText}>Bruin Active</h2>
  	<ProfileIcon />
       </div>
 
+=======
+        <h2 style={styles.headerText} >Bruin Active</h2>
+        <ProfileIcon />
+      </div>
+>>>>>>> Stashed changes
       <div style={styles.mainContent}>
         {/* Left Column (Buttons + Gym Occupancy Title) */}
         <div style={styles.leftColumn}>
           <div style={styles.buttonBox}>
+<<<<<<< Updated upstream
 	    <button style={styles.button} onClick={() => navigate('/')}>
+=======
+            <button style={styles.button}>
+>>>>>>> Stashed changes
               <HomeIcon />
             </button>
             <button style={styles.button} onClick={() => navigate('/calendar')}>
@@ -75,8 +85,12 @@ const styles = {
   headerText: {
     margin: 0,
     fontSize: '36px',
+<<<<<<< Updated upstream
     //fontFamily: '"Permanent Marker", cursive', // Ensure Permanent Marker font is used
     fontFamily: 'Lobster', // Change to your preferred font
+=======
+    fontFamily: '"Permanent Marker", cursive', // Ensure Permanent Marker font is used
+>>>>>>> Stashed changes
   },
   mainContent: {
     display: 'flex',
@@ -109,6 +123,7 @@ const styles = {
     alignItems: 'center',
     fontSize: '18px',
   },
+<<<<<<< Updated upstream
   // buttonBox: {
   //   backgroundColor: '#008fdc',
   //   padding: '20px',
@@ -119,6 +134,8 @@ const styles = {
   //   justifyContent: 'center',
   //   alignItems: 'center',
   // },
+=======
+>>>>>>> Stashed changes
   rightColumn: {
     flex: 1, // Right column takes up remaining space
     display: 'flex',
