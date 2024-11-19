@@ -1,25 +1,29 @@
 import subprocess
-import json
+from dotenv import load_dotenv
 from pymongo import MongoClient
 import os
+
+# Load the .env file from the server directory
+load_dotenv(dotenv_path='server/.env')
 
 def call_data():
     result_bfit = subprocess.run(['python', 'backend/selenium_scripts/bfit_pull.py'], capture_output=True, text=True)
     result_wooden = subprocess.run(['python', 'backend/selenium_scripts/wooden_pull.py'], capture_output=True, text=True)
 
-    data_bfit = json.loads(result_bfit.stdout)
-    data_wooden = json.loads(result_wooden.stdout)
+    print(result_bfit)
+    print(result_wooden)
 
-    store_data(data_bfit, data_wooden)
+    data_bfit = result_bfit.stdout
+    data_wooden = result_wooden.stdout
+
+    print(data_wooden)
+    print(data_bfit)
 
 
 def store_data(bfit, wooden):
-    client = MongoClient(os.getenv("MONGODB_URI"))
-    #uri: mongodb+srv://bruinactiveadmin:UoGCwIENUOywpaq6@bruinactivecluster.yi8fe.mongodb.net/?retryWrites=true&w=majority&appName=BruinActiveCluster
-    db = client['database_name']
-    #db: Bruin-Active
-    collection = db['collection_name']
-    #collection: gym
+    client = MongoClient(os.getenv('ATLAS_URI'))
+    db = client['Bruin-Active']
+    collection = db['gym']
 
     if bfit:
         collection.insert_many(bfit)

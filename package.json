@@ -1,0 +1,16 @@
+{
+    "name": "bruin-active",
+    "version": "1.0.0",
+    "scripts": {
+        "start": "concurrently \"npm run start-client\" \"npm run start-server\"",
+        "start-client": "cd client && npm start",
+        "start-server": "cd server && npm start"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "description": "",
+    "devDependencies": {
+        "concurrently": "^9.1.0"
+    }
+}

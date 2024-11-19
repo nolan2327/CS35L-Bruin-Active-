@@ -89,8 +89,36 @@ def fetch_data(logic):
         data_list.append({"Finals Week Date": finals_date})
         data_list.append(finals)    
     # To do (else statement for wooden)
-     
+    else:
+        special_hours_element = driver.find_elements(By.CLASS_NAME, "hdetails")[23]
+
+        # Parse inner HTML to extract text
+        from bs4 import BeautifulSoup
+        special_hours_html = special_hours_element.get_attribute('outerHTML')
+
+        soup = BeautifulSoup(special_hours_html, "html.parser")
+        visible_text = soup.get_text()
+
+        # Updated regex to capture dates, day expressions, and times
+        pattern = r"(\d{1,2}/\d{1,2}(?:-\d{1,2}/\d{1,2})?),\s+([\w-]+),\s+([\d:]+\s+(?:AM|PM))\s*-\s*([\d:]+\s+(?:AM|PM))"
+
+        # Find all matches in the text
+        matches = re.findall(pattern, visible_text)
+
+        # Process matches into the desired format
+        dates = []
+        hours = []
+        for match in matches:
+            date_range = match[0]
+            day_expression = match[1]
+            start_time = match[2]
+            end_time = match[3]
+            dates.append(f"{date_range}, {day_expression}")
+            hours.append(f"{start_time} - {end_time}")
+        
+        special = dict(zip(dates, hours))
+        data_list.append(special)
+    
     driver.quit()
 
-    # Returns in json format
     return json.dumps(data_list)
