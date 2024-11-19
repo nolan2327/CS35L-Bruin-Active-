@@ -1,0 +1,13 @@
+{
+    "name": "bruin-active",
+    "version": "1.0.0",
+    "scripts": {
+        "test": "cd server && npm test"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+    },
+    "description": ""
+}
