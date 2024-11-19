@@ -1,0 +1,11 @@
+When running the backend follow these steps
+
+when inside the server folder type
+"node index.js"
+this runs the the server
+
+When you decide to close the server type ctrl+c 
+do not type ctrl+z this will cause the port to not close
+since you canceled a command on the terminal but did not 
+actually close the server.  This will prevent you 
+from being able to connect on that port in the future.
