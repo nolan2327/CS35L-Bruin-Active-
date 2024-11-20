@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const userRoute = require("./Routes/userRoute");
 // const gymRoute = require("./Routes/gymRoute");
 const profileRoute = require("./Routes/profileRoute");
+const calendarRoute = require("./Routes/calendarRoute");
 const db = require("./Config/db");
 const connectDB = require("./Config/db");
 // const { MongoClient } = require("mongodb");
@@ -16,6 +17,7 @@ app.use(cors());
 app.use("/api/users", userRoute);
 // app.use("api/gym", gymRoute);
 app.use("api/profiles", profileRoute);
+app.use("api/calendar", calendarRoute);
 
 app.get("/", (req, res) => {
     res.send("Welcome to bruin active");
