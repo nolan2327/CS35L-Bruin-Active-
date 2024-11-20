@@ -5,7 +5,7 @@ import React from 'react';
 const HomeIcon = () => {
   return (
     <span className="material-symbols-outlined icon-hover">
-      home
+     Gym Activity Levels
     </span>
   );
 };

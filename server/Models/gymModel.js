@@ -1,16 +1,73 @@
 const mongoose = require("mongoose");
 
-const gymSchema = new mongoose.Schema( // not yet correct after this
-    {
-        name: { type: String, required: true, minlength: 3, maxlength: 30},
-        email: { type: String, required: true, minlength: 3, maxlength: 200, unique: true},
-        password: { type: String, required: true, minlength:3 , maxlength: 1024},
+const gymSchema = new mongoose.Schema( 
+   {
+    name: {
+        type: String,
+        required: true,
+        trim: true
     },
-    {
-        timestamps: true,
-    }
+    description: {
+        type: String,
+        trim: true
+    },
+    hours: {
+        defaultHours: {
+            mondayToThursday: { 
+                type: String, 
+                required: true
+            },
+            friday: { 
+                type: String, 
+                required: true
+            },
+            saturday: { 
+                type: String, 
+                required: true
+            },
+            sunday: { 
+                type: String, 
+                required: true
+            },
+        },
+        specialHours: [
+            {
+                dates: {
+                    type: String,
+                    required: true
+                },
+                hours: {
+                    type: String,
+                    required: true
+                }
+            }
+        ]
+    },
+    facilities: [
+        {
+            name: {
+                type: String,
+                required: true,
+                trim: true
+            },
+            occupancy: {
+                capacity: {
+                    type: Number,
+                    required: true,
+                    min: 0
+                },
+                current: {
+                    type: Number,
+                    required: true,
+                    min: 0
+                }
+            }
+        }
+    ]
+   }
 );
 
-const gymModel = mongoose.model("Gym", gymSchema);
+
+const gymModel = mongoose.model('Gym', gymSchema);
 
 module.exports = gymModel;

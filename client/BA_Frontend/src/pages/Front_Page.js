@@ -1,5 +1,9 @@
 import React from 'react';
+<<<<<<< HEAD
 import { useNavigate } from 'react-router-dom'; // Import the hook
+=======
+import { useNavigate } from 'react-router-dom';
+>>>>>>> shubhan-branch
 
 // Various components from ../components here
 import CalendarIcon from '../components/CalendarIcon';
@@ -8,8 +12,12 @@ import DashboardIcon from '../components/DashboardIcon';
 import HomeIcon from '../components/HomeIcon';
 
 const GymOccupancy = () => {
+<<<<<<< HEAD
   const navigate = useNavigate(); // Hook to programmatically navigate
 
+=======
+  const navigate = useNavigate();
+>>>>>>> shubhan-branch
   return (
     <div style={styles.container}>
       <div style={styles.header}>
@@ -22,10 +30,20 @@ const GymOccupancy = () => {
         {/* Left Column (Buttons + Gym Occupancy Title) */}
         <div style={styles.leftColumn}>
           <div style={styles.buttonBox}>
+<<<<<<< HEAD
             <button style={styles.button} onClick={() => navigate('/')}>
               <HomeIcon />
             </button>
             <button style={styles.button} onClick={() => navigate('/calendar_page')}>
+=======
+            <button style={styles.button}>1</button>
+            <button style={styles.button}>2</button>
+            <button style={styles.button}>3</button>
+            <button style={styles.button}>
+              <HomeIcon />
+            </button>
+            <button style={styles.button} onClick={() => navigate('/calendar')}>
+>>>>>>> shubhan-branch
               <CalendarIcon />
             </button>
             <button style={styles.button} onClick={() => navigate('/postboard_page')}>
@@ -72,11 +90,13 @@ const styles = {
     color: 'white',
     padding: '40px',
     textAlign: 'center',
-    position: 'relative', // Enable absolute positioning for the icon
   },
   headerText: {
     margin: 0,
     fontSize: '36px',
+    //fontFamily: '"Permanent Marker", cursive', // Ensure Permanent Marker font is used
+    fontFamily: 'Lobster', // Change to your preferred font
+    fontFamily: 'Lobster', // Change to your preferred font
     fontFamily: '"Permanent Marker", cursive', // Ensure Permanent Marker font is used
   },
   mainContent: {
@@ -95,6 +115,31 @@ const styles = {
     boxSizing: 'border-box',
     borderRight: '2px solid #ddd', // Optional: add a border to separate columns
   },
+  // buttonBox: {
+  //   backgroundColor: '#008fdc',
+  //   padding: '20px',
+  //   borderRadius: '10px',
+  //   width: '30%', // Adjust width of button box
+  //   display: 'flex',
+  //   flexDirection: 'column',
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  // },
+    button: {
+        backgroundColor: '#fff',
+        color: '#008fdc',
+        border: 'none',
+        padding: '40px', // Adjust to make the button square
+        marginBottom: '40px', // Space between buttons (adjust the value as needed)
+        borderRadius: '10px',
+        cursor: 'pointer',
+        width: '80px', // Set width
+        height: '80px', // Set height to match width for a square shape
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontSize: '18px',
+    },
   button: {
     backgroundColor: '#fff',
     color: '#008fdc',
@@ -110,6 +155,7 @@ const styles = {
     alignItems: 'center',
     fontSize: '18px',
   },
+<<<<<<< HEAD
   profileButton: {
     backgroundColor: 'transparent', 
     border: 'none',                
@@ -121,6 +167,18 @@ const styles = {
     padding: 0,                    
     outline: 'none',               
   },  
+=======
+  // buttonBox: {
+  //   backgroundColor: '#008fdc',
+  //   padding: '20px',
+  //   borderRadius: '10px',
+  //   width: '30%', // Adjust width of button box
+  //   display: 'flex',
+  //   flexDirection: 'column',
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  // },
+>>>>>>> shubhan-branch
   rightColumn: {
     flex: 1, // Right column takes up remaining space
     display: 'flex',
