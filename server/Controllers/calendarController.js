@@ -1,6 +1,6 @@
 const calendarModelModel = require("../Models/calendarModel");
 
-const findDatesByDate = async (req, res) => {
+const findEventsByDate = async (req, res) => {
     try {
         const {start_date} = req.body;
 
@@ -15,4 +15,4 @@ const findDatesByDate = async (req, res) => {
     }
 };
 
-module.exports = {findDatesByDate};
+module.exports = {findEventsByDate};

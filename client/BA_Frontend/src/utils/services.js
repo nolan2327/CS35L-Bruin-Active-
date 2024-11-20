@@ -43,8 +43,8 @@ export const loginUser = async(body) => {
     return response;
 }
 
-export const findDatesByDate = async(body) => {
-    const response = await postRequest(`${baseUrl}/calendar/findDatesByDate`, body);
+export const findEventsByDate = async(body) => {
+    const response = await postRequest(`${baseUrl}/calendar/findEventsByDate`, body);
 
     return response;
 }

@@ -1,8 +1,8 @@
 const express = require("express");
-const {findDatesByDate} = require("../Controllers/calendarController");
+const {findEventsByDate} = require("../Controllers/calendarController");
 
 const router = express.Router();
 
-router.post("/findDatesByDate", findDatesByDate);
+router.post("/findEventsByDate", findEventsByDate);
 
 module.exports = router;
