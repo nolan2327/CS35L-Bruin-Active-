@@ -81,6 +81,8 @@ data_list.append(finals_week_data)
 
 driver.quit()
 
+print(data_list)
+
 load_dotenv(dotenv_path='server/.env')
 # client = MongoClient(os.getenv('ATLAS_URI'))
 client = MongoClient(os.getenv('ATLAS_URI'), tlsCAFile=certifi.where())
