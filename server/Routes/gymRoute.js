@@ -1,8 +1,9 @@
 const express = require("express");
-const {findOccupancy} = require("../Controllers/gymController");
+const {getAllData, findGym} = require("../Controllers/gymController");
 
 const router = express.Router();
 
-router.get("/find/:date", findOccupancy);
+router.get('/', getAllData)
+router.get('/:gymType', findGym);
 
 module.exports = router;
