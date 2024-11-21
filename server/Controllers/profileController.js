@@ -66,7 +66,7 @@ const changeBio = async (req, res) => {
     try {
         const {email, newBio} = req.body;
 
-        let profile = await profileModel.findOneAndUpdate({email}, {status: newBio}, {new: true});
+        let profile = await profileModel.findOneAndUpdate({email}, {bio: newBio}, {new: true});
 
         if(!profile) return res.status(400).json("Profile does not exist");
 
