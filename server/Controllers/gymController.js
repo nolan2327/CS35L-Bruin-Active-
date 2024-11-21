@@ -1,7 +1,5 @@
 const {Bfit, Wooden} = require("../Models/gymModel");
 const { exec } = require('child_process');
-const path = require('path');
-const { stdout } = require("process");
 
 // Return out Gym Data From a Post Request
 const getAllData = async (req, res) => {
