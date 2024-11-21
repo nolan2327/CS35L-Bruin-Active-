@@ -43,6 +43,12 @@ export const loginUser = async(body) => {
     return response;
 }
 
+export const findEventsByDate = async(body) => {
+    const response = await postRequest(`${baseUrl}/calendar/findEventsByDate`, body);
+
+    return response;
+}
+
 // Work in progress, it works technically but you need to know how to use this function.
 export const getRequest = async(url) => {
     const response = await fetch(url);
