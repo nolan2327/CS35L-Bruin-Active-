@@ -63,7 +63,14 @@ const bfitSchema = new mongoose.Schema({
     special_hours: [special_hours],
     finalsWeek: finals_week,
   }, { timestamps: true });
+  
+const woodenSchema = new mongoose.Schema({
+    zones: [zoneSchema],
+    hours: [regular_hours],
+    special_hours: [special_hours]
+}, { timestamps: true });
 
-module.exports = mongoose.model('Bfit', bfitSchema);
+const BFit = mongoose.model('Bfit', bfitSchema);
+const Wooden = mongoose.model('Wooden', woodenSchema)
 
-module.exports = gymModel;
+module.exports = {BFit, Wooden};
