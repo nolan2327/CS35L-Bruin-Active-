@@ -22,9 +22,9 @@ export default function App() {
     <Router>
       <Routes>
         <Route path="/" element={<GymOccupancy />} /> 
-        <Route path="/calendar_page" element={<Calendar />} />  // Calendar Page
-        <Route path="/postboard_page" element={<Board />} />    // Postboard Page
-        <Route path="/sign_in" element={<SignIn />} />          // Sign in page
+        <Route path="/calendar_page" element={<Calendar />} />
+        <Route path="/postboard_page" element={<Board />} /> 
+        <Route path="/sign_in" element={<SignIn />} />          
       </Routes>
     </Router>
   );
