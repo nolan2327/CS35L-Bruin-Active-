@@ -2,7 +2,7 @@
 
 Project Proposal & Timeline: https://docs.google.com/document/d/10w6S5Q7mvtQgrGDY_DeE_n9DvekuFYxya2PuYvJ9ktg/edit?tab=t.0
 
-Instructions BEFORE coding:
+Instructions BEFORE coding: (update your local main)
 
     > Checkout your local main branch:
 
