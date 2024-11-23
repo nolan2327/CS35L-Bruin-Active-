@@ -30,23 +30,38 @@ export const postRequest = async(url, body) => { // body should be JSON.stringif
 
 // Call this function when you need to register a user, make sure to JSON stringify
 // For 
-export const registerUser = async(body) => {
-    const response = await postRequest(`${baseUrl}/users/register`, body);
+export const registerUser = async(name, email, password) => {
+    try {
+        const response = await postRequest(`${baseUrl}/users/register`, JSON.stringify({name: name, email: email, password: password}));
 
-    return response;
+        return response;
+    } catch(error) {
+        console.log(error);
+        return "error try function failed";
+    }
 }
 
 // Call this function when you need to login a user, make sure to JSON stringify
-export const loginUser = async(body) => {
-    const response = await postRequest(`${baseUrl}/users/login`, body);
+export const loginUser = async(email, password) => {
+    try {
+        const response = await postRequest(`${baseUrl}/users/login`, JSON.stringify({email: email, password: password}));
 
-    return response;
+        return response;
+    } catch(error) {
+        console.log(error);
+        return "error try function failed";
+    }
 }
 
-export const findEventsByDate = async(body) => {
-    const response = await postRequest(`${baseUrl}/calendar/findEventsByDate`, body);
+export const findEventsByDate = async(start_date) => {
+    try {
+        const response = await postRequest(`${baseUrl}/calendar/findEventsByDate`, JSON.stringify({start_date: start_date}));
 
-    return response;
+        return response;
+    } catch(error) {
+        console.log(error);
+        return "error try function failed";
+    }
 }
 
 // Work in progress, it works technically but you need to know how to use this function.
