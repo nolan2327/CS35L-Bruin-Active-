@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.post("/createProfile", createProfile);
 router.post("/findProfile", findProfile);
-router.post("/find", findProfilesByName)
+router.post("/findProfilesByName", findProfilesByName)
 router.post("/changeStatus", changeStatus);
 router.post("/changeBio", changeBio);
 router.get("/", getProfiles);
