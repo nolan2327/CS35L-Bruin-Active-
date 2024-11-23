@@ -28,8 +28,29 @@ export const postRequest = async(url, body) => { // body should be JSON.stringif
     return data;
 }
 
+// Work in progress, it works technically but you need to know how to use this function.
+export const getRequest = async(url) => {
+    const response = await fetch(url);
+
+    const data = await response.json();
+
+    if(!response.ok) {
+        let message = "error";
+
+        if(data?.message) {
+            message = data.message;
+        }
+
+        return { error: true, message };
+    }
+
+    return data;
+}
+
+/*
+    > The Functions below are for the users database
+*/
 // Call this function when you need to register a user, make sure to JSON stringify
-// For 
 export const registerUser = async(name, email, password) => {
     try {
         const response = await postRequest(`${baseUrl}/users/register`, JSON.stringify({name: name, email: email, password: password}));
@@ -53,6 +74,21 @@ export const loginUser = async(email, password) => {
     }
 }
 
+export const getUsers = async() => {
+    try {
+        const response = await getRequest(`${baseUrl}/users/`);
+
+        return response;
+    } catch(error) {
+        console.log(error);
+        return "error try function failed";
+    }
+}
+
+/*
+    > The Functions below are for accessing the calendar database
+*/
+
 export const findEventsByDate = async(start_date) => {
     try {
         const response = await postRequest(`${baseUrl}/calendar/findEventsByDate`, JSON.stringify({start_date: start_date}));
@@ -62,23 +98,4 @@ export const findEventsByDate = async(start_date) => {
         console.log(error);
         return "error try function failed";
     }
-}
-
-// Work in progress, it works technically but you need to know how to use this function.
-export const getRequest = async(url) => {
-    const response = await fetch(url);
-
-    const data = await response.json();
-
-    if(!response.ok) {
-        let message = "error";
-
-        if(data?.message) {
-            message = data.message;
-        }
-
-        return { error: true, message };
-    }
-
-    return data;
 }
