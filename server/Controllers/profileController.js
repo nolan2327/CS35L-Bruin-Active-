@@ -1,4 +1,11 @@
 const profileModel = require("../Models/profileModel");
+const jwt = require("jsonwebtoken");
+
+const createToken = (_id) => {
+    const jwtkey = process.env.JWT_SECRET_KEY;
+
+    return jwt.sign({_id}, jwtkey);
+};
 
 const createProfile = async (req, res) => {
     try {
@@ -7,6 +14,8 @@ const createProfile = async (req, res) => {
         profile = new profileModel({name, email, status, bio});
 
         await profile.save();
+
+        const token = createToken(profile._id);
 
         res.status(200).json({_id: profile._id, name, email, status, bio});
     } catch(error) {
