@@ -9,15 +9,15 @@ const createToken = (_id) => {
 
 const createProfile = async (req, res) => {
     try {
-        const {name, email, status, bio} = req.body;
+        const {username, status, bio} = req.body;
 
-        profile = new profileModel({name, email, status, bio});
+        profile = new profileModel({username, status, bio});
 
         await profile.save();
 
         const token = createToken(profile._id);
 
-        res.status(200).json({_id: profile._id, name, email, status, bio});
+        res.status(200).json({_id: profile._id, username, status, bio});
     } catch(error) {
         console.log(error);
         res.status(500).json(error);
@@ -28,11 +28,11 @@ const findProfile = async (req, res) => {
     try {
         const {email} = req.body;
 
-        let profile = await profileModel.findOne({email});
+        let profile = await profileModel.findOne({username});
 
         if(!profile) return res.status(400).json("Profile does not exist");
 
-        res.status(200).json({name: profile.name, email, status: profile.status, bio: profile.bio});
+        res.status(200).json({username, status: profile.status, bio: profile.bio});
 
     } catch(error) {
         console.log(error);
@@ -42,11 +42,11 @@ const findProfile = async (req, res) => {
 
 const findProfilesByName = async (req, res) => {
     try {
-        const {name} = req.body;
+        const {username} = req.body;
 
-        let profiles = await profileModel.find({name});
+        let profiles = await profileModel.find({username});
 
-        if(!profiles) return res.status(400).json("No Profiles named " + name);
+        if(!profiles) return res.status(400).json("No Profiles named " + username);
 
         res.status(200).json(profiles);
     } catch(error) {
@@ -57,13 +57,13 @@ const findProfilesByName = async (req, res) => {
 
 const changeStatus = async (req, res) => {
     try {
-        const {email, newStatus} = req.body;
+        const {username, newStatus} = req.body;
 
-        let profile = await profileModel.findOneAndUpdate({email}, {status: newStatus}, {new: true});
+        let profile = await profileModel.findOneAndUpdate({username}, {status: newStatus}, {new: true});
 
         if(!profile) return res.status(400).json("Profile does not exist");
 
-        res.status(200).json({name: profile.name, email, status: profile.status, bio: profile.bio});
+        res.status(200).json({username, status: profile.status, bio: profile.bio});
 
     } catch(error) {
         console.log(error);
@@ -73,13 +73,13 @@ const changeStatus = async (req, res) => {
 
 const changeBio = async (req, res) => {
     try {
-        const {email, newBio} = req.body;
+        const {username, newBio} = req.body;
 
-        let profile = await profileModel.findOneAndUpdate({email}, {bio: newBio}, {new: true});
+        let profile = await profileModel.findOneAndUpdate({username}, {bio: newBio}, {new: true});
 
         if(!profile) return res.status(400).json("Profile does not exist");
 
-        res.status(200).json({name: profile.name, email, status: profile.status, bio: profile.bio});
+        res.status(200).json({username, status: profile.status, bio: profile.bio});
 
     } catch(error) {
         console.log(error);

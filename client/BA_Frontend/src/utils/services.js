@@ -51,9 +51,9 @@ export const getRequest = async(url) => {
     > The Functions below are for the users database
 */
 // Call this function when you need to register a user, make sure to JSON stringify
-export const registerUser = async(name, email, password) => {
+export const registerUser = async(username, password) => {
     try {
-        const response = await postRequest(`${baseUrl}/users/register`, JSON.stringify({name: name, email: email, password: password}));
+        const response = await postRequest(`${baseUrl}/users/register`, JSON.stringify({username: username, password: password}));
 
         return response;
     } catch(error) {
@@ -63,9 +63,9 @@ export const registerUser = async(name, email, password) => {
 }
 
 // Call this function when you need to login a user, make sure to JSON stringify
-export const loginUser = async(email, password) => {
+export const loginUser = async(username, password) => {
     try {
-        const response = await postRequest(`${baseUrl}/users/login`, JSON.stringify({email: email, password: password}));
+        const response = await postRequest(`${baseUrl}/users/login`, JSON.stringify({username: username, password: password}));
 
         return response;
     } catch(error) {

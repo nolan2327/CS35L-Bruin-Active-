@@ -12,19 +12,17 @@ const createToken = (_id) => {
 const registerUser = async (req, res) => {
     try{
 
-        const {name, email, password} = req.body;
+        const {username, password} = req.body;
 
-        let user = await userModel.findOne({email});
+        let user = await userModel.findOne({username});
 
         if(user) return res.status(400).json("User with email already exists");
 
-        if(!name || !email || !password) return res.status(400).json("All fields are required");
-
-        if(!validator.isEmail(email)) return res.status(400).json("Email must be a valid email");
+        if(!username || !password) return res.status(400).json("All fields are required");
 
         if(!validator.isStrongPassword(password)) return res.status(400).json("Password must be strong");
 
-        user = new userModel({name, email, password});
+        user = new userModel({username, password});
 
         const salt = await bcrypt.genSalt(10);
         user.password = await bcrypt.hash(user.password, salt);
@@ -33,7 +31,7 @@ const registerUser = async (req, res) => {
 
         const token = createToken(user._id);
 
-        res.status(200).json({_id: user._id, name, email, token});
+        res.status(200).json({_id: user._id, username, token});
     }catch(error){
         console.log(error);
         res.status(500).json(error);
@@ -41,10 +39,10 @@ const registerUser = async (req, res) => {
 };
 
 const loginUser = async(req, res) => {
-    const {email, password} = req.body;
+    const {username, password} = req.body;
 
     try {
-        let user = await userModel.findOne({email});
+        let user = await userModel.findOne({username});
 
         if(!user) return res.status(400).json("Invalid email or password");
 
@@ -54,7 +52,7 @@ const loginUser = async(req, res) => {
 
         const token = createToken(user._id);
 
-        res.status(200).json({ _id: user._id, name: user.name, email, token});
+        res.status(200).json({ _id: user._id, username, token});
     } catch(error) {
         console.log(error)
         res.status(500).json(error);
