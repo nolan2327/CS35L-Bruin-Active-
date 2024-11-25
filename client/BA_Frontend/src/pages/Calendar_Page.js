@@ -51,9 +51,9 @@ return (
           <div style={styles.calendarContainer}>
             <Calendar onChange={setDate} value={date} />
           </div>
-          <p style={styles.selectedDate}>
-            Selected date: {formatDate(date)}
-          </p>
+          <div style={styles.eventsSection}>
+            <p style={styles.eventsText}>Events on {formatDate(date)}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -62,17 +62,32 @@ return (
 
 const styles = {
   ...sharedStyles,
+  rightColumn: {
+    display: 'flex', // Use flexbox to control layout
+    flexDirection: 'row', // Arrange calendar and text side by side
+    alignItems: 'flex-start', // Align items at the top
+    justifyContent: 'space-between', // Space out the items
+    width: '100%', // Use full width of the container
+    padding: '20px',
+  },
+  calendarSection: {
+    flex: 1, // Let the calendar take available space
+  },
   calendarContainer: {
     transform: 'scale(1.5)', // Scale up by 1.5x
     transformOrigin: 'center', // Scale from the center
-    marginRight: '700px',
-    marginBottom: '110px',
- },
-  selectedDate: {
-    marginTop: '20px',
-    fontSize: '18px',
-    color: '#555',
-    marginRight: '700px',
+    marginTop: '120px',
+    marginLeft: '140px',
+  },
+  eventsSection: {
+    flexBasis: '30%', // Define a fixed width or percentage for the events section
+    marginRight: '150px', // Add space between calendar and events section
+    textAlign: 'center', // Align text to the left
+  },
+  eventsText: {
+    fontSize: '20px',
+    fontWeight: 'bold',
+    color: '#333',
   },
 };
 
