@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import HomeIcon from '../components/HomeIcon';
 import sharedStyles from '../styles/SharedStyles';
 
+const { registerUser, loginUser } = require("../utils/services.js")
 const SignIn = () => {
     const navigate = useNavigate();
     
@@ -23,6 +24,8 @@ const SignIn = () => {
                     type="text"
                     placeholder="Username"
                     style={styles.inputStyle}
+                    // TODO: onClick={() => navigate('/where_to_go')} 
+                    // TODO: make comment to see if signIN is successful, use service.js function loginUser
                 />
                 <div style={{ margin: '10px 0' }}>
                     <input
@@ -32,7 +35,12 @@ const SignIn = () => {
                     />
                 </div>
                 <h4 style={styles.titleStyle}>New to Bruin Active?</h4>
-                <button style={styles.buttonStyle}>Create a Profile</button>
+                <button 
+                    style={styles.buttonStyle} 
+                    onClick={() => navigate('/sign_up')} 
+                    >
+                    Create a Profile
+                </button>
                 <button style={styles.SiButtonStyle}>Sign In</button>
             </div>
         </div>
@@ -87,7 +95,7 @@ const styles = {
         padding: '10px',
         fontSize: '10px',
         marginBottom: '30px',
-        color: '#008fdc',
+        color: '#008fdc', // HERE
         border: '1px solid #ccc',
         borderRadius: '2px',
     },

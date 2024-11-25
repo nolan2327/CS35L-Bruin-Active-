@@ -5,8 +5,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import GymOccupancy from './pages/Front_Page';
 import Calendar from './pages/Calendar_Page';
 import Board from './pages/Postboard_Page';
-// import Profiles from './pages/Profile_Page';
 import SignIn from './pages/Sign_in';
+import SignUp from './pages/Sign_Up';
 
 /*
   If you're having trouble having this run, change directory (cd) into the folder you want to and run:
@@ -24,7 +24,8 @@ export default function App() {
         <Route path="/" element={<GymOccupancy />} /> 
         <Route path="/calendar_page" element={<Calendar />} />
         <Route path="/postboard_page" element={<Board />} /> 
-        <Route path="/sign_in" element={<SignIn />} />          
+        <Route path="/sign_in" element={<SignIn />} />     
+        <Route path="/sign_up" element={<SignUp />} />     
       </Routes>
     </Router>
   );

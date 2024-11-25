@@ -25,7 +25,7 @@ return (
     <div style={styles.container}>
       <div style={styles.header}>
         <h2 style={styles.headerText}>Bruin Active</h2>
-        <button style={styles.profileButton} onClick={() => navigate('/profile_page')}>
+        <button style={styles.profileButton} onClick={() => navigate('/sign_in')}>
           <ProfileIcon />
         </button>
       </div>
