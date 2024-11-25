@@ -19,19 +19,11 @@ const GymOccupancy = () => {
           <ProfileIcon />
         </button>
       </div>
-<<<<<<< HEAD
-
-=======
->>>>>>> 671dfb4537f2c8c6da5639f2cabce5bee121e434
       <div style={styles.mainContent}>
         {/* Left Column (Buttons + Gym Occupancy Title) */}
         <div style={styles.leftColumn}>
           <div style={styles.buttonBox}>
-<<<<<<< HEAD
 	    <button style={styles.button} onClick={() => navigate('/')}>
-=======
-            <button style={styles.button} onClick={() => navigate('/')}>
->>>>>>> 671dfb4537f2c8c6da5639f2cabce5bee121e434
               <HomeIcon />
             </button>
             <button style={styles.button} onClick={() => navigate('/calendar_page')}>
@@ -71,78 +63,7 @@ const GymOccupancy = () => {
 };
 
 const styles = {
-<<<<<<< HEAD
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    height: '100vh', // Full viewport height
-  },
-  header: {
-    backgroundColor: '#008fdc',
-    color: 'white',
-    padding: '40px',
-    textAlign: 'center',
-    position: 'relative', // Enable absolute positioning for the icon
-  },
-  headerText: {
-    margin: 0,
-    fontSize: '36px',
-    //fontFamily: '"Permanent Marker", cursive', // Ensure Permanent Marker font is used
-    fontFamily: 'Lobster', // Change to your preferred font
-  },
-  mainContent: {
-    display: 'flex',
-    flex: 1,
-  },
-  leftColumn: {
-    width: '10%', // Left column takes 20% of the page width
-    height: '100vh', // Full height of the page
-    backgroundColor: '#008fdc',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center', // Center the buttons vertically and horizontally
-    paddingTop: '20px',
-    boxSizing: 'border-box',
-    borderRight: '2px solid #ddd', // Optional: add a border to separate columns
-  },
-  button: {
-    backgroundColor: '#fff',
-    color: '#008fdc',
-    border: 'none',
-    padding: '40px', // Adjust to make the button square
-    marginBottom: '40px', // Space between buttons (adjust the value as needed)
-    borderRadius: '10px',
-    cursor: 'pointer',
-    width: '80px', // Set width
-    height: '80px', // Set height to match width for a square shape
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    fontSize: '18px',
-  },
-  // buttonBox: {
-  //   backgroundColor: '#008fdc',
-  //   padding: '20px',
-  //   borderRadius: '10px',
-  //   width: '30%', // Adjust width of button box
-  //   display: 'flex',
-  //   flexDirection: 'column',
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  // },
-  rightColumn: {
-    flex: 1, // Right column takes up remaining space
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    padding: '20px',
-    overflowY: 'auto',
-  },
-=======
   ...sharedStyles,
->>>>>>> 671dfb4537f2c8c6da5639f2cabce5bee121e434
   hall: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -167,8 +88,4 @@ const styles = {
   },
 };
 
-<<<<<<< HEAD
 export default GymOccupancy;
-=======
-export default GymOccupancy;
->>>>>>> 671dfb4537f2c8c6da5639f2cabce5bee121e434

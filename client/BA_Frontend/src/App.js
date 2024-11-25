@@ -21,17 +21,6 @@ export default function App() {
   return (
     <Router>
       <Routes>
-<<<<<<< HEAD
-        {/* Define the route for the main Gym Occupancy page */}
-        <Route path="/" element={<GymOccupancy />} />
-
-        {/* Define the route for the Calendar page */}
-        <Route path="/calendar" element={<CalendarPage />} />
-      </Routes>
-    </Router>
-  );
-};
-=======
         <Route path="/" element={<GymOccupancy />} /> 
         <Route path="/calendar_page" element={<Calendar />} />
         <Route path="/postboard_page" element={<Board />} /> 
@@ -40,4 +29,3 @@ export default function App() {
     </Router>
   );
 }
->>>>>>> 671dfb4537f2c8c6da5639f2cabce5bee121e434
