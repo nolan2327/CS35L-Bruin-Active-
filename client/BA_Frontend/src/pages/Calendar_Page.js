@@ -59,11 +59,14 @@ const styles = {
   calendarContainer: {
     transform: 'scale(1.5)', // Scale up by 1.5x
     transformOrigin: 'center', // Scale from the center
-  },
+    marginRight: '700px',
+    marginBottom: '110px',
+ },
   selectedDate: {
     marginTop: '20px',
     fontSize: '18px',
     color: '#555',
+    marginRight: '700px',
   },
 };
 
