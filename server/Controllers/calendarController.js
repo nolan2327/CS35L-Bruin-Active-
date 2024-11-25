@@ -34,7 +34,6 @@ const getAllData = async (req, res) => {
 const findEventsByDate = async (req, res) => {
     try {
         const {start_date} = req.body;
-
         let start_dates = await calendar.find({start_dates});
 
         if(!start_dates) return res.status(400).json("No events on " + start_date);
@@ -47,3 +46,4 @@ const findEventsByDate = async (req, res) => {
 };
 
 module.exports = {getAllData, findEventsByDate};
+
