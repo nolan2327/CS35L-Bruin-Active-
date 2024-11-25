@@ -3,33 +3,36 @@ import { useNavigate } from 'react-router-dom';
 import sharedStyles from '../styles/SharedStyles';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css'
-
+import { findEventsByDate } from '../utils/services.js';
 // Various components from ../components here
 import CalendarIcon from '../components/CalendarIcon';
 import ProfileIcon from '../components/ProfileIcon';
 import DashboardIcon from '../components/DashboardIcon';
 import HomeIcon from '../components/HomeIcon';
-
-
 const CalendarPage = () => {
   const navigate = useNavigate();
   const [date, setDate] = useState(new Date());
-
+  const [events, setEvents] = useState([]);
   const formatDate = (date) => {
     const options = { weekday: 'short', month: 'numeric', day: 'numeric' };
     const formattedDate = date.toLocaleDateString('en-US', options);
     return formattedDate.replace(',', ''); // Remove the comma
+  };
+  const handleDateChange = (newDate) => {
+    setDate(newDate); // Update the selected date
+    const formattedDate = formatDate(newDate); // Format the selected date
+    const eventsOnDate = findEventsByDate(formattedDate); // Call the imported function
+    setEvents(eventsOnDate); // Update the events state
   };
 
 return (
     <div style={styles.container}>
       <div style={styles.header}>
         <h2 style={styles.headerText}>Bruin Active</h2>
-        <button style={styles.profileButton} onClick={() => navigate('/sign_in')}>
+        <button style={styles.profileButton} onClick={() => navigate('/profile_page')}>
           <ProfileIcon />
         </button>
       </div>
-
       <div style={styles.mainContent}>
         {/* Left Column (Buttons + Gym Occupancy Title) */}
         <div style={styles.leftColumn}>
@@ -45,14 +48,25 @@ return (
             </button>
           </div>
         </div>
-        
-        {/* Right Column (Calendar) */}
+
+{/* Right Column (Calendar) */}
         <div style={styles.rightColumn}>
           <div style={styles.calendarContainer}>
             <Calendar onChange={setDate} value={date} />
           </div>
           <div style={styles.eventsSection}>
             <p style={styles.eventsText}>Events on {formatDate(date)}</p>
+            <ul style={styles.eventsList}>
+              {events.length > 0 ? (
+                events.map((event, index) => (
+                  <li key={index} style={styles.eventItem}>
+                    {event}
+                  </li>
+                ))
+              ) : (
+                <p style={styles.noEventsText}>No events scheduled for this date.</p>
+              )}
+            </ul>
           </div>
         </div>
       </div>
@@ -84,11 +98,26 @@ const styles = {
     marginRight: '150px', // Add space between calendar and events section
     textAlign: 'center', // Align text to the left
   },
-  eventsText: {
+eventsText: {
     fontSize: '20px',
     fontWeight: 'bold',
     color: '#333',
   },
+  eventsList: {
+    marginTop: '50px',
+    paddingLeft: '20px',
+    listStyleType: 'disc',
+  },
+  eventItem: {
+    fontSize: '16px',
+    color: '#555',
+  },
+  noEventsText: {
+    fontSize: '16px',
+    color: '#999',
+    fontStyle: 'italic',
+  },
 };
-
 export default CalendarPage;
+
+
