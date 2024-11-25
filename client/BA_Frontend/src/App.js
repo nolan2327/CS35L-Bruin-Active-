@@ -40,4 +40,3 @@ export default function App() {
     </Router>
   );
 }
->>>>>>> 671dfb4537f2c8c6da5639f2cabce5bee121e434
