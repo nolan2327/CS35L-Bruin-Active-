@@ -35,11 +35,11 @@ const SignIn = () => {
                 <h4 style={styles.titleStyle}>New to Bruin Active?</h4>
                 <button
                     style={styles.buttonStyle}
-                    onClick={() => navigate('/')}
+                    onClick={() => navigate('/')} //Will link to createprofile page when it is done
                 >Create a Profile</button>
                 <button
                     style={styles.SiButtonStyle}
-                    onClick={() => navigate('/Profile_Page')}
+                    onClick={() => navigate('/')} //Will link either to home or profile page
                 >Sign In</button>
             </div>
         </div>
