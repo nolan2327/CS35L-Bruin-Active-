@@ -1,8 +1,9 @@
 // Created by backend
+// to Import > import {registerUser, loginUser, anyotherfunction needed} from "../utils/services.js"; remove the .. if not in pages
 
 export const baseUrl = "http://localhost:5000/api";
 
-export const postRequest = async(url, body) => { // body should be JSON.stringified
+export const postRequest = async(url, body) => {
     const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -28,31 +29,6 @@ export const postRequest = async(url, body) => { // body should be JSON.stringif
     return data;
 }
 
-<<<<<<< HEAD
-// Call this function when you need to register a user, make sure to JSON stringify
-// For 
-export const registerUser = async(body) => {
-    const response = await postRequest(`${baseUrl}/users/register`, body);
-
-    return response;
-}
-
-// Call this function when you need to login a user, make sure to JSON stringify
-export const loginUser = async(body) => {
-    const response = await postRequest(`${baseUrl}/users/login`, body);
-
-    return response;
-}
-
-export const findEventsByDate = async(body) => {
-    const response = await postRequest(`${baseUrl}/calendar/findEventsByDate`, body);
-
-    return response;
-}
-
-// Work in progress, it works technically but you need to know how to use this function.
-=======
->>>>>>> 671dfb4537f2c8c6da5639f2cabce5bee121e434
 export const getRequest = async(url) => {
     const response = await fetch(url);
 
