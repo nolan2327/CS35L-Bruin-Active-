@@ -40,7 +40,7 @@ const findProfile = async (req, res) => {
     }
 };
 
-const findProfilesByName = async (req, res) => {
+const findProfilesByName = async (req, res) => { // Currently not used will be changed later
     try {
         const {username} = req.body;
 

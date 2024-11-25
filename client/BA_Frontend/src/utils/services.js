@@ -28,7 +28,6 @@ export const postRequest = async(url, body) => { // body should be JSON.stringif
     return data;
 }
 
-// Work in progress, it works technically but you need to know how to use this function.
 export const getRequest = async(url) => {
     const response = await fetch(url);
 
@@ -48,9 +47,8 @@ export const getRequest = async(url) => {
 }
 
 /*
-    > The Functions below are for the users database
+    > The Functions below are for registering, loging in, and getting all users
 */
-// Call this function when you need to register a user, make sure to JSON stringify
 export const registerUser = async(username, password) => {
     try {
         const response = await postRequest(`${baseUrl}/users/register`, JSON.stringify({username: username, password: password}));
@@ -58,11 +56,10 @@ export const registerUser = async(username, password) => {
         return response;
     } catch(error) {
         console.log(error);
-        return "error try function failed";
+        return "error registerUser try function failed";
     }
 }
 
-// Call this function when you need to login a user, make sure to JSON stringify
 export const loginUser = async(username, password) => {
     try {
         const response = await postRequest(`${baseUrl}/users/login`, JSON.stringify({username: username, password: password}));
@@ -70,7 +67,7 @@ export const loginUser = async(username, password) => {
         return response;
     } catch(error) {
         console.log(error);
-        return "error try function failed";
+        return "error loginUser try function failed";
     }
 }
 
@@ -81,7 +78,65 @@ export const getUsers = async() => {
         return response;
     } catch(error) {
         console.log(error);
-        return "error try function failed";
+        return "error getUsers try function failed";
+    }
+}
+
+/*
+    > The Functions below are for accessing and inserting information for profiles
+*/
+export const createProfile = async(username, status, bio) => {
+    try {
+        const response = await postRequest(`${baseUrl}/profiles/createProfile`, JSON.stringify({username: username, status: status, bio: bio}));
+
+        return response;
+    } catch(error) {
+        console.log(error);
+        return "error createProfile try function failed";
+    }
+}
+
+export const findProfile = async(username) => {
+    try {
+        const response = await postRequest(`${baseUrl}/profiles/findProfile`, JSON.stringify({username: username}));
+
+        return response;
+    } catch(error) {
+        console.log(error);
+        return "error findProfile try function failed";
+    }
+}
+
+export const changeStatus = async(username, newStatus) => {
+    try {
+        const response = await postRequest(`${baseUrl}/profiles/changeStatus`, JSON.stringify({username: username, newStatus: newStatus}));
+
+        return response;
+    } catch(error) {
+        console.log(error);
+        return "error changeStatus try function failed";
+    }
+}
+
+export const changeBio = async(username, newBio) => {
+    try {
+        const response = await postRequest(`${baseUrl}/profiles/changeBio`, JSON.stringify({username: username, newBio: newBio}));
+
+        return response;
+    } catch(error) {
+        console.log(error);
+        return "error changeBio try function failed";
+    }
+}
+
+export const getProfiles = async() => {
+    try {
+        const response = await getRequest(`${baseUrl}/profiles/`);
+
+        return response;
+    } catch(error) {
+        console.log(error);
+        return "error getProfiles try function failed";
     }
 }
 
@@ -96,6 +151,6 @@ export const findEventsByDate = async(start_date) => {
         return response;
     } catch(error) {
         console.log(error);
-        return "error try function failed";
+        return "error findEventsByDate try function failed";
     }
 }
