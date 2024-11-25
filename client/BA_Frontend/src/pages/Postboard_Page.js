@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import { useNavigate } from 'react-router-dom'; // Import the hook
 import sharedStyles from '../styles/SharedStyles';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css'
 
 // Various components from ../components here
 import CalendarIcon from '../components/CalendarIcon';
@@ -10,20 +8,17 @@ import ProfileIcon from '../components/ProfileIcon';
 import DashboardIcon from '../components/DashboardIcon';
 import HomeIcon from '../components/HomeIcon';
 
+const Board = () => {
+  const navigate = useNavigate(); // Hook to programmatically navigate
 
-const CalendarPage = () => {
-  const navigate = useNavigate();
-  const [date, setDate] = useState(new Date());
-
-return (
+  return (
     <div style={styles.container}>
       <div style={styles.header}>
-        <h2 style={styles.headerText}>Bruin Active</h2>
+        <h2 style={styles.headerText} >Bruin Active</h2>
         <button style={styles.profileButton} onClick={() => navigate('/profile_page')}>
           <ProfileIcon />
         </button>
       </div>
-
       <div style={styles.mainContent}>
         {/* Left Column (Buttons + Gym Occupancy Title) */}
         <div style={styles.leftColumn}>
@@ -39,32 +34,17 @@ return (
             </button>
           </div>
         </div>
-        
-        {/* Right Column (Calendar) */}
-        <div style={styles.rightColumn}>
-          <div style={styles.calendarContainer}>
-            <Calendar onChange={setDate} value={date} />
-          </div>
-          <p style={styles.selectedDate}>
-            Selected date: {date.toDateString()}
-          </p>
-        </div>
+
+      <div>
+          This is a test of the postboard page...
+      </div>
       </div>
     </div>
   );
 };
-
+  
 const styles = {
   ...sharedStyles,
-  calendarContainer: {
-    transform: 'scale(1.5)', // Scale up by 1.5x
-    transformOrigin: 'center', // Scale from the center
-  },
-  selectedDate: {
-    marginTop: '20px',
-    fontSize: '18px',
-    color: '#555',
-  },
 };
 
-export default CalendarPage;
+export default Board;

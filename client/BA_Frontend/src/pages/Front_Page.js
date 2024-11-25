@@ -1,5 +1,6 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; // Import the hook
+import sharedStyles from '../styles/SharedStyles';
 
 // Various components from ../components here
 import CalendarIcon from '../components/CalendarIcon';
@@ -8,25 +9,35 @@ import DashboardIcon from '../components/DashboardIcon';
 import HomeIcon from '../components/HomeIcon';
 
 const GymOccupancy = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Hook to programmatically navigate
+
   return (
     <div style={styles.container}>
       <div style={styles.header}>
         <h2 style={styles.headerText}>Bruin Active</h2>
- 	<ProfileIcon />
+        <button style={styles.profileButton} onClick={() => navigate('/sign_in')}> 
+          <ProfileIcon />
+        </button>
       </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 671dfb4537f2c8c6da5639f2cabce5bee121e434
       <div style={styles.mainContent}>
         {/* Left Column (Buttons + Gym Occupancy Title) */}
         <div style={styles.leftColumn}>
           <div style={styles.buttonBox}>
+<<<<<<< HEAD
 	    <button style={styles.button} onClick={() => navigate('/')}>
+=======
+            <button style={styles.button} onClick={() => navigate('/')}>
+>>>>>>> 671dfb4537f2c8c6da5639f2cabce5bee121e434
               <HomeIcon />
             </button>
-            <button style={styles.button} onClick={() => navigate('/calendar')}>
+            <button style={styles.button} onClick={() => navigate('/calendar_page')}>
               <CalendarIcon />
             </button>
-            <button style={styles.button}>
+            <button style={styles.button} onClick={() => navigate('/postboard_page')}>
               <DashboardIcon />
             </button>
           </div>
@@ -60,6 +71,7 @@ const GymOccupancy = () => {
 };
 
 const styles = {
+<<<<<<< HEAD
   container: {
     display: 'flex',
     flexDirection: 'column',
@@ -128,6 +140,9 @@ const styles = {
     padding: '20px',
     overflowY: 'auto',
   },
+=======
+  ...sharedStyles,
+>>>>>>> 671dfb4537f2c8c6da5639f2cabce5bee121e434
   hall: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -152,4 +167,8 @@ const styles = {
   },
 };
 
+<<<<<<< HEAD
 export default GymOccupancy;
+=======
+export default GymOccupancy;
+>>>>>>> 671dfb4537f2c8c6da5639f2cabce5bee121e434
