@@ -17,7 +17,7 @@ require("dotenv").config();
 app.use(express.json());
 app.use(cors());
 app.use("/api/users", userRoute);
-app.use("/api/gym", gymRoute);
+// app.use("/api/gym", gymRoute);
 app.use("/api/profiles", profileRoute);
 app.use("/api/calendar", calendarRoute);
 
