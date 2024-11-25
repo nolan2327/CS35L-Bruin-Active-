@@ -26,7 +26,7 @@ const createProfile = async (req, res) => {
 
 const findProfile = async (req, res) => {
     try {
-        const {email} = req.body;
+        const {username} = req.body;
 
         let profile = await profileModel.findOne({username});
 
