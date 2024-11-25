@@ -15,6 +15,12 @@ const CalendarPage = () => {
   const navigate = useNavigate();
   const [date, setDate] = useState(new Date());
 
+  const formatDate = (date) => {
+    const options = { weekday: 'short', month: 'numeric', day: 'numeric' };
+    const formattedDate = date.toLocaleDateString('en-US', options);
+    return formattedDate.replace(',', ''); // Remove the comma
+  };
+
 return (
     <div style={styles.container}>
       <div style={styles.header}>
@@ -46,7 +52,7 @@ return (
             <Calendar onChange={setDate} value={date} />
           </div>
           <p style={styles.selectedDate}>
-            Selected date: {date.toDateString()}
+            Selected date: {formatDate(date)}
           </p>
         </div>
       </div>
