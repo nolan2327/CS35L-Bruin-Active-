@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
 from dotenv import load_dotenv
 from pymongo import MongoClient
 import certifi
@@ -8,7 +9,14 @@ import os
 
 url = "https://recreation.ucla.edu/facilities/bfit"
 
-driver = webdriver.Chrome()
+chrome_options = Options()
+chrome_options.add_argument("--headless")  # Run in headless mode
+chrome_options.add_argument("--disable-gpu")  # Disable GPU acceleration
+chrome_options.add_argument("--no-sandbox")  # Bypass OS security model (Linux)
+chrome_options.add_argument("--disable-dev-shm-usage")  # Avoid /dev/shm issues
+
+# Initialize WebDriver with headless options
+driver = webdriver.Chrome(options=chrome_options)
 driver.get(url)
 
 frame = driver.find_elements(By.TAG_NAME, "iframe")[0]
@@ -81,12 +89,10 @@ data_list.append(finals_week_data)
 
 driver.quit()
 
-print(data_list)
-
 load_dotenv(dotenv_path='server/.env')
 # client = MongoClient(os.getenv('ATLAS_URI'))
 client = MongoClient(os.getenv('ATLAS_URI'), tlsCAFile=certifi.where())
 db = client['Bruin-Active']
-collection = db['BFit']
+collection = db['bfit']
 collection.insert_many(data_list)
 client.close()

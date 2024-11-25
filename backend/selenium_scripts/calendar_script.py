@@ -1,16 +1,22 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
 from dotenv import load_dotenv
 from pymongo import MongoClient
 from datetime import datetime
 import certifi
-import re
 import os
-import time
 
 url = "https://recreation.ucla.edu/events"
 
-driver = webdriver.Chrome()
+# Set up Selenium WebDriver with headless mode
+chrome_options = Options()
+chrome_options.add_argument('--headless')  # Enables headless mode
+chrome_options.add_argument('--disable-gpu')  # Disables GPU acceleration (optional)
+chrome_options.add_argument('--no-sandbox')  # Useful for running in containers
+chrome_options.add_argument('--disable-dev-shm-usage')  # Avoids shared memory issues
+driver = webdriver.Chrome(options=chrome_options)
+
 driver.get(url)
 
 events_element = driver.find_elements(By.CLASS_NAME, 'event-cards-home')[0]
@@ -81,9 +87,8 @@ for event in events:
 driver.quit()
 
 load_dotenv(dotenv_path='server/.env')
-# client = MongoClient(os.getenv('ATLAS_URI'))
 client = MongoClient(os.getenv('ATLAS_URI'), tlsCAFile=certifi.where())
 db = client['Bruin-Active']
-collection = db['Calendar']
+collection = db['calendar']
 collection.insert_many(data_list)
 client.close()
