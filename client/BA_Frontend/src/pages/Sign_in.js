@@ -2,15 +2,16 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import HomeIcon from '../components/HomeIcon';
 import sharedStyles from '../styles/SharedStyles';
+import Profiles from './Profile_Page';
 
 const SignIn = () => {
     const navigate = useNavigate();
-    
+
     return (
         <div style={styles.container}>
             {/* Home Icon */}
-            <button 
-                style={styles.homeButton} 
+            <button
+                style={styles.homeButton}
                 onClick={() => navigate('/')} // Navigate to home page
             >
                 <HomeIcon />
@@ -32,8 +33,14 @@ const SignIn = () => {
                     />
                 </div>
                 <h4 style={styles.titleStyle}>New to Bruin Active?</h4>
-                <button style={styles.buttonStyle}>Create a Profile</button>
-                <button style={styles.SiButtonStyle}>Sign In</button>
+                <button
+                    style={styles.buttonStyle}
+                    onClick={() => navigate('/')}
+                >Create a Profile</button>
+                <button
+                    style={styles.SiButtonStyle}
+                    onClick={() => navigate('/Profile_Page')}
+                >Sign In</button>
             </div>
         </div>
     );
