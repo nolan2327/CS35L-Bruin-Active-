@@ -1,51 +1,87 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import HomeIcon from '../components/HomeIcon';
 import sharedStyles from '../styles/SharedStyles';
+import { loginUser } from '../utils/services';
 
-const { registerUser, loginUser } = require("../utils/services.js")
+// TODO: Do we want the error response to remain after sign in is pressed again
+// TODO: We need a way to keep user logged in, the login itself is working with backend, but need a way to keep user logged in
 const SignIn = () => {
     const navigate = useNavigate();
-    
+    const [userName, setusername] = useState("");
+    const [password, setpassword] = useState("");
+    const [error, setErrorMessage] = useState("");
+    const [success, setSuccessMessage] = useState("");
+
+
+    const handleSignIn = async () => {
+        try {
+            // Login the user
+            const loginResponse = await loginUser(userName, password);
+
+
+            if (loginResponse.error) {
+                setErrorMessage(loginResponse.message || 'Failed to login user.');
+                return;
+            }
+
+
+            setSuccessMessage('Logged in successfully!');
+            setTimeout(() => navigate('/'), 2000); // Redirect after 2 seconds
+        } catch (error) {
+            setErrorMessage('An unexpected error occurred.');
+        }
+    };
+
+
     return (
         <div style={styles.container}>
             {/* Home Icon */}
-            <button 
-                style={styles.homeButton} 
+            <button
+                style={styles.homeButton}
                 onClick={() => navigate('/')} // Navigate to home page
             >
                 <HomeIcon />
             </button>
 
+
             {/* Sign-In Form */}
             <div style={styles.tileStyle}>
                 <h2 style={styles.titleStyle}>Sign In</h2>
+                {error && <p style={styles.error}>{error}</p>}
+                {success && <p style={styles.success}>{success}</p>}
                 <input
                     type="text"
+                    value={userName}
                     placeholder="Username"
+                    onChange={(e) => setusername(e.target.value)}
                     style={styles.inputStyle}
-                    // TODO: onClick={() => navigate('/where_to_go')} 
-                    // TODO: make comment to see if signIN is successful, use service.js function loginUser
                 />
                 <div style={{ margin: '10px 0' }}>
                     <input
                         type="password"
+                        value={password}
                         placeholder="Password"
+                        onChange={(e) => setpassword(e.target.value)}
                         style={styles.inputStyle}
                     />
                 </div>
                 <h4 style={styles.titleStyle}>New to Bruin Active?</h4>
-                <button 
-                    style={styles.buttonStyle} 
-                    onClick={() => navigate('/sign_up')} 
-                    >
+                <button
+                    style={styles.buttonStyle}
+                    onClick={() => navigate('/sign_up')}
+                >
                     Create a Profile
                 </button>
-                <button style={styles.SiButtonStyle}>Sign In</button>
+                <button
+                    style={styles.SiButtonStyle}
+                    onClick={handleSignIn}
+                >Sign In</button>
             </div>
         </div>
     );
 };
+
 
 const styles = {
     ...sharedStyles,
@@ -108,6 +144,15 @@ const styles = {
         border: '1px solid #ccc',
         borderRadius: '2px',
     },
+    error: {
+        color: 'red',
+        marginBottom: '10px',
+    },
+    success: {
+        color: 'green',
+        marginBottom: '10px',
+    },
 };
+
 
 export default SignIn;
