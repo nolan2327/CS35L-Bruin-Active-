@@ -125,4 +125,4 @@ const findGym = async(req, res) => {
     }
 }
 
-module.exports = {getAllData, findGym};
+module.exports = {getAllData, findTotal, findGym};
