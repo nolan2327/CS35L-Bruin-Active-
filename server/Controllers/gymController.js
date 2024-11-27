@@ -57,6 +57,51 @@ const getAllData = async (req, res) => {
     }
 }
 
+const findTotal = async(req, res) => {
+    try {
+        let BFit_data = await Bfit.find();
+        let Wooden_data = await Wooden.find();
+    
+        const BFit_zones = BFit_data.filter(entry => entry.hasOwnProperty('place_name'));
+        const Wooden_zones = Wooden_data.filter(entry => entry.hasOwnProperty('place_name'));
+    
+        let BFit_occupancy = 0;
+        let BFit_total = 0;
+        let Wooden_occupancy = 0;
+        let Wooden_total = 0;
+    
+        for (const zones of BFit_zones) {
+            let count = zones.last_count ? Number(zones.last_count) : 0;
+            let percentage = zones.percentage ? Number(zones.percentage) : 0;
+            BFit_occupancy += count;
+            if (percentage !== 0) {
+                BFit_total += count / percentage;
+            }
+        }
+    
+        for (const zones of Wooden_zones) {
+            let count =  Number(zones.last_count);
+            let percentage = Number(zones.percentage);
+            Wooden_occupancy += count;
+            Wooden_total += count / percentage;
+        }
+
+        res.status(200).json({
+            bfit: {
+              occupancy: BFit_occupancy,
+              total: BFit_total
+            },
+            wooden: {
+              occupancy: Wooden_occupancy,
+              total: Wooden_total
+            }
+          });
+        } catch (err) {
+            res.status(500).json({ message: "Error calculating totals", error: err });
+    }
+}
+
+
 // Intended to be in response to a request to read a specific gym's data
 const findGym = async(req, res) => {
     // Adjust depending on what frontend code is but just go on basis that name corresponds to BFit or Wooden
