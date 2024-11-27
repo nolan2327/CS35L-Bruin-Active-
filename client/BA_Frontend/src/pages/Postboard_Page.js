@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import the hook
 import sharedStyles from '../styles/SharedStyles';
-
+import { AuthContext } from '../utils/IsSignedIn';
 // Various components from ../components here
 import CalendarIcon from '../components/CalendarIcon';
 import ProfileIcon from '../components/ProfileIcon';
@@ -10,12 +10,19 @@ import HomeIcon from '../components/HomeIcon';
 
 const Board = () => {
   const navigate = useNavigate(); // Hook to programmatically navigate
-
+  const { isLoggedIn } = useContext(AuthContext);
   return (
     <div style={styles.container}>
       <div style={styles.header}>
         <h2 style={styles.headerText} >Bruin Active</h2>
-        <button style={styles.profileButton} onClick={() => navigate('/sign_in')}>
+        <button style={styles.profileButton} onClick={() => {
+          if (isLoggedIn === true) {
+            navigate('/');
+          }
+          else {
+            navigate('/sign_in')
+          }
+        }}>
           <ProfileIcon />
         </button>
       </div>
@@ -35,14 +42,14 @@ const Board = () => {
           </div>
         </div>
 
-      <div>
+        <div>
           This is a test of the postboard page...
-      </div>
+        </div>
       </div>
     </div>
   );
 };
-  
+
 const styles = {
   ...sharedStyles,
 };

@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import HomeIcon from '../components/HomeIcon';
 import sharedStyles from '../styles/SharedStyles';
 import { loginUser } from '../utils/services';
-
+import { AuthContext } from '../utils/IsSignedIn';
 // TODO: Do we want the error response to remain after sign in is pressed again
 // TODO: We need a way to keep user logged in, the login itself is working with backend, but need a way to keep user logged in
 const SignIn = () => {
     const navigate = useNavigate();
+    const { isLoggedIn, SiSwitch } = useContext(AuthContext);
     const [userName, setusername] = useState("");
     const [password, setpassword] = useState("");
     const [error, setErrorMessage] = useState("");
@@ -27,6 +28,7 @@ const SignIn = () => {
 
 
             setSuccessMessage('Logged in successfully!');
+            SiSwitch();
             setTimeout(() => navigate('/'), 2000); // Redirect after 2 seconds
         } catch (error) {
             setErrorMessage('An unexpected error occurred.');

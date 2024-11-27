@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import sharedStyles from '../styles/SharedStyles';
 import Calendar from 'react-calendar';
@@ -9,8 +9,10 @@ import CalendarIcon from '../components/CalendarIcon';
 import ProfileIcon from '../components/ProfileIcon';
 import DashboardIcon from '../components/DashboardIcon';
 import HomeIcon from '../components/HomeIcon';
+import { AuthContext } from '../utils/IsSignedIn.js';
 const CalendarPage = () => {
   const navigate = useNavigate();
+  const { isLoggedIn } = useContext(AuthContext);
   const [date, setDate] = useState(new Date());
   const [events, setEvents] = useState([]);
   const formatDate = (date) => {
@@ -25,11 +27,18 @@ const CalendarPage = () => {
     setEvents(eventsOnDate); // Update the events state
   };
 
-return (
+  return (
     <div style={styles.container}>
       <div style={styles.header}>
         <h2 style={styles.headerText}>Bruin Active</h2>
-        <button style={styles.profileButton} onClick={() => navigate('/profile_page')}>
+        <button style={styles.profileButton} onClick={() => {
+          if (isLoggedIn === true) {
+            navigate('/');
+          }
+          else {
+            navigate('/sign_in')
+          }
+        }}>
           <ProfileIcon />
         </button>
       </div>
@@ -49,7 +58,7 @@ return (
           </div>
         </div>
 
-{/* Right Column (Calendar) */}
+        {/* Right Column (Calendar) */}
         <div style={styles.rightColumn}>
           <div style={styles.calendarContainer}>
             <Calendar onChange={setDate} value={date} />
@@ -98,7 +107,7 @@ const styles = {
     marginRight: '150px', // Add space between calendar and events section
     textAlign: 'center', // Align text to the left
   },
-eventsText: {
+  eventsText: {
     fontSize: '20px',
     fontWeight: 'bold',
     color: '#333',

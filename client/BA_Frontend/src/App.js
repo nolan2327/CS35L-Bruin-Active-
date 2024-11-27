@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
+import { AuthProvider } from './utils/IsSignedIn';
 // Directory of /pages
 import GymOccupancy from './pages/Front_Page';
 import Calendar from './pages/Calendar_Page';
@@ -20,15 +20,17 @@ import EditProfile from './pages/EditProfile_Page';
 
 export default function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<GymOccupancy />} />
-        <Route path="/calendar_page" element={<Calendar />} />
-        <Route path="/postboard_page" element={<Board />} />
-        <Route path="/sign_in" element={<SignIn />} />
-        <Route path="/sign_up" element={<SignUp />} />
-        <Route path="/edit_profile" element={<EditProfile />} />
-      </Routes>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<GymOccupancy />} />
+          <Route path="/calendar_page" element={<Calendar />} />
+          <Route path="/postboard_page" element={<Board />} />
+          <Route path="/sign_in" element={<SignIn />} />
+          <Route path="/sign_up" element={<SignUp />} />
+          <Route path="/edit_profile" element={<EditProfile />} />
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }

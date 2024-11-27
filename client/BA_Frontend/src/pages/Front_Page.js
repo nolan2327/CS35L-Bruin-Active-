@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import the hook
 import sharedStyles from '../styles/SharedStyles';
 
@@ -7,15 +7,24 @@ import CalendarIcon from '../components/CalendarIcon';
 import ProfileIcon from '../components/ProfileIcon';
 import DashboardIcon from '../components/DashboardIcon';
 import HomeIcon from '../components/HomeIcon';
+import { AuthContext } from '../utils/IsSignedIn';
 
 const GymOccupancy = () => {
   const navigate = useNavigate(); // Hook to programmatically navigate
+  const { isLoggedIn } = useContext(AuthContext);
 
   return (
     <div style={styles.container}>
       <div style={styles.header}>
         <h2 style={styles.headerText}>Bruin Active</h2>
-        <button style={styles.profileButton} onClick={() => navigate('/sign_in')}> 
+        <button style={styles.profileButton} onClick={() => {
+          if (isLoggedIn === true) {
+            navigate('/');
+          }
+          else {
+            navigate('/sign_in')
+          }
+        }}>
           <ProfileIcon />
         </button>
       </div>

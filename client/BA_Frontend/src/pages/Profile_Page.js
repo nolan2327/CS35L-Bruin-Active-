@@ -15,7 +15,14 @@ const Profiles = () => {
     <div style={styles.container}>
       <div style={styles.header}>
         <h2 style={styles.headerText} >Bruin Active</h2>
-        <button style={styles.profileButton} onClick={() => navigate('/sign_in')}>
+        <button style={styles.profileButton} onClick={() => {
+          if (isLoggedIn === true) {
+            navigate('/');
+          }
+          else {
+            navigate('/sign_in')
+          }
+        }}>
           <ProfileIcon />
         </button>
       </div>
@@ -36,7 +43,7 @@ const Profiles = () => {
         </div>
 
         <div>
-            This is going to be a profile page...
+          This is going to be a profile page...
         </div>
       </div>
     </div>
