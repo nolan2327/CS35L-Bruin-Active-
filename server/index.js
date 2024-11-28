@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 
 // Routes
 const userRoute = require("./Routes/userRoute");
-// const gymRoute = require("./Routes/gymRoute");
+const gymRoute = require("./Routes/gymRoute");
 const profileRoute = require("./Routes/profileRoute");
 const calendarRoute = require("./Routes/calendarRoute");
 
@@ -16,8 +16,9 @@ require("dotenv").config();
 
 app.use(express.json());
 app.use(cors());
+
 app.use("/api/users", userRoute);
-// app.use("/api/gym", gymRoute);
+app.use("/api/gym", gymRoute);
 app.use("/api/profiles", profileRoute);
 app.use("/api/calendar", calendarRoute);
 

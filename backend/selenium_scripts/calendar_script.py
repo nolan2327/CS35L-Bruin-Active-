@@ -89,7 +89,7 @@ driver.quit()
 load_dotenv(dotenv_path='server/.env')
 client = MongoClient(os.getenv('ATLAS_URI'), tlsCAFile=certifi.where())
 db = client['Bruin-Active']
-collection = db['calendar']
+collection = db['calendars']
 collection.delete_many({})
 collection.insert_many(data_list)
 client.close()

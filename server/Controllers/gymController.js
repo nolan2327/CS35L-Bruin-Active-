@@ -1,61 +1,66 @@
 const {Bfit, Wooden} = require("../Models/gymModel");
 const { exec } = require('child_process');
 
-// Return out Gym Data From a Post Request
+// Helper function to run Python script and return a promise
+const runPythonScript = (pythonExecutable, scriptPath) => {
+    return new Promise((resolve, reject) => {
+        exec(`${pythonExecutable} ${scriptPath}`, (err, stdout, stderr) => {
+            if (err) {
+                console.log(`Error in executing script: ${stderr}`);
+                reject(`Error in selenium script: ${stderr}`);
+            }
+            console.log(`Script executed successfully: ${stdout}`);
+            resolve(stdout);  // Resolve promise when script is successful
+        });
+    });
+};
+
 const getAllData = async (req, res) => {
     try {
         // BFit Pull
-        exec('python3 backend/selenium_scripts/bfit_pull.py', (err, stdout, stderr) => {
-            if (err) {
-                console.log(`Error in selenium script ${stderr}`)
-                return res.status(500).json({ message: "Error executing Selenium script", error: stderr });
-            }
-            console.log("Successfully ran Bfit selenium script")
+        const pythonExecutable = '../env/bin/python3';  // Path to Python in the virtual environment
+        const bfit_script_path = '../backend/selenium_scripts/bfit_pull.py';  // Path to your Python script
+        const wooden_script_path = '../backend/selenium_scripts/wooden_pull.py';  // Path to Wooden Python script
+        
+        // Run both Python scripts concurrently
+        await Promise.all([
+            runPythonScript(pythonExecutable, bfit_script_path),
+            runPythonScript(pythonExecutable, wooden_script_path)
+        ]);
 
-            const BFit_data = JSON.parse(stdout)
+        console.log("Successfully ran both Selenium scripts");
 
-            Bfit.deleteMany({}, (err) => {
-                if (err) {
-                    console.log(`Error in clearing Bfit data ${err}`)
-                }
-                Bfit.insertMany(BFit_data, (err) => {
-                    if (err) {
-                        console.log(`Error in inserting into Bfit model ${err}`)
-                        return res.status(500).json({ message: "Error inserting Bfit data", error: err });
-                    }
-                    console.log("Successfully inserted into Bfit data into MongoDB.")
-                })
-            })
-        })
-        // Wooden Pull
-        exec('python3 backend/selenium_scripts/wooden_pull.py', (err, stdout, stderr) => {
-            if (err) {
-                console.log(`Error in selenium script ${stderr}`)
-                return res.status(500).json({ message: "Error executing Selenium script", error: stderr });
-            }
-            console.log("Successfully ran Wooden selenium script")
+        // Now retrieve the data from the database
+        let BFit_data, Wooden_data;
 
-            const Wooden_data = JSON.parse(stdout)
+        try {
+            BFit_data = await Bfit.find();
+        } catch (err) {
+            console.error("Error retrieving BFit data:", err);
+            BFit_data = [];  // Ensure we don't break the response
+        }
 
-            Wooden.deleteMany({}, (err) => {
-                if (err) {
-                    console.log(`Error in clearing Wooden data ${err}`)
-                    return
-                }
-                Wooden.insertMany(Wooden_data, (err) => {
-                    if (err) {
-                        console.log(`Error in inserting into Wooden model ${err}`)
-                        return res.status(500).json({ message: "Error inserting Wooden data", error: err });
-                    }
-                    console.log("Successfully inserted Wooden data into MongoDB.")
-                    res.status(200).json({ bfit: BFit_data, wooden: Wooden_data });
-                })
-            })
-        })
+        try {
+            Wooden_data = await Wooden.find();
+        } catch (err) {
+            console.error("Error retrieving Wooden data:", err);
+            Wooden_data = [];  // Ensure we don't break the response
+        }
+
+        console.log('Bfit model:', BFit_data);
+        console.log('Wooden model:', Wooden_data);
+
+        // Send the response with the retrieved data
+        res.status(200).json({
+            bfit: BFit_data,
+            wooden: Wooden_data
+        });
+
     } catch (err) {
+        console.error("Error processing gym data:", err);
         res.status(500).json({ message: "Error processing gym data", error: err });
     }
-}
+};
 
 const findTotal = async(req, res) => {
     try {
@@ -125,4 +130,4 @@ const findGym = async(req, res) => {
     }
 }
 
-module.exports = {getAllData, findTotal, findGym};
+module.exports = {getAllData, findGym};

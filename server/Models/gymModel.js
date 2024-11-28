@@ -1,76 +1,130 @@
 const mongoose = require("mongoose");
 
-const zoneSchema = new mongoose.Schema (
-{
+// Schema for a zone
+const zoneSchema = new mongoose.Schema(
+  {
     place_name: {
-        type: String, required: true, trim: true
+      type: String,
+      required: true,
+      trim: true,
     },
     status: {
-        type: String, required: true, trim: true
+      type: String,
+      required: true,
+      trim: true,
     },
     last_count: {
-        type: Number, required: true, min: 0
+      type: Number,
+      required: true,
+      min: 0,
     },
     updated_time: {
-        type: String, required: true, trim: true
+      type: String,
+      required: true,
+      trim: true,
     },
     percentage: {
-        type: String, required: true, trim: true
-    }
-}
-)
+      type: String,
+      required: true,
+      trim: true,
+    },
+  },
+  { _id: false } // To use as a sub-document without creating its own ObjectId
+);
 
-const regular_hours = new mongoose.Schema (
-{
-    // Either a range: mondayToThursday or a single day, friday, etc.
+// Schema for regular hours
+const regularHoursSchema = new mongoose.Schema(
+  {
     day: {
-        type: String, required: true, trim: true
+      type: String,
+      required: true,
+      trim: true,
     },
     hours: {
-        type: String, required: true, trim: true
-    }
+      type: String,
+      required: true,
+      trim: true,
+    },
+  },
+  { _id: false }
+);
 
-}
-)
-
-const special_hours = new mongoose.Schema (
-{
+// Schema for special hours
+const specialHoursSchema = new mongoose.Schema(
+  {
     range: {
-        type: String, required: true, trim: true
+      type: String,
+      required: true,
+      trim: true,
     },
     hours: {
-        type: String, required: true, trim: true
-    }
-}
-)
+      type: String,
+      required: true,
+      trim: true,
+    },
+  },
+  { _id: false }
+);
 
-// This is significant for BFit and nonexistent for Wooden (indicated by additional map that correlates the date of finals week to hours)
-const finals_week = new mongoose.Schema (
-{
+// Schema for finals week (specific to Bfit)
+const finalsWeekSchema = new mongoose.Schema(
+  {
     finals_week_date: {
-        type: String, required: false, trim: true
+      type: String,
+      required: false,
+      trim: true,
     },
     schedule: {
-        type: Map,                                      
-        of: String,                                     
-    }
-}
-)
+      type: Map,
+      of: String,
+    },
+  },
+  { _id: false }
+);
 
-const bfitSchema = new mongoose.Schema({
-    zones: [zoneSchema],
-    hours: [regular_hours],
-    special_hours: [special_hours],
-    finalsWeek: finals_week,
-  }, { timestamps: true });
-  
-const woodenSchema = new mongoose.Schema({
-    zones: [zoneSchema],
-    hours: [regular_hours],
-    special_hours: [special_hours]
-}, { timestamps: true });
+// Main schema for Bfit
+const bfitSchema = new mongoose.Schema(
+  {
+    zones: {
+      type: [zoneSchema],
+      required: true,
+    },
+    hours: {
+      type: [regularHoursSchema],
+      required: false,
+    },
+    special_hours: {
+      type: [specialHoursSchema],
+      required: false,
+    },
+    finals_week: {
+      type: finalsWeekSchema,
+      required: false,
+    },
+  },
+  { timestamps: true }
+);
 
-const BFit = mongoose.model('Bfit', bfitSchema);
-const Wooden = mongoose.model('Wooden', woodenSchema)
+// Main schema for Wooden
+const woodenSchema = new mongoose.Schema(
+  {
+    zones: {
+      type: [zoneSchema],
+      required: true,
+    },
+    hours: {
+      type: [regularHoursSchema],
+      required: false,
+    },
+    special_hours: {
+      type: [specialHoursSchema],
+      required: false,
+    },
+  },
+  { timestamps: true }
+);
 
-module.exports = {BFit, Wooden};
+const Bfit = mongoose.model("Bfit", bfitSchema);
+const Wooden = mongoose.model("Wooden", woodenSchema);
+
+module.exports = { Bfit, Wooden };
