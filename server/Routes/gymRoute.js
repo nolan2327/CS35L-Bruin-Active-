@@ -4,6 +4,6 @@ const {getAllData, findGym, findTotal} = require("../Controllers/gymController")
 const router = express.Router();
 
 router.get('/', getAllData);
-router.get('/:gymType', findGym);
+router.get('/:gymName', findGym);
 
 module.exports = router;

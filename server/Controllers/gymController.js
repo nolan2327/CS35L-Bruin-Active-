@@ -28,9 +28,7 @@ const getAllData = async (req, res) => {
             runPythonScript(pythonExecutable, wooden_script_path)
         ]);
 
-        console.log("Successfully ran both Selenium scripts");
-
-        // Now retrieve the data from the database
+        // Retrieve the data from the database
         let BFit_data, Wooden_data;
 
         try {
@@ -47,13 +45,45 @@ const getAllData = async (req, res) => {
             Wooden_data = [];  // Ensure we don't break the response
         }
 
-        console.log('Bfit model:', BFit_data);
-        console.log('Wooden model:', Wooden_data);
+        // Calculate totals and occupancy
+        let BFit_occupancy = 0;
+        let BFit_total = 0;
+        let Wooden_occupancy = 0;
+        let Wooden_total = 0;
 
-        // Send the response with the retrieved data
+        BFit_data.forEach(entry => {
+            entry.zones.forEach((zone) => {
+                let count = zone.last_count ? Number(zone.last_count) : 0;
+                let percentage = zone.percentage ? parseFloat(zone.percentage.replace('%', '')) : 0;
+                BFit_total += count;
+                if (percentage !== 0) {
+                    BFit_occupancy += Math.floor(count / (percentage / 100));
+                }
+            });
+        });
+
+        Wooden_data.forEach(entry => {
+            entry.zones.forEach((zone) => {
+                let count = zone.last_count ? Number(zone.last_count) : 0;
+                let percentage = zone.percentage ? parseFloat(zone.percentage.replace('%', '')) : 0;
+                Wooden_total += count;
+                if (percentage !== 0) {
+                    Wooden_occupancy += Math.floor(count / (percentage / 100));
+                }
+            });
+        });
+
         res.status(200).json({
-            bfit: BFit_data,
-            wooden: Wooden_data
+            bfit: {
+                data: BFit_data,
+                total: BFit_total,
+                occupancy: BFit_occupancy
+            },
+            wooden: {
+                data: Wooden_data,
+                total: Wooden_total,
+                occupancy: Wooden_occupancy
+            }
         });
 
     } catch (err) {
@@ -62,55 +92,14 @@ const getAllData = async (req, res) => {
     }
 };
 
-const findTotal = async(req, res) => {
-    try {
-        let BFit_data = await Bfit.find();
-        let Wooden_data = await Wooden.find();
-    
-        const BFit_zones = BFit_data.filter(entry => entry.hasOwnProperty('place_name'));
-        const Wooden_zones = Wooden_data.filter(entry => entry.hasOwnProperty('place_name'));
-    
-        let BFit_occupancy = 0;
-        let BFit_total = 0;
-        let Wooden_occupancy = 0;
-        let Wooden_total = 0;
-    
-        for (const zones of BFit_zones) {
-            let count = zones.last_count ? Number(zones.last_count) : 0;
-            let percentage = zones.percentage ? Number(zones.percentage) : 0;
-            BFit_occupancy += count;
-            if (percentage !== 0) {
-                BFit_total += count / percentage;
-            }
-        }
-    
-        for (const zones of Wooden_zones) {
-            let count =  Number(zones.last_count);
-            let percentage = Number(zones.percentage);
-            Wooden_occupancy += count;
-            Wooden_total += count / percentage;
-        }
-
-        res.status(200).json({
-            bfit: {
-              occupancy: BFit_occupancy,
-              total: BFit_total
-            },
-            wooden: {
-              occupancy: Wooden_occupancy,
-              total: Wooden_total
-            }
-          });
-        } catch (err) {
-            res.status(500).json({ message: "Error calculating totals", error: err });
-    }
-}
-
-
 // Intended to be in response to a request to read a specific gym's data
 const findGym = async(req, res) => {
     // Adjust depending on what frontend code is but just go on basis that name corresponds to BFit or Wooden
     const { gymName } = req.params;  // Expecting a param like 'bfit' or 'wooden'
+
+    if (!gymName) {
+        return res.status(400).json({ message: "Gym type is required" });
+    }
 
     try {
         let gymData;
