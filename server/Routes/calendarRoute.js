@@ -3,7 +3,7 @@ const {getAllData, findEventsByDate} = require("../Controllers/calendarControlle
 
 const router = express.Router();
 
-router.get('/calendar', getAllData) //Adjust depending on what the actual route is
-router.post("/findEventsByDate", findEventsByDate);
+router.get('/', getAllData) //Adjust depending on what the actual route is
+router.get('/:start_date', findEventsByDate);
 
 module.exports = router;

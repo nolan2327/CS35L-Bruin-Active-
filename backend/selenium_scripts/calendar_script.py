@@ -48,13 +48,15 @@ for event in events:
         start_time = start_time.strip()
         end_time = end_time.strip()
 
-        start_date = date_part + " " + start_time
-        end_date = date_part + " " + end_time
+        start_date = date_part
+        end_date = date_part
     else:
         date = date[4:]
         start_date, end_date = date.split('-')
         start_date = start_date.strip()
         end_date = end_date.strip()
+        start_time = ""
+        end_time = ""
 
     location_elements = driver.find_elements(By.CLASS_NAME, 'event-location')
 
@@ -77,6 +79,8 @@ for event in events:
     group = {
         "start_date": start_date,
         "end_date": end_date,
+        "start_time": start_time,
+        "end_time": end_time,
         "title": title,
         "location": location,
         "description": description
