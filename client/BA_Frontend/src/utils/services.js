@@ -167,33 +167,31 @@ export const findEventsByDate = async(start_date) => {
     }
 }
 
-// export const findEventsByDate = async(start_date) => {
-//     try {
-//         const response = await postRequest(`${baseUrl}/calendar/findEventsByDate`, JSON.stringify({start_date: start_date}));
+/*
+    > The Functions below are for accessing the Image database
+*/
 
-//         return response;
-//     } catch(error) {
-//         console.log(error);
-//         return "error findEventsByDate try function failed";
-//     }
-// }
-
-export const getAllGymData = async() => {
+export const uploadImage = async (username, imageFile) => {
     try {
-        const response = await getRequest(`${baseUrl}/gym/`);
-        return response;
+        const formData = new FormData();
+        formData.append('username', username);
+        formData.append('image', imageFile);
+
+        const response = await postRequest(`${baseUrl}/api/images/uploadImage`, formData);
+        return response; // The response from the backend (success/failure)
     } catch (error) {
         console.log(error);
-        return "Error getAllGymData() function failed"
+        return "error uploadImage try function failed";
     }
-}
+};
 
-export const findGym = async(gym_name) => {
+export const findImage = async (username) => {
     try {
-        const response = await getRequest(`${baseUrl}/gym/${gym_name}`);
+        const response = await postRequest(`${baseUrl}/image/findImage`, JSON.stringify({username: username}));
+
         return response;
-    } catch (error) {
+    } catch(error) {
         console.log(error);
-        return "Error findGym() function failed"
+        return "error findImage try function failed";
     }
 }
