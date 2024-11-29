@@ -145,13 +145,55 @@ export const getProfiles = async() => {
     > The Functions below are for accessing the calendar database
 */
 
+export const getallCalendarData = async() => {
+    try {
+        const response = await getRequest(`${baseUrl}/calendar/`);
+        return response;
+    } catch (error) {
+        console.log(error);
+        return "Error getAllCalendarData() function failed"
+    }
+}
+
 export const findEventsByDate = async(start_date) => {
     try {
-        const response = await postRequest(`${baseUrl}/calendar/findEventsByDate`, JSON.stringify({start_date: start_date}));
-
+        // Replace '/' with '%2F' for proper encoding
+        const encodedDate = start_date.replace(/\//g, '%2F');
+        const response = await getRequest(`${baseUrl}/calendar/${encodedDate}`);
         return response;
-    } catch(error) {
+    } catch (error) {
         console.log(error);
-        return "error findEventsByDate try function failed";
+        return "Error findEventsByDate() function failed"
+    }
+}
+
+// export const findEventsByDate = async(start_date) => {
+//     try {
+//         const response = await postRequest(`${baseUrl}/calendar/findEventsByDate`, JSON.stringify({start_date: start_date}));
+
+//         return response;
+//     } catch(error) {
+//         console.log(error);
+//         return "error findEventsByDate try function failed";
+//     }
+// }
+
+export const getAllGymData = async() => {
+    try {
+        const response = await getRequest(`${baseUrl}/gym/`);
+        return response;
+    } catch (error) {
+        console.log(error);
+        return "Error getAllGymData() function failed"
+    }
+}
+
+export const findGym = async(gym_name) => {
+    try {
+        const response = await getRequest(`${baseUrl}/gym/${gym_name}`);
+        return response;
+    } catch (error) {
+        console.log(error);
+        return "Error findGym() function failed"
     }
 }
