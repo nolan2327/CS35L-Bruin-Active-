@@ -4,22 +4,26 @@ import sharedStyles from '../styles/SharedStyles';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css'
 import { findEventsByDate } from '../utils/services.js';
+
 // Various components from ../components here
 import CalendarIcon from '../components/CalendarIcon';
 import ProfileIcon from '../components/ProfileIcon';
 import DashboardIcon from '../components/DashboardIcon';
 import HomeIcon from '../components/HomeIcon';
 import { AuthContext } from '../utils/IsSignedIn.js';
+
 const CalendarPage = () => {
   const navigate = useNavigate();
   const { isLoggedIn } = useContext(AuthContext);
   const [date, setDate] = useState(new Date());
   const [events, setEvents] = useState([]);
+
   const formatDate = (date) => {
     const options = { weekday: 'short', month: 'numeric', day: 'numeric' };
     const formattedDate = date.toLocaleDateString('en-US', options);
     return formattedDate.replace(',', ''); // Remove the comma
   };
+  
   const handleDateChange = (newDate) => {
     setDate(newDate); // Update the selected date
     const formattedDate = formatDate(newDate); // Format the selected date
@@ -128,5 +132,3 @@ const styles = {
   },
 };
 export default CalendarPage;
-
-

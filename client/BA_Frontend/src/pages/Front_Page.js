@@ -1,6 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import the hook
 import sharedStyles from '../styles/SharedStyles';
+import { getAllGymData } from '../utils/services';
 
 // Various components from ../components here
 import CalendarIcon from '../components/CalendarIcon';
@@ -12,6 +13,25 @@ import { AuthContext } from '../utils/IsSignedIn';
 const GymOccupancy = () => {
   const navigate = useNavigate(); // Hook to programmatically navigate
   const { isLoggedIn } = useContext(AuthContext);
+
+  const [bfitTotal, setBfitTotal] = useState(null);
+  const [woodenTotal, setWoodenTotal] = useState(null);
+
+  useEffect(() => {
+    console.log('Calling for data');
+    const fetchData = async () => {
+      try {
+        const data = await getAllGymData(); // Run function to get all gym data
+        if (data && data.bfit && data.wooden) { // If all data isn't null, it was effectively received 
+          setBfitTotal(data.bfit.total || 0);  // Set BfitTotal (Wooden) total to value collected or 0
+          setWoodenTotal(data.wooden.total || 0); 
+        }
+      } catch (error) { // If all data wasn't properly received throw an error
+        console.error("Error fetching gym data:", error);
+      }
+    };
+    fetchData(); // Call to get data (function defined above)
+  }, []);
 
   return (
     <div style={styles.container}>
@@ -52,7 +72,9 @@ const GymOccupancy = () => {
               <strong>John Wooden Center</strong>
             </div>
             <div style={styles.hallDetails}>
-              <p style={styles.occupancy}>TEST</p> {/* Display dynamic percentage */}
+              <p style={styles.occupancy}>
+                {woodenTotal !== null ? `${woodenTotal}` : 'Loading...'}
+              </p>
             </div>
           </div>
 
@@ -62,7 +84,9 @@ const GymOccupancy = () => {
               <strong>B-Fit</strong>
             </div>
             <div style={styles.hallDetails}>
-              <p style={styles.occupancy}>TEST</p> {/* Display dynamic percentage */}
+              <p style={styles.occupancy}>
+                {bfitTotal !== null ? `${bfitTotal}` : 'Loading...'}
+              </p>
             </div>
           </div>
         </div>

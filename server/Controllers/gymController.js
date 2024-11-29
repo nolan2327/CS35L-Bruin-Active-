@@ -18,7 +18,7 @@ const runPythonScript = (pythonExecutable, scriptPath) => {
 const getAllData = async (req, res) => {
     try {
         // BFit Pull
-        const pythonExecutable = '../env/bin/python3';  // Path to Python in the virtual environment
+        const pythonExecutable = 'python3';  // Path to Python in the virtual environment
         const bfit_script_path = '../backend/selenium_scripts/bfit_pull.py';  // Path to your Python script
         const wooden_script_path = '../backend/selenium_scripts/wooden_pull.py';  // Path to Wooden Python script
         
