@@ -19,8 +19,9 @@ const sharedStyles = {
       fontFamily: '"Permanent Marker", cursive',
     },
     mainContent: {
-      display: 'flex',
-      flex: 1,
+        display: 'flex',
+        flex: 1, // Makes sure this takes up the remaining space
+        overflow: 'hidden', // Prevent overflow
     },
     leftColumn: {
       width: '10%',
