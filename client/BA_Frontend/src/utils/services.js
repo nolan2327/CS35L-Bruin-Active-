@@ -195,3 +195,23 @@ export const findImage = async (username) => {
         return "error findImage try function failed";
     }
 }
+
+export const getAllGymData = async() => {
+    try {
+        const response = await getRequest(`${baseUrl}/gym/`);
+        return response;
+    } catch (error) {
+        console.log(error);
+        return "Error getAllGymData() function failed"
+    }
+}
+
+export const findGym = async(gym_name) => {
+    try {
+        const response = await getRequest(`${baseUrl}/gym/${gym_name}`);
+        return response;
+    } catch (error) {
+        console.log(error);
+        return "Error findGym() function failed"
+    }
+}
