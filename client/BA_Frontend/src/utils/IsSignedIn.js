@@ -6,6 +6,7 @@ export const AuthContext = createContext();
 // Wrap App.js in the AuthProvider
 export const AuthProvider = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [mainUser, setmainUser] = useState("");
 
     const SiSwitch = () => {
         if (isLoggedIn === false) {
@@ -15,8 +16,11 @@ export const AuthProvider = ({ children }) => {
             setIsLoggedIn(false);
         }
     }
+    const SetGlobalUser = (u) => {
+        setmainUser(u);
+    }
     return (
-        <AuthContext.Provider value={{ isLoggedIn, SiSwitch }}>
+        <AuthContext.Provider value={{ isLoggedIn, mainUser, SiSwitch, SetGlobalUser }}>
             {children}
         </AuthContext.Provider>
     );

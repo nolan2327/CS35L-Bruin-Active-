@@ -8,7 +8,7 @@ import { AuthContext } from '../utils/IsSignedIn';
 // TODO: We need a way to keep user logged in, the login itself is working with backend, but need a way to keep user logged in
 const SignIn = () => {
     const navigate = useNavigate();
-    const { isLoggedIn, SiSwitch } = useContext(AuthContext);
+    const { SiSwitch, SetGlobalUser } = useContext(AuthContext);
     const [userName, setusername] = useState("");
     const [password, setpassword] = useState("");
     const [error, setErrorMessage] = useState("");
@@ -29,6 +29,7 @@ const SignIn = () => {
 
             setSuccessMessage('Logged in successfully!');
             SiSwitch();
+            SetGlobalUser(userName);
             setTimeout(() => navigate('/'), 2000); // Redirect after 2 seconds
         } catch (error) {
             setErrorMessage('An unexpected error occurred.');
