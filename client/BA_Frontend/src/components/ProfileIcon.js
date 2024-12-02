@@ -4,10 +4,10 @@ import React from 'react';
 
 const ProfileIcon = () => {
   return (
-    <span style={styles.profileIcon} className="material-symbols-outlined icon-hover">
-    person
-    </span>
-  );
+        <span style={styles.profileIcon} className="material-symbols-outlined icon-hover">
+            person
+        </span>
+    );
 };
 
 const styles = {

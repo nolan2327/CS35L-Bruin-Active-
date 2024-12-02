@@ -1,3 +1,5 @@
+// EditIcon.js
+
 import React from 'react';
 
 const EditIcon = () => {

@@ -1,7 +1,7 @@
 // FrontpageStyles.js 
 
 const frontpageStyles = {
-      rightColumn: {
+    rightColumn: {
         flex: 1,
         display: 'flex',
         flexDirection: 'column',
@@ -9,9 +9,10 @@ const frontpageStyles = {
         padding: '20px',
         overflowY: 'auto',
         height: 'calc(100vh - 60px)',
-        paddingBottom: '80px' // Increased padding at bottom
-      },
-      mainContent: {
+        paddingBottom: '80px',
+        width: '100%', // Add this to ensure full width
+        },
+    mainContent: {
         display: 'flex',
         flex: 1,
         height: 'calc(100vh - 60px)',
@@ -26,21 +27,20 @@ const frontpageStyles = {
         borderRadius: '10px',
         marginBottom: '10px',
         boxShadow: '0px 2px 5px rgba(0,0,0,0.1)',
-        width: '100%',
-        maxWidth: '600px', // Optional: Adjust the max width of the gym boxes
+        width: '90%', // Change from 100% to 90%
         border: '1px solid #ccc',
-      },
-      hallInfo: {
+    },
+    hallInfo: {
         flexGrow: 1,
         fontSize: '22px',
         display: 'flex',
         flexDirection: 'column',
         gap: '4px'
       },
-      hallDetails: {
+    hallDetails: {
         textAlign: 'right',
       },
-      occupancy: {
+    occupancy: {
         color: '#28a745', // Green for occupancy percentage
         fontWeight: 'bold',
         fontSize: '24px', // Larger font for visibility in total population boxes
@@ -49,11 +49,10 @@ const frontpageStyles = {
         display: 'flex',
         flexDirection: 'column',
         gap: '20px',
-        width: '100%',
-        maxWidth: '600px', // Match the maxWidth of the hall style
+        width: '90%', // Change from 100% to 90%
         alignItems: 'center',
-      },
-      zoneBox: {
+    },
+    zoneBox: {
         padding: '10px',
         backgroundColor: '#fff',
         boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
@@ -62,16 +61,16 @@ const frontpageStyles = {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-      },
-      zoneDetails: {
+    },
+    zoneDetails: {
         marginTop: '20px',
         marginBottom: '30px', // Add margin bottom for spacing
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center'
-      },
-      timestamp: {
+        },
+    timestamp: {
         fontSize: '14px',
         color: '#666',
         marginTop: '5px',

@@ -127,13 +127,13 @@ const GymOccupancy = () => {
 };
 
 const styles = {
-  ...sharedStyles,
-  ...frontpageStyles,
-  container: {
-    ...sharedStyles.container,
-    height: '100vh',
-    overflow: 'hidden'
-  },
+    ...sharedStyles,
+    ...frontpageStyles,
+    container: {
+        ...sharedStyles.container,
+        height: '100vh',
+        overflow: 'hidden'
+    },
 };
 
 export default GymOccupancy;
