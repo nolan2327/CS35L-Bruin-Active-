@@ -1,13 +1,13 @@
-// DashboardIcon.js
+// CalendarIcon.js
 
 import React from 'react';
 
-const DashboardIcon = () => {
+const SearchIcon = () => {
     return (
         <span className="material-symbols-outlined icon-hover">
-            dashboard
+            calendar_month
         </span>
     );
 };
 
-export default DashboardIcon;
+export default SearchIcon;

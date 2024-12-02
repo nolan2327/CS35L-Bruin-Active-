@@ -1,3 +1,5 @@
+// LougoutIcon.js
+
 import React from 'react';
 
 const LogoutIcon = () => {

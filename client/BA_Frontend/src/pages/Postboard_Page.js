@@ -57,7 +57,7 @@ const Board = () => {
             style={sharedStyles.profileButton}
             onClick={() => {
               if (isLoggedIn === true) {
-                navigate('/');
+                navigate('/profile_page');
               } else {
                 navigate('/sign_in');
               }
