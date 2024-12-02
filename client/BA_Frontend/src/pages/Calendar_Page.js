@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import sharedStyles from '../styles/SharedStyles';
 import Calendar from 'react-calendar';
@@ -10,43 +10,46 @@ import CalendarIcon from '../components/CalendarIcon';
 import ProfileIcon from '../components/ProfileIcon';
 import DashboardIcon from '../components/DashboardIcon';
 import HomeIcon from '../components/HomeIcon';
-import { AuthContext } from '../utils/IsSignedIn.js';
 
 const CalendarPage = () => {
   const navigate = useNavigate();
-  const { isLoggedIn } = useContext(AuthContext);
   const [date, setDate] = useState(new Date());
   const [events, setEvents] = useState([]);
-
   const formatDate = (date) => {
     const options = { weekday: 'short', month: 'numeric', day: 'numeric' };
     const formattedDate = date.toLocaleDateString('en-US', options);
     return formattedDate.replace(',', ''); // Remove the comma
   };
-  
-  const handleDateChange = (newDate) => {
-    setDate(newDate); // Update the selected date
-    const formattedDate = formatDate(newDate); // Format the selected date
-    const eventsOnDate = findEventsByDate(formattedDate); // Call the imported function
-    setEvents(eventsOnDate); // Update the events state
-  };
+const handleDateChange = async (newDate) => {
+  setDate(newDate); // Update the selected date
+  const formattedDate = formatDate(newDate); // Format the selected date
 
-  return (
+try {
+      const eventsOnDate = await findEventsByDate(formattedDate); // Call the imported async function
+      if (eventsOnDate.error) {
+        setEvents([]); // If there’s an error, reset events
+      } else {
+        // Check the structure of the returned data and handle accordingly
+        // For example, if the events are in `eventsOnDate.data`, adjust as necessary
+        const eventsArray = Array.isArray(eventsOnDate) ? eventsOnDate : eventsOnDate.data || [];
+        setEvents(eventsArray); // Update the events state with the fetched data
+      }
+    } catch (error) {
+      console.error('Error fetching events:', error);
+      setEvents([]); // Reset events if an error occurs
+    }
+};
+
+return (
     <div style={styles.container}>
       <div style={styles.header}>
         <h2 style={styles.headerText}>Bruin Active</h2>
-        <button style={styles.profileButton} onClick={() => {
-          if (isLoggedIn === true) {
-            navigate('/profile_page');
-          }
-          else {
-            navigate('/sign_in')
-          }
-        }}>
+        <button style={styles.profileButton} onClick={() => navigate('/profile_page')}>
           <ProfileIcon />
         </button>
       </div>
       <div style={styles.mainContent}>
+
         {/* Left Column (Buttons + Gym Occupancy Title) */}
         <div style={styles.leftColumn}>
           <div style={styles.buttonBox}>
@@ -62,7 +65,7 @@ const CalendarPage = () => {
           </div>
         </div>
 
-        {/* Right Column (Calendar) */}
+{/* Right Column (Calendar) */}
         <div style={styles.rightColumn}>
           <div style={styles.calendarContainer}>
             <Calendar onChange={handleDateChange} value={date} />
@@ -73,7 +76,11 @@ const CalendarPage = () => {
               {events.length > 0 ? (
                 events.map((event, index) => (
                   <li key={index} style={styles.eventItem}>
-                    {event}
+                    <p><strong>Title:</strong> {event.title}</p>
+                    <p><strong>Start:</strong> {event.start_date}</p>
+                    <p><strong>End:</strong> {event.end_date}</p>
+                    <p><strong>Location:</strong> {event.location || "TBA"}</p>
+                    <p><strong>Description:</strong> {event.description}</p>
                   </li>
                 ))
               ) : (
@@ -86,6 +93,7 @@ const CalendarPage = () => {
     </div>
   );
 };
+
 
 const styles = {
   ...sharedStyles,
