@@ -72,4 +72,4 @@ const sharedStyles = {
     },
   };
   
-  export default sharedStyles;
+export default sharedStyles;

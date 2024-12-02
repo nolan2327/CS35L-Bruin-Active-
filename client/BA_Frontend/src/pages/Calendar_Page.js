@@ -37,7 +37,7 @@ const CalendarPage = () => {
         <h2 style={styles.headerText}>Bruin Active</h2>
         <button style={styles.profileButton} onClick={() => {
           if (isLoggedIn === true) {
-            navigate('/');
+            navigate('/profile_page');
           }
           else {
             navigate('/sign_in')
