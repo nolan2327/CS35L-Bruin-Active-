@@ -30,3 +30,19 @@ Instructions BEFORE coding: (update your local main)
         > Change directory into src folder and type
 
             npm start
+
+Instructions for USERS:
+
+    In your terminal, clone the repo:
+	> git clone https://github.com/nolan2327/CS35L-Bruin-Active-
+
+    Switch into Bruin Active directory:
+	> cd CS35L-Bruin-Active-
+
+    Install dependencies (one time only):
+	> npm install
+
+    Run frontend and backend together:
+	> npm start
+
+
