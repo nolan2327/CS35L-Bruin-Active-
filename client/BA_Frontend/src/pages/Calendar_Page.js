@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import sharedStyles from '../styles/SharedStyles';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css'
 import { findEventsByDate } from '../utils/services.js';
+import { AuthContext } from '../utils/IsSignedIn.js';
 
 // Various components from ../components here
 import CalendarIcon from '../components/CalendarIcon';
@@ -13,6 +14,7 @@ import HomeIcon from '../components/HomeIcon';
 
 const CalendarPage = () => {
   const navigate = useNavigate();
+  const { isLoggedIn } = useContext(AuthContext);
   const [date, setDate] = useState(new Date());
   const [events, setEvents] = useState([]);
   const formatDate = (date) => {
@@ -44,7 +46,14 @@ return (
     <div style={styles.container}>
       <div style={styles.header}>
         <h2 style={styles.headerText}>Bruin Active</h2>
-        <button style={styles.profileButton} onClick={() => navigate('/profile_page')}>
+        <button style={styles.profileButton} onClick={() => {
+          if (isLoggedIn === true) {
+            navigate('/profile_page');
+          }
+          else {
+            navigate('/sign_in')
+          }
+        }}>
           <ProfileIcon />
         </button>
       </div>
