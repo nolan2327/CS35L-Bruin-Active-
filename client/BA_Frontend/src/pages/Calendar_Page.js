@@ -65,7 +65,7 @@ const CalendarPage = () => {
         {/* Right Column (Calendar) */}
         <div style={styles.rightColumn}>
           <div style={styles.calendarContainer}>
-            <Calendar onChange={setDate} value={date} />
+            <Calendar onChange={handleDateChange} value={date} />
           </div>
           <div style={styles.eventsSection}>
             <p style={styles.eventsText}>Events on {formatDate(date)}</p>

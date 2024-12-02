@@ -156,9 +156,11 @@ export const getallCalendarData = async() => {
 }
 
 export const findEventsByDate = async(start_date) => {
+    console.log("CALLLED")
     try {
         // Replace '/' with '%2F' for proper encoding
         const encodedDate = start_date.replace(/\//g, '%2F');
+        console.log(encodedDate)
         const response = await getRequest(`${baseUrl}/calendar/${encodedDate}`);
         return response;
     } catch (error) {
