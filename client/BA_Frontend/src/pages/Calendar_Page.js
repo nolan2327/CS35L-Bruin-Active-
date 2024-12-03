@@ -5,13 +5,11 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css'
 import { findEventsByDate } from '../utils/services.js';
 import { AuthContext } from '../utils/IsSignedIn.js';
-
 // Various components from ../components here
 import CalendarIcon from '../components/CalendarIcon';
 import ProfileIcon from '../components/ProfileIcon';
 import DashboardIcon from '../components/DashboardIcon';
 import HomeIcon from '../components/HomeIcon';
-
 const CalendarPage = () => {
   const navigate = useNavigate();
   const { isLoggedIn } = useContext(AuthContext);
@@ -25,7 +23,6 @@ const CalendarPage = () => {
 const handleDateChange = async (newDate) => {
   setDate(newDate); // Update the selected date
   const formattedDate = formatDate(newDate); // Format the selected date
-
 try {
       const eventsOnDate = await findEventsByDate(formattedDate); // Call the imported async function
       if (eventsOnDate.error) {
@@ -58,7 +55,6 @@ return (
         </button>
       </div>
       <div style={styles.mainContent}>
-
         {/* Left Column (Buttons + Gym Occupancy Title) */}
         <div style={styles.leftColumn}>
           <div style={styles.buttonBox}>
@@ -85,11 +81,12 @@ return (
               {events.length > 0 ? (
                 events.map((event, index) => (
                   <li key={index} style={styles.eventItem}>
-                    <p><strong>Title:</strong> {event.title}</p>
-                    <p><strong>Start:</strong> {event.start_date}</p>
-                    <p><strong>End:</strong> {event.end_date}</p>
-                    <p><strong>Location:</strong> {event.location || "TBA"}</p>
-                    <p><strong>Description:</strong> {event.description}</p>
+                    <p><strong>{event.title}</strong></p>
+                    {event.start_date == event.end_date ? (
+                    <p>{event.start_date}</p>) : (
+                    <p>{event.start_date} - {event.end_date}</p> ) }
+                    <p>Location: {event.location || "TBA"}</p>
+                    <p>{event.description}</p>
                   </li>
                 ))
               ) : (
@@ -102,7 +99,6 @@ return (
     </div>
   );
 };
-
 
 const styles = {
   ...sharedStyles,
@@ -125,17 +121,19 @@ const styles = {
   },
   eventsSection: {
     flexBasis: '30%', // Define a fixed width or percentage for the events section
-    marginRight: '150px', // Add space between calendar and events section
-    textAlign: 'center', // Align text to the left
+    marginRight: '175px', // Add space between calendar and events section
+    textAlign: 'left', // Align text to the left
   },
   eventsText: {
+    marginLeft: '100px',
     fontSize: '20px',
     fontWeight: 'bold',
     color: '#333',
   },
   eventsList: {
     marginTop: '50px',
-    paddingLeft: '20px',
+    marginRight: '20px',
+    paddingLeft: '50px',
     listStyleType: 'disc',
   },
   eventItem: {
@@ -149,3 +147,5 @@ const styles = {
   },
 };
 export default CalendarPage;
+
+
