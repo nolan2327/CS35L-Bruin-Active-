@@ -82,6 +82,10 @@ const Profiles = () => {
           <button style={styles.profPageButton} onClick={() => { SiSwitch(); navigate('/'); }}>
             <LogoutIcon />
           </button>
+
+          <button style={styles.profPageButton} onClick={() => navigate('/upload_image')}>
+            Upload Image
+          </button>
           {/* Main user info tile layout*/}
           <div style={styles.userInfoContainer}>
             {error ? (

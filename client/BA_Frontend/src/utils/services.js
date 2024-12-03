@@ -3,7 +3,8 @@
 
 export const baseUrl = "http://localhost:5000/api";
 
-export const postRequest = async(url, body) => {
+export const postRequest = async (url, body) => {
+    console.log('At Response');
     const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -11,13 +12,13 @@ export const postRequest = async(url, body) => {
         },
         body,
     });
-
+    console.log(response);
     const data = await response.json()
-
-    if(!response.ok) {
+    console.log(data);
+    if (!response.ok) {
         let message;
 
-        if(data?.message) {
+        if (data?.message) {
             message = data.message;
         } else {
             message = data;
@@ -29,15 +30,39 @@ export const postRequest = async(url, body) => {
     return data;
 }
 
-export const getRequest = async(url) => {
+export const postImageRequest = async (url, body) => {
+    console.log('At Response');
+    const response = await fetch(url, {
+        method: "POST",
+        body,
+    });
+    console.log(response);
+    const data = await response.json()
+    console.log(data);
+    if (!response.ok) {
+        let message;
+
+        if (data?.message) {
+            message = data.message;
+        } else {
+            message = data;
+        }
+
+        return { error: true, message };
+    }
+
+    return data;
+}
+
+export const getRequest = async (url) => {
     const response = await fetch(url);
 
     const data = await response.json();
 
-    if(!response.ok) {
+    if (!response.ok) {
         let message = "error";
 
-        if(data?.message) {
+        if (data?.message) {
             message = data.message;
         }
 
@@ -50,34 +75,34 @@ export const getRequest = async(url) => {
 /*
     > The Functions below are for registering, loging in, and getting all users
 */
-export const registerUser = async(username, password) => {
+export const registerUser = async (username, password) => {
     try {
-        const response = await postRequest(`${baseUrl}/users/register`, JSON.stringify({username: username, password: password}));
+        const response = await postRequest(`${baseUrl}/users/register`, JSON.stringify({ username: username, password: password }));
 
         return response;
-    } catch(error) {
+    } catch (error) {
         console.log(error);
         return "error registerUser try function failed";
     }
 }
 
-export const loginUser = async(username, password) => {
+export const loginUser = async (username, password) => {
     try {
-        const response = await postRequest(`${baseUrl}/users/login`, JSON.stringify({username: username, password: password}));
+        const response = await postRequest(`${baseUrl}/users/login`, JSON.stringify({ username: username, password: password }));
 
         return response;
-    } catch(error) {
+    } catch (error) {
         console.log(error);
         return "error loginUser try function failed";
     }
 }
 
-export const getUsers = async() => {
+export const getUsers = async () => {
     try {
         const response = await getRequest(`${baseUrl}/users/`);
 
         return response;
-    } catch(error) {
+    } catch (error) {
         console.log(error);
         return "error getUsers try function failed";
     }
@@ -86,56 +111,56 @@ export const getUsers = async() => {
 /*
     > The Functions below are for accessing and inserting information for profiles
 */
-export const createProfile = async(username, status, bio) => {
+export const createProfile = async (username, status, bio) => {
     try {
-        const response = await postRequest(`${baseUrl}/profiles/createProfile`, JSON.stringify({username: username, status: status, bio: bio}));
+        const response = await postRequest(`${baseUrl}/profiles/createProfile`, JSON.stringify({ username: username, status: status, bio: bio }));
 
         return response;
-    } catch(error) {
+    } catch (error) {
         console.log(error);
         return "error createProfile try function failed";
     }
 }
 
-export const findProfile = async(username) => {
+export const findProfile = async (username) => {
     try {
-        const response = await postRequest(`${baseUrl}/profiles/findProfile`, JSON.stringify({username: username}));
+        const response = await postRequest(`${baseUrl}/profiles/findProfile`, JSON.stringify({ username: username }));
 
         return response;
-    } catch(error) {
+    } catch (error) {
         console.log(error);
         return "error findProfile try function failed";
     }
 }
 
-export const changeStatus = async(username, newStatus) => {
+export const changeStatus = async (username, newStatus) => {
     try {
-        const response = await postRequest(`${baseUrl}/profiles/changeStatus`, JSON.stringify({username: username, newStatus: newStatus}));
+        const response = await postRequest(`${baseUrl}/profiles/changeStatus`, JSON.stringify({ username: username, newStatus: newStatus }));
 
         return response;
-    } catch(error) {
+    } catch (error) {
         console.log(error);
         return "error changeStatus try function failed";
     }
 }
 
-export const changeBio = async(username, newBio) => {
+export const changeBio = async (username, newBio) => {
     try {
-        const response = await postRequest(`${baseUrl}/profiles/changeBio`, JSON.stringify({username: username, newBio: newBio}));
+        const response = await postRequest(`${baseUrl}/profiles/changeBio`, JSON.stringify({ username: username, newBio: newBio }));
 
         return response;
-    } catch(error) {
+    } catch (error) {
         console.log(error);
         return "error changeBio try function failed";
     }
 }
 
-export const getProfiles = async() => {
+export const getProfiles = async () => {
     try {
         const response = await getRequest(`${baseUrl}/profiles/`);
 
         return response;
-    } catch(error) {
+    } catch (error) {
         console.log(error);
         return "error getProfiles try function failed";
     }
@@ -145,7 +170,7 @@ export const getProfiles = async() => {
     > The Functions below are for accessing the calendar database
 */
 
-export const getallCalendarData = async() => {
+export const getallCalendarData = async () => {
     try {
         const response = await getRequest(`${baseUrl}/calendar/`);
         return response;
@@ -155,12 +180,10 @@ export const getallCalendarData = async() => {
     }
 }
 
-export const findEventsByDate = async(start_date) => {
-    console.log("CALLLED")
+export const findEventsByDate = async (start_date) => {
     try {
         // Replace '/' with '%2F' for proper encoding
         const encodedDate = start_date.replace(/\//g, '%2F');
-        console.log(encodedDate)
         const response = await getRequest(`${baseUrl}/calendar/${encodedDate}`);
         return response;
     } catch (error) {
@@ -178,8 +201,11 @@ export const uploadImage = async (username, imageFile) => {
         const formData = new FormData();
         formData.append('username', username);
         formData.append('image', imageFile);
-
-        const response = await postRequest(`${baseUrl}/api/images/uploadImage`, formData);
+        for (let pair of formData.entries()) {
+            console.log(pair[0] + ': ' + pair[1]);
+        }
+        const response = await postImageRequest(`${baseUrl}/images/uploadImage`, formData);
+        console.log(response.error);
         return response; // The response from the backend (success/failure)
     } catch (error) {
         console.log(error);
@@ -189,16 +215,16 @@ export const uploadImage = async (username, imageFile) => {
 
 export const findImage = async (username) => {
     try {
-        const response = await postRequest(`${baseUrl}/image/findImage`, JSON.stringify({username: username}));
+        const response = await postRequest(`${baseUrl}/images/findImage`, JSON.stringify({ username: username }));
 
         return response;
-    } catch(error) {
+    } catch (error) {
         console.log(error);
         return "error findImage try function failed";
     }
 }
 
-export const getAllGymData = async() => {
+export const getAllGymData = async () => {
     try {
         const response = await getRequest(`${baseUrl}/gym/`);
         return response;
@@ -208,7 +234,7 @@ export const getAllGymData = async() => {
     }
 }
 
-export const findGym = async(gym_name) => {
+export const findGym = async (gym_name) => {
     try {
         const response = await getRequest(`${baseUrl}/gym/${gym_name}`);
         return response;

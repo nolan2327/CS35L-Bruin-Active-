@@ -18,30 +18,39 @@ const upload = multer({
 
 // Controller to upload an image
 const uploadImage = async (req, res) => {
-    upload(req, res, async (err) => {
-        if (err) {
-            return res.status(400).json({ error: err.message });
-        }
+    try {
 
-        if (!req.file) {
-            return res.status(400).json({ error: 'No file uploaded.' });
-        }
 
-        const { username } = req.body;
-        if (!username) {
-            return res.status(400).json({ error: 'Username is required.' });
-        }
+        upload(req, res, async (err) => {
+            if (err) {
+                return res.status(400).json({ error: err.message });
+            }
 
-        try {
-            const { mimetype, size, buffer } = req.file;
-            const image = new imageModel({username, mimetype, size, data: buffer});
-            await image.save();
-            res.status(200).json({ message: 'Image uploaded successfully.', image });
-        } catch (error) {
-            console.log(error);
-            res.status(500).json({ error: 'Failed to save image to the database.' });
-        }
-    });
+            if (!req.file) {
+                console.log('Its the file');
+                return res.status(400).json({ error: 'No file uploaded.' });
+            }
+
+            const { username } = req.body;
+            if (!username) {
+                console.log('Its the username');
+                return res.status(400).json({ error: 'Username is required.' });
+            }
+
+            try {
+                const { mimetype, size, buffer } = req.file;
+                const image = new imageModel({ username, mimetype, size, data: buffer });
+                await image.save();
+                res.status(200).json({ message: 'Image uploaded successfully.', image });
+            } catch (error) {
+                console.log(error);
+                res.status(500).json({ error: 'Failed to save image to the database.' });
+            }
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: 'Failed to save image' });;
+    }
 };
 
 // Controller to find images by username

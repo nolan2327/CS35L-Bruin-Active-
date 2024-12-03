@@ -9,6 +9,7 @@ import SignIn from './pages/Sign_in';
 import SignUp from './pages/Sign_Up';
 import EditProfile from './pages/EditProfile_Page';
 import Profiles from './pages/Profile_Page';
+import UploadImage from './pages/Upload_Image';
 
 /*
   If you're having trouble having this run, change directory (cd) into the folder you want to and run:
@@ -31,6 +32,7 @@ export default function App() {
           <Route path="/sign_up" element={<SignUp />} />
           <Route path="/edit_profile" element={<EditProfile />} />
           <Route path="/profile_page" element={<Profiles />} />
+          <Route path="/upload_image" element={<UploadImage />} />
         </Routes>
       </Router>
     </AuthProvider>
