@@ -27,22 +27,22 @@ const Profiles = () => {
     const getUserInfo = async () => {
       try {
         // Get the user's profile information
+        console.log(mainUser);
         const profile = await findProfile(mainUser);
         setUserInfo(profile);
 
         // Get the user's profile picture
-        const image = await findImage(mainUser);
-        console.log(image.name);
 
-        if (image) {
-          console.log('HELLO');
+        const image = await findImage(mainUser);
+        console.log(image);
+
+        if (image != "error findImage try function failed") {
           const base64string = bufferToBase64(image[0].data.data);
-          console.log('HERE');
           setProfPic(`data:${image.mimetype};base64,${base64string}`);
         }
-        else {
-          console.log('HAHAHAHA');
-        }
+
+
+        console.log(userInfo);
 
       } catch (error) {
         setError(error);
@@ -113,24 +113,25 @@ const Profiles = () => {
           {/* Main user info tile layout*/}
           <div style={styles.userInfoContainer}>
             {error ? (
-              <div>{error.message || 'An Error Occurred.'}</div>) : userInfo ? (
-                <div style={styles.tile}>
-                  {profPic ? (
-                    <img
-                      src={profPic}
-                      alt="Profile"
-                      style={styles.profileImage}
-                    />
-                  ) : (
-                    <div style={styles.profileImagePlaceholder}>
-                      {isLoggedIn && userInfo.username.charAt(0).toUpperCase()}
-                    </div>
-                  )}
-                  <h2 style={styles.tileHeader}>{userInfo.username}</h2>
-                  <p style={styles.tileText}>Status: {userInfo.status}</p>
-                  <p style={styles.tileText}>Bio: {userInfo.bio}</p>
-                </div>
-              ) : (
+              <div>{error.message || 'An Error Occurred.'}</div>
+            ) : userInfo ? (
+              <div style={styles.tile}>
+                {profPic ? (
+                  <img
+                    src={profPic}
+                    alt="Profile"
+                    style={styles.profileImage}
+                  />
+                ) : (
+                  <div style={styles.profileImagePlaceholder}>
+                    {userInfo.username.charAt(0).toUpperCase()}
+                  </div>
+                )}
+                <h2 style={styles.tileHeader}>{userInfo.username}</h2>
+                <p style={styles.tileText}>Status: {userInfo.status}</p>
+                <p style={styles.tileText}>Bio: {userInfo.bio}</p>
+              </div>
+            ) : (
               'Loading...'
             )}
           </div>

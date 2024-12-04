@@ -26,7 +26,7 @@ const Board = () => {
         // Get the users profile picture
         const image = await findImage(mainUser);
         // Set the value if it exists
-        if (image) {
+        if (image != "error findImage try function failed") {
           const base64string = bufferToBase64(image[0].data.data);
           setProfPic(`data:${image.mimetype};base64,${base64string}`);
         }

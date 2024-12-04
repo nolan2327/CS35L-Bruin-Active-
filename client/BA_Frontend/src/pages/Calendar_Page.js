@@ -47,7 +47,7 @@ const CalendarPage = () => {
       // Getting the profile picture of the user
       const image = await findImage(mainUser);
       // If there is one then we set the value of profPic
-      if (image) {
+      if (image != "error findImage try function failed") {
         const base64string = bufferToBase64(image[0].data.data);
         setProfPic(`data:${image.mimetype};base64,${base64string}`);
       }
