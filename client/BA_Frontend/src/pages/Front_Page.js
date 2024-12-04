@@ -34,10 +34,10 @@ const GymOccupancy = () => {
           setWoodenZones(data.wooden.data[0].zones || []);
         }
 
-        if(isLoggedIn == true) {
+        if(isLoggedIn === true) {
             const image = await findImage(mainUser);
 
-            if (image != "error findImage try function failed") {
+            if (image !== "error findImage try function failed") {
             const base64string = bufferToBase64(image[0].data.data);
             setProfPic(`data:${image.mimetype};base64,${base64string}`);
             }

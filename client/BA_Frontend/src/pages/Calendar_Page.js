@@ -52,7 +52,7 @@ const CalendarPage = () => {
         // Getting the profile picture of the user
         const image = await findImage(mainUser);
         // If there is one then we set the value of profPic
-        if (image != "error findImage try function failed") {
+        if (image !== "error findImage try function failed") {
           const base64string = bufferToBase64(image[0].data.data);
           setProfPic(`data:${image.mimetype};base64,${base64string}`);
         }
@@ -112,7 +112,7 @@ const CalendarPage = () => {
                 events.map((event, index) => (
                   <li key={index} style={styles.eventItem}>
                     <p><strong>{event.title}</strong></p>
-                    {event.start_date == event.end_date ? (
+                    {event.start_date === event.end_date ? (
                       <p>{event.start_date}</p>) : (
                       <p>{event.start_date} - {event.end_date}</p>)}
                     <p>Location: {event.location || "TBA"}</p>
