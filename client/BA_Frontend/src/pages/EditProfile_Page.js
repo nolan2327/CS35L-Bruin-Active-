@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import HomeIcon from '../components/HomeIcon';
 import sharedStyles from '../styles/SharedStyles';
-import { changeBio, changeStatus } from '../utils/services';
+import { changeBio, changeStatus, loginUser } from '../utils/services';
 
 const EditProfile = () => {
     const navigate = useNavigate();
     const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
     const [status, setStatus] = useState('');
     const [bio, setBio] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
@@ -14,6 +15,14 @@ const EditProfile = () => {
 
     const handleEdit = async () => {
         try {
+            // Login the user
+            const loginResponse = await loginUser(username, password);
+
+            if (loginResponse.error) {
+                setErrorMessage(loginResponse.message || 'Failed to login user.');
+                return;
+            }
+
             // Register the user
             const changeStatusResponse = await changeStatus(username, status);
             if (changeStatusResponse.error) {
@@ -29,7 +38,7 @@ const EditProfile = () => {
             }
 
             // If successful, redirect to the sign-in page
-            setSuccessMessage('Account successfully changed!!');
+            setSuccessMessage('Account successfully changed!');
             setTimeout(() => navigate('/Profile_Page'), 2000); // Redirect after 2 seconds
         } catch (error) {
             setErrorMessage('An unexpected error occurred.');
@@ -57,6 +66,14 @@ const EditProfile = () => {
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     style={styles.inputStyle}
+                />
+                <input
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    style={styles.inputStyle}
+                    // I want to check if the password matches here
                 />
                 <input
                     type="text"
