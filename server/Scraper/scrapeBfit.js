@@ -1,21 +1,3 @@
-// const puppeteer = require('puppeteer');
-
-// const scrapeBfit = async(url) => {
-//     const browser = await puppeteer.launch();
-//     const page = await browser.newPage();
-//     await page.goto(url);
-
-//     const [el] = await page.$x('/html/body/div/div[3]/div/div/div/div[2]/div[1]');
-//     const txt = await el.getProperty('textContent');
-//     const rawTxt = await txt.jsonValue();
-
-//     console.log({rawTxt});
-
-//     browser.close();
-// }
-
-// scrapeBfit('https://recreation.ucla.edu/facilities/bfit');
-
 const puppeteer = require('puppeteer');
 
 async function scrapeGymOccupancy() {
