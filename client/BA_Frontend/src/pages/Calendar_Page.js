@@ -6,22 +6,26 @@ import 'react-calendar/dist/Calendar.css'
 import { findEventsByDate, findImage } from '../utils/services.js';
 import { AuthContext } from '../utils/IsSignedIn.js';
 import { bufferToBase64 } from '../utils/ImageConversion.js';
+
 // Various components from ../components here
 import CalendarIcon from '../components/CalendarIcon';
 import ProfileIcon from '../components/ProfileIcon';
 import DashboardIcon from '../components/DashboardIcon';
 import HomeIcon from '../components/HomeIcon';
+
 const CalendarPage = () => {
   const navigate = useNavigate();
   const { isLoggedIn, mainUser } = useContext(AuthContext);
   const [date, setDate] = useState(new Date());
   const [events, setEvents] = useState([]);
   const [profPic, setProfPic] = useState(null);
+
   const formatDate = (date) => {
     const options = { weekday: 'short', month: 'numeric', day: 'numeric' };
     const formattedDate = date.toLocaleDateString('en-US', options);
     return formattedDate.replace(',', ''); // Remove the comma
   };
+  
   const handleDateChange = async (newDate) => {
     setDate(newDate); // Update the selected date
     const formattedDate = formatDate(newDate); // Format the selected date
