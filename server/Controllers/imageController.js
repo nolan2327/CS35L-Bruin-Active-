@@ -19,7 +19,7 @@ const upload = multer({
 // Controller to upload an image
 const uploadImage = async (req, res) => {
     try {
-
+        
 
         upload(req, res, async (err) => {
             if (err) {
@@ -40,6 +40,9 @@ const uploadImage = async (req, res) => {
             try {
                 const { mimetype, size, buffer } = req.file;
                 const image = new imageModel({ username, mimetype, size, data: buffer });
+                if(imageModel.find({username})) {
+                    imageModel.findOneAndRemove({username});
+                }
                 await image.save();
                 res.status(200).json({ message: 'Image uploaded successfully.', image });
             } catch (error) {
