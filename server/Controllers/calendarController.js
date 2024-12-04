@@ -17,7 +17,7 @@ const runPythonScript = (pythonExecutable, scriptPath) => {
 const getAllData = async (req, res) => {
     try {
         // Calendar Pull
-        const pythonExecutable = '../env/bin/python3';  // Path to Python in the virtual environment
+        const pythonExecutable = 'python3';  // Path to Python in the virtual environment
         const calendar_script_path = '../backend/selenium_scripts/calendar_script.py';  // Path to your Python script
 
         await Promise.all([
@@ -44,7 +44,7 @@ const getAllData = async (req, res) => {
 // Need to encode / as %2F
 const findEventsByDate = async (req, res) => {
     try {
-        const {start_date} = req.params;
+        const { start_date } = req.params;
         if (!start_date) {
             return res.status(400).json({ error: 'start_date parameter is required' });
         }
@@ -52,17 +52,17 @@ const findEventsByDate = async (req, res) => {
         let start_dates = await calendar.find({
             start_date: { $regex: start_date, $options: 'i' } // 'i' for case-insensitive matching
         });
-        
-        if(start_dates.length == 0) {
+
+        if (start_dates.length == 0) {
             return res.status(400).json("No events on " + start_date);
-        } 
+        }
 
         res.status(200).json(start_dates);
-    } catch(error) {
+    } catch (error) {
         console.log(error);
         res.status(500).json(error);
     }
 };
 
-module.exports = {getAllData, findEventsByDate};
+module.exports = { getAllData, findEventsByDate };
 

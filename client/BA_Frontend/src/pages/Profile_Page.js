@@ -9,8 +9,10 @@ import DashboardIcon from '../components/DashboardIcon';
 import HomeIcon from '../components/HomeIcon';
 import EditIcon from '../components/EditIcon';
 import LogoutIcon from '../components/LogoutIcon';
+import UploadIcon from '../components/UploadIcon';
 import { AuthContext } from '../utils/IsSignedIn';
-import { findProfile } from '../utils/services';
+import { findImage, findProfile } from '../utils/services';
+import { bufferToBase64 } from '../utils/ImageConversion';
 
 
 const Profiles = () => {
@@ -18,13 +20,30 @@ const Profiles = () => {
   const { isLoggedIn, mainUser, SiSwitch } = useContext(AuthContext);
   const [userInfo, setUserInfo] = useState(null);
   const [error, setError] = useState(null);
+  const [profPic, setProfPic] = useState(null);
+
 
   useEffect(() => {
-    console.log(mainUser);
     const getUserInfo = async () => {
       try {
+        // Get the user's profile information
         const profile = await findProfile(mainUser);
         setUserInfo(profile);
+
+        // Get the user's profile picture
+        const image = await findImage(mainUser);
+        console.log(image.name);
+
+        if (image) {
+          console.log('HELLO');
+          const base64string = bufferToBase64(image[0].data.data);
+          console.log('HERE');
+          setProfPic(`data:${image.mimetype};base64,${base64string}`);
+        }
+        else {
+          console.log('HAHAHAHA');
+        }
+
       } catch (error) {
         setError(error);
       }
@@ -47,7 +66,15 @@ const Profiles = () => {
             }
           }}
         >
-          <ProfileIcon />
+          {profPic ? (
+            <img
+              src={profPic}
+              alt="Profile"
+              style={styles.profileImageCorner}
+            />
+          ) : (
+            <ProfileIcon />
+          )}
         </button>
       </div>
       <div style={sharedStyles.mainContent}>
@@ -60,9 +87,6 @@ const Profiles = () => {
               <HomeIcon />
             </button>
             <button style={sharedStyles.button} onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              console.log("CLICKED");
               navigate('/calendar_page');
             }}>
               <CalendarIcon />
@@ -84,13 +108,24 @@ const Profiles = () => {
           </button>
 
           <button style={styles.profPageButton} onClick={() => navigate('/upload_image')}>
-            Upload Image
+            <UploadIcon />
           </button>
           {/* Main user info tile layout*/}
           <div style={styles.userInfoContainer}>
             {error ? (
-              <div>{error}</div>) : userInfo ? (
+              <div>{error.message || 'An Error Occurred.'}</div>) : userInfo ? (
                 <div style={styles.tile}>
+                  {profPic ? (
+                    <img
+                      src={profPic}
+                      alt="Profile"
+                      style={styles.profileImage}
+                    />
+                  ) : (
+                    <div style={styles.profileImagePlaceholder}>
+                      {isLoggedIn && userInfo.username.charAt(0).toUpperCase()}
+                    </div>
+                  )}
                   <h2 style={styles.tileHeader}>{userInfo.username}</h2>
                   <p style={styles.tileText}>Status: {userInfo.status}</p>
                   <p style={styles.tileText}>Bio: {userInfo.bio}</p>
@@ -107,6 +142,33 @@ const Profiles = () => {
 
 const styles = {
   ...sharedStyles,
+  profileImageCorner: {
+    width: '100px',
+    height: '100px',
+    borderRadius: '50%',
+    objectFit: 'cover',
+    marginTop: '75px',
+  },
+  profileImage: {
+    width: '150px',
+    height: '150px',
+    borderRadius: '50%',
+    objectFit: 'cover',
+    marginBottom: '20px',
+  },
+  profileImagePlaceholder: {
+    width: '150px',
+    height: '150px',
+    borderRadius: '50%',
+    backgroundColor: '#ccc',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontSize: '48px',
+    fontWeight: 'bold',
+    color: '#fff',
+    marginBottom: '20px',
+  },
   profPageButton: {
     backgroundColor: '#fff',
     color: '#008fdc',

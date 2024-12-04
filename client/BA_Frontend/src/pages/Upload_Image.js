@@ -14,6 +14,7 @@ const UploadImage = () => {
 
     const handleImageChange = (event) => {
         const file = event.target.files[0];
+        console.log(file);
         if (file) {
             setPreviewImage(URL.createObjectURL(file)); // Preview the image
             setSelectedImage(file);
@@ -22,7 +23,6 @@ const UploadImage = () => {
 
     const handleUpload = async () => {
         try {
-            console.log(selectedImage.name);
             if (!selectedImage) {
                 setErrorMessage('Select an image.')
                 return;
@@ -44,7 +44,8 @@ const UploadImage = () => {
     return (
         <div>
             <h2>Upload an Image</h2>
-            {error && <p>{error}</p>}
+            {error && <p>{error.message}</p>}
+            {success && <p>{success.message}</p>}
             <input type="file" accept="image/*" onChange={handleImageChange} />
             {previewImage && (
                 <div>

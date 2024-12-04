@@ -1,4 +1,4 @@
-const {Bfit, Wooden} = require("../Models/gymModel");
+const { Bfit, Wooden } = require("../Models/gymModel");
 const { exec } = require('child_process');
 
 // Helper function to run Python script and return a promise
@@ -18,10 +18,10 @@ const runPythonScript = (pythonExecutable, scriptPath) => {
 const getAllData = async (req, res) => {
     try {
         // BFit Pull
-        const pythonExecutable = '../env/bin/python3';  // Path to Python in the virtual environment
+        const pythonExecutable = 'python3';  // Path to Python in the virtual environment
         const bfit_script_path = '../backend/selenium_scripts/bfit_pull.py';  // Path to your Python script
         const wooden_script_path = '../backend/selenium_scripts/wooden_pull.py';  // Path to Wooden Python script
-        
+
         // Run both Python scripts concurrently
         await Promise.all([
             runPythonScript(pythonExecutable, bfit_script_path),
@@ -93,7 +93,7 @@ const getAllData = async (req, res) => {
 };
 
 // Intended to be in response to a request to read a specific gym's data
-const findGym = async(req, res) => {
+const findGym = async (req, res) => {
     // Adjust depending on what frontend code is but just go on basis that name corresponds to BFit or Wooden
     const { gymName } = req.params;  // Expecting a param like 'bfit' or 'wooden'
 
@@ -119,4 +119,4 @@ const findGym = async(req, res) => {
     }
 }
 
-module.exports = {getAllData, findGym};
+module.exports = { getAllData, findGym };
