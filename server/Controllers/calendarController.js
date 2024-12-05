@@ -17,7 +17,7 @@ const runPythonScript = (pythonExecutable, scriptPath) => {
 const getAllData = async (req, res) => {
     try {
         // Calendar Pull
-        const pythonExecutable = '../env/bin/python3';  // Path to Python in the virtual environment
+        const pythonExecutable = 'python3';  // Path to Python in the virtual environment
         const calendar_script_path = '../backend/selenium_scripts/calendar_script.py';  // Path to your Python script
 
         await Promise.all([
