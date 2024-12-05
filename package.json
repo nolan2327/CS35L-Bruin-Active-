@@ -4,7 +4,8 @@
     "scripts": {
         "start": "concurrently \"npm run start-client\" \"npm run start-server\"",
         "start-client": "cd client/BA_Frontend && npm start",
-        "start-server": "cd server && npm start"
+        "start-server": "cd server && npm start",
+        "postinstall": "cd client/BA_Frontend && npm install && cd ../../server && npm install"
     },
     "keywords": [],
     "author": "",
@@ -12,8 +13,5 @@
     "description": "",
     "devDependencies": {
         "concurrently": "^9.1.0"
-    },
-    "dependencies": {
-        "puppeteer": "^23.10.1"
     }
 }
