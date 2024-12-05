@@ -41,6 +41,12 @@ Instructions for USERS:
 
     Install dependencies (one time only):
 	> npm install
+ 	> Make sure you have a version of python3 if not refer to here https://www.python.org/downloads/ to download the latest compatible version
+  	> run the following pip3 commands: 
+	> pip3 install selenium
+	> pip3 install python-dotenv
+	> pip3 install pymongo
+	> pip3 install bs4
 
     Run frontend and backend together:
 	> npm start
