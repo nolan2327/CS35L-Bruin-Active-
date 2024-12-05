@@ -19,7 +19,6 @@ const Profiles = () => {
   const navigate = useNavigate(); // Hook to programmatically navigate
   const { isLoggedIn, mainUser, SiSwitch } = useContext(AuthContext);
   const [userInfo, setUserInfo] = useState(null);
-  const [error, setError] = useState(null);
   const [profPic, setProfPic] = useState(null);
 
 
@@ -36,7 +35,7 @@ const Profiles = () => {
         const image = await findImage(mainUser);
         console.log(image);
 
-        if (image !== "error findImage try function failed") {
+        if (image != "error findImage try function failed") {
           const base64string = bufferToBase64(image[0].data.data);
           setProfPic(`data:${image.mimetype};base64,${base64string}`);
         }
@@ -45,7 +44,7 @@ const Profiles = () => {
         console.log(userInfo);
 
       } catch (error) {
-        setError(error);
+        console.log('Could not fetch image');
       }
     };
 
@@ -112,9 +111,7 @@ const Profiles = () => {
           </button>
           {/* Main user info tile layout*/}
           <div style={styles.userInfoContainer}>
-            {error ? (
-              <div>{error.message || 'An Error Occurred.'}</div>
-            ) : userInfo ? (
+            {userInfo ? (
               <div style={styles.tile}>
                 {profPic ? (
                   <img

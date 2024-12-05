@@ -25,7 +25,7 @@ const CalendarPage = () => {
     const formattedDate = date.toLocaleDateString('en-US', options);
     return formattedDate.replace(',', ''); // Remove the comma
   };
-  
+
   const handleDateChange = async (newDate) => {
     setDate(newDate); // Update the selected date
     const formattedDate = formatDate(newDate); // Format the selected date
@@ -48,14 +48,18 @@ const CalendarPage = () => {
   // Adding function to display the profile picture of the user
   useEffect(() => {
     const getProfPic = async () => {
-      if (isLoggedIn) {
-        // Getting the profile picture of the user
-        const image = await findImage(mainUser);
-        // If there is one then we set the value of profPic
-        if (image !== "error findImage try function failed") {
-          const base64string = bufferToBase64(image[0].data.data);
-          setProfPic(`data:${image.mimetype};base64,${base64string}`);
+      try {
+        if (isLoggedIn) {
+          // Getting the profile picture of the user
+          const image = await findImage(mainUser);
+          // If there is one then we set the value of profPic
+          if (image != "error findImage try function failed") {
+            const base64string = bufferToBase64(image[0].data.data);
+            setProfPic(`data:${image.mimetype};base64,${base64string}`);
+          }
         }
+      } catch (error) {
+        console.log('No Image');
       }
     };
     getProfPic();
@@ -112,7 +116,7 @@ const CalendarPage = () => {
                 events.map((event, index) => (
                   <li key={index} style={styles.eventItem}>
                     <p><strong>{event.title}</strong></p>
-                    {event.start_date === event.end_date ? (
+                    {event.start_date == event.end_date ? (
                       <p>{event.start_date}</p>) : (
                       <p>{event.start_date} - {event.end_date}</p>)}
                     <p>Location: {event.location || "TBA"}</p>
