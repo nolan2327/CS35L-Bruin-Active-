@@ -32,17 +32,6 @@ const Profiles = () => {
 
         // Get the user's profile picture
 
-        const image = await findImage(mainUser);
-        console.log(image);
-
-        if (image != "error findImage try function failed") {
-          const base64string = bufferToBase64(image[0].data.data);
-          setProfPic(`data:${image.mimetype};base64,${base64string}`);
-        }
-
-
-        console.log(userInfo);
-
       } catch (error) {
         console.log('Could not fetch image');
       }
@@ -50,6 +39,25 @@ const Profiles = () => {
 
     getUserInfo();
   }, [mainUser]);
+
+  useEffect(() => {
+    const getProfPic = async () => {
+      try {
+        if (isLoggedIn) {
+          // Getting the profile picture of the user
+          const image = await findImage(mainUser);
+          // If there is one then we set the value of profPic
+          if (image != "error findImage try function failed") {
+            const base64string = bufferToBase64(image[0].data.data);
+            setProfPic(`data:${image.mimetype};base64,${base64string}`);
+          }
+        }
+      } catch (error) {
+        console.log('No Image');
+      }
+    };
+    getProfPic();
+  }, []);
 
   return (
     <div style={sharedStyles.container}>
@@ -121,7 +129,7 @@ const Profiles = () => {
                   />
                 ) : (
                   <div style={styles.profileImagePlaceholder}>
-                    {userInfo.username.charAt(0).toUpperCase()}
+                    {mainUser.charAt(0).toUpperCase()}
                   </div>
                 )}
                 <h2 style={styles.tileHeader}>{userInfo.username}</h2>
