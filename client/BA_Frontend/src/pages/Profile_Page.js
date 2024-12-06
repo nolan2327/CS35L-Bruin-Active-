@@ -26,7 +26,6 @@ const Profiles = () => {
     const getUserInfo = async () => {
       try {
         // Get the user's profile information
-        console.log(mainUser);
         const profile = await findProfile(mainUser);
         setUserInfo(profile);
 
