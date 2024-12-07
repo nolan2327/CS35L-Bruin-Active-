@@ -26,16 +26,6 @@ Run the following pip3 commands:
 
     pip3 install selenium python-dotenv pymongo bs4
 
-### Connect to the Database
-
-**Install MongoDB:**
-   Follow the instructions [here](https://www.mongodb.com/docs/manual/installation/) to make MongoDB a MongoDB account.
-
-   TODO
-
-**Create a Project**
-
-
 ### Run the App 
 
 Run frontend and backend together:
