@@ -220,6 +220,10 @@ export const findImage = async (username) => {
     }
 }
 
+/*
+    > The Functions below allow access to the gym database
+*/
+
 export const getAllGymData = async () => {
     try {
         const response = await getRequest(`${baseUrl}/gym/`);

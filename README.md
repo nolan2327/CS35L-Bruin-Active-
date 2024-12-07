@@ -42,4 +42,8 @@ Run frontend and backend together:
 
     npm start
 
-### Troubleshooting
+## Code Structure
+For the frontend, we used React CreateApp. For the backend, we used nodejs. For the scripting and web scrapers, we used Python.
+
+## To Note
+The scrapers actively go to the web from your computer, so it may take a few seconds to load. Be patient! The same happens with the calendar.
