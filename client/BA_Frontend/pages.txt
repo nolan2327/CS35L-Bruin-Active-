@@ -1,7 +1,0 @@
-List of pages:
-1. AM Calendar
-2. JC Sign in
-3. JC Create profile
-4. AM View your own profile
-5. NQ Post board with profiles (think reddit)
-6. NQ Front page
