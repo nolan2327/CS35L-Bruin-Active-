@@ -4,7 +4,6 @@
 export const baseUrl = "http://localhost:5000/api";
 
 export const postRequest = async (url, body) => {
-    console.log('At Response');
     const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -12,9 +11,7 @@ export const postRequest = async (url, body) => {
         },
         body,
     });
-    console.log(response);
     const data = await response.json()
-    console.log(data);
     if (!response.ok) {
         let message;
 
@@ -31,7 +28,6 @@ export const postRequest = async (url, body) => {
 }
 
 export const postImageRequest = async (url, body) => {
-    console.log('At Response');
     const response = await fetch(url, {
         method: "POST",
         body,
