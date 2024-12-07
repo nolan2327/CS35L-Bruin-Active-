@@ -89,4 +89,4 @@ const getProfiles = async(req, res) => {
     }
 };
 
-module.exports = {createProfile, findProfile, findProfilesByName, changeStatus, changeBio, getProfiles};
+module.exports = {createProfile, findProfile, changeStatus, changeBio, getProfiles};

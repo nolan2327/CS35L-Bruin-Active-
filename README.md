@@ -33,7 +33,8 @@ Then a series of commands for other dependencies:
     cd ../..
     cd server
     npm install
-    cd .. 
+    node index.js
+    cd ..
 
 The project also relies on Google Chrome for the webscrapers. Follow this link https://www.google.com/chrome/ to download Chrome:
 
