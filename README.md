@@ -26,6 +26,8 @@ Run the following pip3 commands:
 
     pip3 install selenium python-dotenv pymongo bs4
 
+The project also relies on Google Chrome for the webscrapers. Follow this link https://www.google.com/chrome/ to download Chrome:
+
 ### Run the App 
 
 Run frontend and backend together:
