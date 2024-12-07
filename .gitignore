@@ -8,7 +8,7 @@ server/node_modules/
 server/package-lock.json
 
 client/BA_Frontend/node_modules/
-client/BA_frontend/package-lock.json
+client/BA_Frontend/package-lock.json
 
 /.pnp
 .pnp.js
