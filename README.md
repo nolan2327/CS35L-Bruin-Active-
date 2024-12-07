@@ -8,6 +8,14 @@ Project Proposal & Timeline: https://tinyurl.com/bruinactive
 
 ### Prerequisites
 
+In your terminal, clone the repository:
+
+    git clone https://github.com/nolan2327/CS35L-Bruin-Active-
+
+Switch into Bruin Active directory:
+
+    cd CS35L-Bruin-Active-
+
 The program depends on npm from nodejs. Install dependencies (one time only):
 
     npm install
@@ -18,27 +26,17 @@ Run the following pip3 commands:
 
     pip3 install selenium python-dotenv pymongo bs4
 
-### Get the Code
-
-In your terminal, clone the repository:
-
-    git clone https://github.com/nolan2327/CS35L-Bruin-Active-
-
-Switch into Bruin Active directory:
-
-    cd CS35L-Bruin-Active-
-
 ### Connect to the Database
 
 **Install MongoDB:**
-   Follow the instructions [here](https://www.mongodb.com/docs/manual/installation/) to install MongoDB for your system.
+   Follow the instructions [here](https://www.mongodb.com/docs/manual/installation/) to make MongoDB a MongoDB account.
 
    TODO
 
 **Create a Project**
 
 
-### Run the App
+### Run the App 
 
 Run frontend and backend together:
 
