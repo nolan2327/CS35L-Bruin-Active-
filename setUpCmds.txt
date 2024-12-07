@@ -1,6 +1,0 @@
-These commands were used to build the backend files.
-
-cd server
-npm init --yes
-npm i express mongoose cors dotenvs
-
