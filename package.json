@@ -9,11 +9,12 @@
     "keywords": [],
     "author": "",
     "license": "ISC",
-    "description": "",
+    "description": "Project Proposal & Timeline: https://tinyurl.com/bruinactive",
     "devDependencies": {
         "concurrently": "^9.1.0"
     },
     "dependencies": {
         "puppeteer": "^23.10.1"
-    }
+    },
+    "main": "index.js"
 }
