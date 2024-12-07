@@ -45,7 +45,7 @@ If it says "Error: Cannot find module 'express'" or "Error: Cannot find module '
     cd ../..
     cd server
     npm install
-    cd ..
+    cd .. 
 
 Then return to Run the App
 
