@@ -9,4 +9,4 @@ router.post("/changeStatus", changeStatus);
 router.post("/changeBio", changeBio);
 router.get("/", getProfiles);
 
-module.exports = router;
+module.exports = router
