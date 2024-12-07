@@ -9,6 +9,7 @@ const createToken = (_id) => {
     return jwt.sign({_id}, jwtkey);
 };
 
+// Registeres a User based on a given username and password, also salts password
 const registerUser = async (req, res) => {
     try{
 
@@ -38,6 +39,7 @@ const registerUser = async (req, res) => {
     }
 };
 
+// Uses given username and password to login user
 const loginUser = async(req, res) => {
     const {username, password} = req.body;
 
@@ -60,6 +62,7 @@ const loginUser = async(req, res) => {
     
 };
 
+// Finds a user based on id (used for testing)
 const findUser = async(req, res) => {
     const userId = req.params.userId;
 
@@ -73,6 +76,7 @@ const findUser = async(req, res) => {
     }
 };
 
+// Gets all users (used for testing)
 const getUsers = async(req, res) => {
     try {
         const users = await userModel.find();
