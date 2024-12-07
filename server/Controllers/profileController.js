@@ -1,12 +1,14 @@
 const profileModel = require("../Models/profileModel");
 const jwt = require("jsonwebtoken");
 
+// Creates the token from the id
 const createToken = (_id) => {
     const jwtkey = process.env.JWT_SECRET_KEY;
 
     return jwt.sign({_id}, jwtkey);
 };
 
+// Creates user profile and ensures correctness
 const createProfile = async (req, res) => {
     try {
         const {username, status, bio} = req.body;
@@ -24,6 +26,7 @@ const createProfile = async (req, res) => {
     }
 };
 
+// Searches through and finds a profile based on a given username
 const findProfile = async (req, res) => {
     try {
         const {username} = req.body;
@@ -40,21 +43,7 @@ const findProfile = async (req, res) => {
     }
 };
 
-const findProfilesByName = async (req, res) => { // Currently not used will be changed later
-    try {
-        const {username} = req.body;
-
-        let profiles = await profileModel.find({username});
-
-        if(!profiles) return res.status(400).json("No Profiles named " + username);
-
-        res.status(200).json(profiles);
-    } catch(error) {
-        console.log(error);
-        res.status(500).json(error);
-    }
-};
-
+// Function to change the status of a user based on a given username and new status
 const changeStatus = async (req, res) => {
     try {
         const {username, newStatus} = req.body;
@@ -71,6 +60,7 @@ const changeStatus = async (req, res) => {
     }
 };
 
+// Function to change the bio of a user based on a given username and new bio
 const changeBio = async (req, res) => {
     try {
         const {username, newBio} = req.body;
@@ -87,6 +77,7 @@ const changeBio = async (req, res) => {
     }
 };
 
+// Returns all profiles
 const getProfiles = async(req, res) => {
     try {
         const profiles = await profileModel.find();
