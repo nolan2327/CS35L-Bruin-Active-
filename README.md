@@ -26,6 +26,15 @@ Run the following pip3 commands:
 
     pip3 install selenium python-dotenv pymongo bs4
 
+Then a series of commands for other dependencies:
+
+    cd client/BA_Frontend
+    npm install
+    cd ../..
+    cd server
+    npm install
+    cd .. 
+
 The project also relies on Google Chrome for the webscrapers. Follow this link https://www.google.com/chrome/ to download Chrome:
 
 ### Run the App 
@@ -36,18 +45,6 @@ Run frontend and backend together:
 
 ## Code Structure
 For the frontend, we used React CreateApp. For the backend, we used nodejs. For the scripting and web scrapers, we used Python.
-
-## Troubleshooting
-If it says "Error: Cannot find module 'express'" or "Error: Cannot find module '_____'", run the following commands to fix the missing dependencies:
-
-    cd client/BA_Frontend
-    npm install
-    cd ../..
-    cd server
-    npm install
-    cd .. 
-
-Then return to Run the App
 
 ## To Note
 The scrapers actively go to the web from your computer, so it may take a few seconds to load. Be patient! The same happens with the calendar.
