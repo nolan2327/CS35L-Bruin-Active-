@@ -1,54 +1,47 @@
-# CS35L-Bruin-Active-
+# CS35L-Bruin-Active
 
-Project Proposal & Timeline: https://docs.google.com/document/d/10w6S5Q7mvtQgrGDY_DeE_n9DvekuFYxya2PuYvJ9ktg/edit?tab=t.0
+Project Proposal & Timeline: https://tinyurl.com/bruinactive
 
-Instructions BEFORE coding: (update your local main)
+<img src="logo_bear.png" width="200" height="200">
 
-    > Checkout your local main branch:
+## Getting Started
 
-        git checkout main
+### Prerequisites
 
-    > Get the most local changes
+The program depends on npm from nodejs. Install dependencies (one time only):
 
-        git fetch origin main
+    npm install
+    
+Make sure you have a version of python3 if not refer to here https://www.python.org/downloads/ to download the latest compatible version
+    
+Run the following pip3 commands: 
 
-    > Pull the most recent changes
+    pip3 install selenium python-dotenv pymongo bs4
 
-        git pull origin main
+### Get the Code
 
-    > Verify updated changes by checking status
+In your terminal, clone the repository:
 
-        git status
+    git clone https://github.com/nolan2327/CS35L-Bruin-Active-
 
+Switch into Bruin Active directory:
 
-    To run frontend and backend together:
-        > Change directory into CS35L-Bruin-Active- folder and type
+    cd CS35L-Bruin-Active-
 
-            npm start
+### Connect to the Database
 
-    To run frontend only:
-        > Change directory into src folder and type
+**Install MongoDB:**
+   Follow the instructions [here](https://www.mongodb.com/docs/manual/installation/) to install MongoDB for your system.
 
-            npm start
+   TODO
 
-Instructions for USERS:
-
-    In your terminal, clone the repo:
-	> git clone https://github.com/nolan2327/CS35L-Bruin-Active-
-
-    Switch into Bruin Active directory:
-	> cd CS35L-Bruin-Active-
-
-    Install dependencies (one time only):
-	> npm install
- 	> Make sure you have a version of python3 if not refer to here https://www.python.org/downloads/ to download the latest compatible version
-  	> run the following pip3 commands: 
-	> pip3 install selenium
-	> pip3 install python-dotenv
-	> pip3 install pymongo
-	> pip3 install bs4
-
-    Run frontend and backend together:
-	> npm start
+**Create a Project**
 
 
+### Run the App
+
+Run frontend and backend together:
+
+    npm start
+
+### Troubleshooting
