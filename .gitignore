@@ -6,6 +6,7 @@ package-lock.json
 
 server/node_modules/
 server/package-lock.json
+server/.env
 
 client/BA_Frontend/node_modules/
 client/BA_Frontend/package-lock.json
